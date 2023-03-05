@@ -309,8 +309,49 @@ Let's try some practice problems.
 
 
 def learn_squareNumbers():
-    print("Squaring Numbers")
-    print("Squaring Numbers from 41-60")
-    print("""
-Squaring numbers from 41-60 is very easy. Firs 
+	print("Squaring Numbers")
+	print("Squaring Numbers from 41-60")
+	print("""
+	Squaring numbers from 41-60 is very easy. First, we subtract 50 from that number, and then add that difference to 25. Then, we square the difference and put that at the end. For example, 
+	48 ^ 2
+	48 - 50 = -2
+	25 + (-2) = 23
+	(-2) ^ 2 = 4
+	48 ^2 = 2304
+	Let's try one together: 53^2
+	""")
+	questions.printAnswerValidation(utils.betterNumInput("What is the difference? "), "3","3")
+	questions.printAnswerValidation(utils.betterNumInput("What are the first two digits? (25 + that number) "), "28", "28")
+	questions.printAnswerValidation(utils.betterNumInput("What is the last digit? (Difference squared)? "),"9","9")
+	print("Yes. The answer is 2809")
+	print("Squaring numbers ending in 5.")
+	print("""
+	To square a number ending in 5, you take the first digit, multiply it by itself + 1, then append 25. For example, 
+ 	25 ^ 2
+  	The first digit (2) times itself plus one (3) is 6.
+   	We append 25 to get 625.
  """)
+	input("Press enter to continue")
+	print("Squaring other numbers.")
+	print("You can square any other number with this trick:")
+	print("""
+To square a number, you add the ones digit, then multiply by the tens digit, then finally append the ones digit squared at the end. For example:
+	22^2
+ 	22 + 2(The ones digit) = 24
+  	24 * 2(The tens digit) = 48
+   	The ones digit (2) squared is 4
+	And we append that the end to get 484.
+ 	22 ^ 2 = 484
+  	Remember to carry over if the ones digit squared is more than one digit.
+	Let's try one together: 24 ^ 2
+ """)
+	questions.printAnswerValidation(utils.betterNumInput("After adding the ones digit, what do we have? "), "28", "28")
+	questions.printAnswerValidation(utils.betterNumInput("After multiplying by the tens digit, what do we have? "), "56","56")
+	questions.printAnswerValidation(utils.betterNumInput("After appending the ones digit squared, what do we have? "), "576","576")
+	print("Yes. Now, let's try some practice problems over these tricks.")
+	questions.printAnswerValidation(utils.betterNumInput("What is 43 ^ 2? "), "1849", "1849")
+	questions.printAnswerValidation(utils.betterNumInput("What is 56 ^ 2? "), "3136", "3136")
+	questions.printAnswerValidation(utils.betterNumInput("What is 65 ^ 2? "), "4225", "4225")
+	questions.printAnswerValidation(utils.betterNumInput("What is 27 ^ 2? "), "729", "729")
+	questions.printAnswerValidation(utils.betterNumInput("What is 31 ^ 2? "), "961", "961")
+	
