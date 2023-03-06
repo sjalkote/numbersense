@@ -1,4 +1,5 @@
 ### 0.0.1b: Encryption and DB
+- [ ] Info page uses `rich` package's markdown feature
 - [ ] Make a proper [`README.md`](https://github.com/TechnoShip123/numbersense/blob/master/README.md)
 - [ ] Ensure that error messages are not displayed at finishing of the program.
 - [ ] Migrate to DB
@@ -7,6 +8,7 @@
 	- [ ] Group 2
     - [ ] Group 3  
 - [ ] Salt/Hash password if we are going for another approach? or cryptography
+- [ ] Fix giveInfo() leaderboard option
 
 ### 0.0.2: Decimals, Fractions, and Hard Mode
 

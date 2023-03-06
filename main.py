@@ -9,6 +9,20 @@ from pick import pick
 import utils
 import learnmode as lm
 
+from rich.console import Console
+from rich.markdown import Markdown
+
+# TESTING -----------------------
+MARKDOWN = """
+## Numbersense.py
+
+[GitHub Page](https://github.com/TechnoShip123/numbersense)
+
+"""
+
+console = Console().print(Markdown(MARKDOWN))
+
+# -------------------------------
 colorama_init(True)
 
 
@@ -259,7 +273,7 @@ if __name__ == "__main__":
 	lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11",
 				   "Multiplying Fractions", "Multiplying Two Numbers Centered Around a Third", "Remainders",
 				   "Compare Fractions", "Multiplying Numbers Close to 100", "Dividing Fractions", "Multiplying over 37"]
-	lmGroupsTwo = ["Squaring Numbers"]
+	lmGroupsTwo = ["Squaring Numbers", "Cubing Numbers", "Square Rooting Numbers", "Cube Rooting Numbers", "Adding Square Type One", "Adding Square Type Two", "Difference of squares", "Logarithms"]
 	
 	mode, index = pick(options, title, indicator='👉', default_index=1)
 	
@@ -348,6 +362,20 @@ if __name__ == "__main__":
 			lmg2mode, lmg2index = pick(lmGroupsTwo, "What lesson? ", indicator='👉', default_index=0)
 			if lmg2index == 0:
 				lm.learn_squareNumbers()
+			if lmg2index == 1:
+				lm.learn_cubeNumbers()
+			if lmg2index == 2:
+				lm.learn_squareRootNumber()
+			if lmg2index == 3:
+				lm.learn_cubeRootNumber()
+			if lmg2index == 4:
+				lm.learn_addSquares3x()
+			if lmg2index == 5:
+				lm.learn_addSquaresSpec()
+			if lmg2index == 6:
+				lm.learn_differenceOfSquares()
+			if lmg2index == 7:
+				lm.learn_logarithms()
 		exit()
 	else:
 		print(f"{C.RED}Invalid Input!{Style.RESET_ALL} Something went wrong. :(")

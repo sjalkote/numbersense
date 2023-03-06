@@ -1,6 +1,7 @@
 from pick import pick
 import questions
 import utils
+from tabulate import tabulate
 
 
 # epic progress on learn mode :D
@@ -354,4 +355,132 @@ To square a number, you add the ones digit, then multiply by the tens digit, the
 	questions.printAnswerValidation(utils.betterNumInput("What is 65 ^ 2? "), "4225", "4225")
 	questions.printAnswerValidation(utils.betterNumInput("What is 27 ^ 2? "), "729", "729")
 	questions.printAnswerValidation(utils.betterNumInput("What is 31 ^ 2? "), "961", "961")
+
+def learn_cubeNumbers():
+	print("""There are no viable tricks to cube numbers. Because the numbers you will have to cube will mostly be below 15 anyway, however, it is best to memorize your cubes up to 15. Here:
+	1^3 = 1
+	2^3 = 8
+	3^3 = 27 
+	4^3 = 64
+	5^3 = 125
+	""")
+	input("Press enter to continue")
+	print("""
+	6^3 = 216
+ 	7^3 = 343
+ 	8^3 = 512
+  	9^3 = 729
+   	10^3 = 1000
+	11^3 = 1331
+ 	12^3 = 1728
+  	13^3 = 2197
+   	14^3 = 2744
+	15^3 = 3375
+
+ 	Here are a few practice problems:
+ """)
+	questions.cubeNumber()
+	questions.cubeNumber()
+	questions.cubeNumber()
+
+def learn_squareRootNumber():
+	list = ["0", "1 or 9", "No rational square root","No rational square root", "2 or 8", "5", "4 or 6", "No rational square root","No rational square root", "3 or 7", ]
+	print("Square rooting numbers")
+	print("""
+	Taking the square root of numbers quickly requires a good amount of memorization. First, we use the last digit of the square and see what last digits of the roots they correspond to. Here is the table:
+ """)
 	
+	print(tabulate({"Last digit of Square" : [num for num in range(10)], "Last digit of Square root" : list}, headers="keys"))
+	print("""Finally, we find what multiply-of-ten squares the square is between and which one it is closer to in order to figure out the first digit and the second digit in the case of multiply options. For example:
+ 	Square root of 2704
+  	Because 4 means 2 or 8 as the last digit (Based on the table), we 	know the last digit of the root is 2 or 8. 
+	Because 2704 is between 2500 (50^2) and 3600 (60^2), we know the first digit is 5.
+ 	And finally, since 2704 is closer to 2500 (50^2), we know it ends in two rather than 8.
+   	Let's try one together: Square root of 1681
+	1 corresponds with 1 or 9 according to the table.
+	""")
+	questions.printAnswerValidation(utils.betterNumInput("What is the tens digit? (Find what multiple-of-ten squares it is between) "), "4", "4")
+	questions.printAnswerValidation(utils.betterNumInput("What is the ones digit? (1 or 9, is it closer to 40^2 or 50^2?) "), "1", "1")
+	print("Yes. The answer is 41 \nHere are some practice problems.")
+	questions.squareRootNumber()
+	questions.squareRootNumber()
+	questions.squareRootNumber()
+
+def learn_cubeRootNumber():
+	list = [0,1,8,7,4,5,6,3,2,9]
+	print("Cube rooting numbers")
+	print("Finding the cube root of numbers is very similar to finding the square root of numbers. The main differences are that the table is slightly different and that there are no ors. We also have to use multiple-of-ten cubes rather than squares. Here is the table:")
+	print(tabulate({"Last digit of cube" : [num for num in range(10)], "Last digit of cube root" : list}, headers="keys"))
+	print("""For example,
+ 	The cube root of 148877
+  	First, we see that the ending of the cube (7) corresponds with the ending of the cube root (3). Next, we see that 148,877 is between 50^3 (125000) and 60^3 (216000).
+   	This means the first digit is 5 and the last digit is 3, to get a cube root of 53.
+	Let's try one together: the cube root of 74,088
+ 	""")
+	questions.printAnswerValidation(utils.betterNumInput("According to the table, what would the cube root end with? "), "2", "2")
+	questions.printAnswerValidation(utils.betterNumInput("Based on what cubes it is between, what is the first digit? "), "4", "4")
+	print("Yes. The answer is 42. \nLet's try some practice problems.")
+	questions.cubeRootNumber()
+	questions.cubeRootNumber()
+	questions.cubeRootNumber()
+
+def learn_addSquares3x():
+	print("Adding squares with x and 3x")
+	print("""
+	This is a specific type of adding squares. When adding the square of a number and the square of three times that number, the answer is simply the number squared times 10. For example,
+ 	20^2 + 60^2
+  	Because 60 is three times 20, this rule applies.
+   	20^2 is 400, times 10 is 4000, which is our answer.
+	Let's try some practice problems:
+ """)
+	questions.addSquares(1)
+	questions.addSquares(1)
+	questions.addSquares(1)
+
+def learn_addSquaresSpec():
+	print("Adding squares with special case")
+	print("""
+	In specific scenarios, adding squares can be very easy. 
+ 	Let's take numbers ab and cd
+  	Adding ab^2 and cd^2 where c = b - 1 and a + d = 10, the answer is (a^2 + b^2) * 101.
+   	For example,
+	32^2 + 17^2
+ 	Because 1 is one less than 2 and 3 + 7 = 10, the rule applies
+  	The answer is simply (3^2 + 2^2) * 101
+   	(9 + 4) * 101
+	13 * 101
+ 	32^2 + 17^2 = 1313
+  	Remember to arrange the numbers so that they are in the correct order.
+   	Here are some practice problems:
+ """)
+	questions.addSquares(2)
+	questions.addSquares(2)
+	questions.addSquares(2)
+	
+def learn_differenceOfSquares():
+	print("Difference of squares")
+	print("""
+	Differences of squares are very easy. 
+	a^2 - b^2 is (a + b)(a - b)
+ 	For example,
+  	10^2 - 8^2 = (10 + 8) * (10 - 8)
+   	18 * 2 = 36
+	10^2 - 8^2 = 36
+ 	Here are some practice problems:
+ """)
+	questions.differenceOfSquares()
+	questions.differenceOfSquares()
+	questions.differenceOfSquares()
+
+def learn_logarithms():
+	print("Logarithms")
+	print("""
+	The major part of doing logarithms in your head is ensuring that you know how to rethink them. log base a (c) = b means b^a = c
+ 	For example,
+  	log base 3 of 81 means 3 to the power of what is 81.
+   	Because 3^4 is 81, the answer is 4.
+	Here are some practice problems:
+ """)
+	questions.logarithmQuestion()
+	questions.logarithmQuestion()
+	questions.logarithmQuestion()
