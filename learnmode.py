@@ -2,7 +2,7 @@ from pick import pick
 import questions
 import utils
 from tabulate import tabulate
-
+import random
 
 # epic progress on learn mode :D
 
@@ -484,3 +484,53 @@ def learn_logarithms():
 	questions.logarithmQuestion()
 	questions.logarithmQuestion()
 	questions.logarithmQuestion()
+
+def learn_diffOfReverses():
+	print("Difference of reverses.")
+	print("""
+ 	Subtracting reverses is very easy. It works with three digit numbers and four digit numbers with zeros in the middle. You find the difference of the first digits, multiply it by 100 or 1000 depending on the number of digits, then subtract the difference again. For example,
+  	321 - 123
+   	3-1 = 2
+	2 * 100 - 2 = 198
+ 	321 - 123 = 198
+Example #2:
+	2004 - 4002
+ 	2 - 4 = -2
+  	-2 * 1000 - (-2) = -1998
+  	2004 - 4002 = -1998
+   	Let's try some practice problems.
+  """)
+	questions.differenceOfReverses(random.randint(3,4))
+	questions.differenceOfReverses(random.randint(3,4))
+	questions.differenceOfReverses(random.randint(3,4))
+	
+def learn_addCommon():
+	print("Adding common factors")
+	print("""
+ 	To add two numbers multiplied by the same number, the answer is the the sum of the two numbers multiplied by the other. For example,
+  	17 * 10 + 13 * 10
+   	This is the same as (17 + 13) * 10, or 30 * 10 = 300.
+	Here are some practice problems:
+   """)
+	questions.addCommonProducts()
+	questions.addCommonProducts()
+	questions.addCommonProducts()
+
+def learn_sepDigits():
+	print("Adding with numbers and 0's")
+	print("""
+	This can be done very easily. A lot of questions like this will split up 5 digits between two numbers and have one 0 and one number for each place value. For example:
+ 	103.4 + 12.05
+  	Hundreds: 1
+   	Tens: 2
+	Ones: 3
+ 	Tenths: 4
+  	Hundreths: 5
+   	The answer is 123.45
+	Here are some practice problems:
+ """)
+	questions.sepDigits()
+	questions.sepDigits()
+	questions.sepDigits()
+	
+

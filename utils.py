@@ -262,7 +262,6 @@ def giveInfo():
 
 
 def betterNumInput(question_reprint: str = ""):
-    did_int_parse_correctly = False
     while True:
         try:
             thing = input(question_reprint + "\n👉 ")
@@ -288,7 +287,7 @@ def betterNumInput(question_reprint: str = ""):
 
 
 def betterFracInput(question_reprint, decimal=False):
-    thing = input(question_reprint)
+    thing = input(question_reprint + "\n👉" )
     state = True
     first = True
     emptyList = []

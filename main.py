@@ -269,11 +269,12 @@ if __name__ == "__main__":
 	options = ["😀 Easy", "😐 Normal", "👺 Hard", "🤝 2 Player (v.s.)", "⚙️ Settings", "🔒 Administrative Menu",
 			   "📙 Learn Mode"]
 	settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📄 Get additional Info"]
-	lmGroups = ["Multiplying, Dividing, and Fractions", "Powers"]
+	lmGroups = ["Multiplying, Dividing, and Fractions", "Powers", "Addition and Subtraction"]
 	lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11",
 				   "Multiplying Fractions", "Multiplying Two Numbers Centered Around a Third", "Remainders",
 				   "Compare Fractions", "Multiplying Numbers Close to 100", "Dividing Fractions", "Multiplying over 37"]
 	lmGroupsTwo = ["Squaring Numbers", "Cubing Numbers", "Square Rooting Numbers", "Cube Rooting Numbers", "Adding Square Type One", "Adding Square Type Two", "Difference of squares", "Logarithms"]
+	lmGroupsThree = ["Difference of Reverses", "Adding with Common Products", "Adding with Digits and 0's"]
 	
 	mode, index = pick(options, title, indicator='👉', default_index=1)
 	
@@ -376,7 +377,18 @@ if __name__ == "__main__":
 				lm.learn_differenceOfSquares()
 			if lmg2index == 7:
 				lm.learn_logarithms()
+		elif lmgindex == 2:
+			lmg3mode, lmg3index = pick(lmGroupsThree, "What lesson? ", indicator='👉', default_index=0)
+			if lmg3index == 0:
+				lm.learn_diffOfReverses()
+			if lmg3index == 1:
+				lm.learn_addCommon()
+			if lmg3index == 2:
+				lm.learn_sepDigits()
+		else:
+			print("Error #1: Not found")
 		exit()
+		
 	else:
 		print(f"{C.RED}Invalid Input!{Style.RESET_ALL} Something went wrong. :(")
 		exit(1)

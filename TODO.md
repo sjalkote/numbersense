@@ -1,12 +1,12 @@
 ### 0.0.1b: Encryption and DB
 - [ ] Info page uses `rich` package's markdown feature
 - [ ] Make a proper [`README.md`](https://github.com/TechnoShip123/numbersense/blob/master/README.md)
-- [ ] Ensure that error messages are not displayed at finishing of the program.
+- [x] Ensure that error messages are not displayed at finishing of the program.
 - [ ] Migrate to DB
 - [ ] Proper loop when in the `additional info` section so that we can navigate back to the main menu without exiting the program
-- [ ] Finish more groups of Learn Mode
-	- [ ] Group 2
-    - [ ] Group 3  
+- [x] Finish more groups of Learn Mode
+	- [x] Group 2
+    - [x] Group 3  
 - [ ] Salt/Hash password if we are going for another approach? or cryptography
 - [ ] Fix giveInfo() leaderboard option
 
