@@ -200,65 +200,66 @@ def deleteAccount(username):
 
 
 def giveInfo():
-    options1 = ["Leaderboard", "Programmers", "Updates"]
-    options11 = ["3 Questions", "10 Questions", "20 Questions"]
-    options12 = ["Easy Mode", "Normal Mode"]
-    options13 = ["Recent Updates", "Future Plans"]
-    mmm, index1 = pick(options1, "What would you like info on?", indicator='👉', default_index=0)
-    if index1 == 0:
-        print("  					Info about leaderboard.", end="")
-        print("""
-  	The leaderboard keeps track of the top three fastest times for getting every question correct. To qualify, you must not answer any questions wrong, and do so as quickly as possible. The categories are 3, 10 and 20 questions easy or hard.
-  """)
-
-        leaderboardInput: str = input("View leaderboard? (Y/n) >> ").lower()
-        if leaderboardInput == "y" or leaderboardInput == "":
-            mode11, index11 = pick(options11, "What leaderboard would you like to view?", indicator='👉',
-                                   default_index=0)
-            mode12, index12 = pick(options12, "What leaderboard would you like to view?", indicator='👉',
-                                   default_index=0)
-            match index11:
-                case 0:
-                    numQe = 3
-                    pr = "Three Questions"
-                case 1:
-                    numQe = 10
-                    pr = "Ten Questions"
-                case 2:
-                    numQe = 20
-                    pr = "Twenty Questions"
-            print("\t\t\t" + pr + ", " + mode12)
-            read_leaderboard(numQ=int(numQe), altqtype=mode12)
-        else:
-            print("Exiting.")
-            return
-
-    if index1 == 1:
-        print("  				Programmers Info")
-        print("""
-  	This program was written by Unmesh Tokale and Sopan Jalkote, two high school students currently attending Round Rock High School in the 10th grade.
-  """)
-    if index1 == 2:
-        # TODO: Move app flow to loops for each scene
-        mmm, index13 = pick(options13, "What would you like info on? ", indicator='👉', default_index=0)
-        if index13 == 0:
-            print("  				Recent updates")
-            print("""
+	options1 = ["Leaderboard", "Programmers", "Updates"]
+	options11 = ["3 Questions", "10 Questions", "20 Questions"]
+	options12 = ["Easy Mode", "Normal Mode"]
+	options13 = ["Recent Updates", "Future Plans"]
+	mmm, index1 = pick(options1, "What would you like info on?", indicator='👉', default_index=0)
+	if index1 == 0:
+		print("  					Info about leaderboard.", end="")
+		print("""
+	The leaderboard keeps track of the top three fastest times for getting every question correct. To qualify, you must not answer any questions wrong, and do so as quickly as possible. The categories are 3, 10 and 20 questions easy or hard.
+	""")
+	
+		leaderboardInput: str = input("View leaderboard? (Y/n) >> ").lower()
+		if leaderboardInput == "y" or leaderboardInput == "":
+			mode11, index11 = pick(options11, "What leaderboard would you like to view?", indicator='👉',
+								   default_index=0)
+			mode12, index12 = pick(options12, "What leaderboard would you like to view?", indicator='👉',
+								   default_index=0)
+			match index11:
+				case 0:
+					numQe = 3
+					pr = "Three Questions"
+				case 1:
+					numQe = 10
+					pr = "Ten Questions"
+				case 2:
+					numQe = 20
+					pr = "Twenty Questions"
+			print("\t\t\t" + pr + ", " + mode12)
+			read_leaderboard(numQ=int(numQe), altqtype=mode12)
+		else:
+			print("Exiting.")
+			return
+	
+	if index1 == 1:
+		print("  				Programmers Info")
+		print("""
+	This program was written by Unmesh Tokale and Sopan Jalkote, two high school students currently attending Round Rock High School in the 10th grade.
+	""")
+	if index1 == 2:
+		# TODO: Move app flow to loops for each scene
+		mmm, index13 = pick(options13, "What would you like info on? ", indicator='👉', default_index=0)
+		if index13 == 0:
+			print("  				Recent updates")
+			print("""
 	Recent updates have been focused on user-friendliness, including ensuring that non-numeric inputs do not raise errors. Learn Mode and basic features have also been implemented.
 	  """)
-        if index13 == 1:
-            print("  				Future Plans")
-            print("""
-   	Coming Soon!
+		if index13 == 1:
+			print("  				Future Plans")
+			print("""
+	Coming Soon!
 		- Large scale bug fixing!
-  		- Replit DB!!!
+		- Transfer to DB
 	Future updates:
-   		- 0.0.1b: Learn mode four groups, encryption
- 		- 0.0.2: The decimal update! Coming mid-next week
-   		- 0.2: Two-Player Mode!
-   """)
+		- 0.0.1b: Learn mode additional groups, encryption
+		- 0.0.2: The decimal update! Coming mid-week
+  		
+		- 0.2: Two-Player Mode!
+	""")
+	input("\nPress enter to return to the main menu\n")
 
-    exit()
 
 
 def betterNumInput(question_reprint: str = ""):
