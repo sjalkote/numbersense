@@ -219,16 +219,16 @@ def giveInfo():
                                    default_index=0)
             match index11:
                 case 0:
-                    numQ = "threeq"
+                    numQe = 3
                     pr = "Three Questions"
                 case 1:
-                    numQ = "tenq"
-                    pr = "Three Questions"
+                    numQe = 10
+                    pr = "Ten Questions"
                 case 2:
-                    numQ = "twentyq"
-                    pr = "Three Questions"
+                    numQe = 20
+                    pr = "Twenty Questions"
             print("\t\t\t" + pr + ", " + mode12)
-            read_leaderboard(numQ=numQ, altqtype=mode12)
+            read_leaderboard(numQ=int(numQe), altqtype=mode12)
         else:
             print("Exiting.")
             return
