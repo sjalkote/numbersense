@@ -317,6 +317,29 @@ def betterFracInput(question_reprint, decimal=False):
     return thing
 
 
-def encrypt(password):
-    password = password.encode("UTF-8")
-    return bcrypt.hashpw(password, bcrypt.gensalt())
+def encrypt_password(password: str, return_as_str: bool = False):
+	"""Encrypts the given password (Should be str) and returns the result as either encoded or decoded."""
+	bytes = password.encode('utf-8')  # encodes password str to an array of bytes
+	hashed_pwd = bcrypt.hashpw(bytes, bcrypt.gensalt())  # Newly hashed & salted password
+	if return_as_str:
+		return hashed_pwd.decode('UTF-8')
+	return hashed_pwd
+
+
+def check_password(user_pwd, retrieved_pwd) -> str:
+    # Check hashed password. Using bcrypt, the salt is saved into the hash itself
+	user_pwd = user_pwd.encode("utf-8")
+	if not type(retrieved_pwd) == bytes:
+		retrieved_pwd = retrieved_pwd.encode("utf-8")
+	return (bcrypt.checkpw(user_pwd, retrieved_pwd))
+
+
+def testing_stuff():
+	password = input("enter password: ")
+	hashed_password = encrypt_password(password)
+
+
+	password = input("comparison pwd: ")
+	print(check_password(password, hashed_password))
+	
+	exit()

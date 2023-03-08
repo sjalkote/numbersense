@@ -31,7 +31,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Adding and subtracting fractions
 - [ ] Mixed numbers
 
-### 0.0.2: Fractions and Mixed Numbers
+## 0.0.2: Fractions and Mixed Numbers
 
 - [ ] Add more categories to the leaderboard
 - [ ] Feedback
@@ -47,7 +47,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 ### 0.0.3b: Inbox
 - [ ] Inbox with notifications (ex.: failed login attempts)
 
-### 0.0.3
+## 0.0.3
 - [ ] Timed Mode
 
 ## 0.0.4: Questions!

@@ -8,16 +8,15 @@ from colorama import init as colorama_init, Fore as C, Style, ansi
 from pick import pick
 import utils
 import learnmode as lm
-import sqlite3
 
 from rich.console import Console
 from rich.markdown import Markdown
 
 # TESTING -----------------------
+utils.testing_stuff()
+# -------------------------------
 
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
-
-# -------------------------------
 colorama_init(True)
 
 
