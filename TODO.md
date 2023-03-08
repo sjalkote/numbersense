@@ -1,17 +1,22 @@
 # TODO.md
 
-## This file contains a list of TODO items, organized into planned release versions.
+### This file contains a list of TODO items, organized into planned release versions.
 
-### 0.0.1b: Encryption and DB
+## 0.0.1: Project & Git Cleanup
+
+### 0.0.1b: Database & Cleanup
+- [ ] Migrate leaderboard to SQLite3
+- [ ] Salt/Hash password if we are going for another approach? or cryptography
+- [ ] Add CI/CD deployments for code quality & error checking.
+- [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
+
 - [x] Info page uses `rich` package's markdown feature
 - [x] Make a proper [`README.md`](https://github.com/TechnoShip123/numbersense/blob/master/README.md)
 - [x] Ensure that error messages are not displayed at finishing of the program.
-- [ ] Migrate leaderboard to SQLite3
 - [x] Proper loop when in the `additional info` section so that we can navigate back to the main menu without exiting the program
 - [x] Finish more groups of Learn Mode
 	- [x] Group 2
     - [x] Group 3  
-- [ ] Salt/Hash password if we are going for another approach? or cryptography
 - [x] Fix giveInfo() leaderboard option
 
 ## 0.0.2: Parts and Hard Mode
