@@ -3,22 +3,21 @@
 - [x] Make a proper [`README.md`](https://github.com/TechnoShip123/numbersense/blob/master/README.md)
 - [x] Ensure that error messages are not displayed at finishing of the program.
 - [ ] Migrate to DB
-- [ ] Proper loop when in the `additional info` section so that we can navigate back to the main menu without exiting the program
+- [x] Proper loop when in the `additional info` section so that we can navigate back to the main menu without exiting the program
 - [x] Finish more groups of Learn Mode
 	- [x] Group 2
     - [x] Group 3  
 - [ ] Salt/Hash password if we are going for another approach? or cryptography
 - [x] Fix giveInfo() leaderboard option
 
-### 0.0.2: Decimals, Fractions, and Hard Mode
+## 0.0.2: Parts and Hard Mode
 
 ### 0.0.2a: Decimals and Hard Mode
 - [ ] Decimals!! 
 	- [ ] Converting decimals to fraction
     - [ ] Converting fractions to decimals
-	- [ ] Learn mode: Decimal & Fraction Group
 - [ ] Percentages!
-	- [ ] Learn mode
+- [ ] Learn mode: Parts of the Whole Group
 - [ ] Ability to exit program at any point.
 
 - [ ] Hard mode
@@ -33,8 +32,9 @@
 - [ ] Feedback
 - [ ] Quick Mode
 - [ ] Censoring
+- [ ] Play Again Option
 
-### 0.0.3: Practice mode and notifications
+## 0.0.3: Practice mode and notifications
 
 ### 0.0.3a: Practice Mode
 - [ ] Practice mode: Practice specific concepts & problems
@@ -43,7 +43,7 @@
 - [ ] Inbox with notifications (ex.: failed login attempts)
 - [ ] Timed Mode
 
-### 0.0.4: Questions!
+## 0.0.4: Questions!
 - [ ] Introduce loads of new questions
 - [ ] Word Problems
 - [ ] Geometry
@@ -51,10 +51,10 @@
 - [ ] Subscripts
 - [ ] Estimation Questions
 
-### 0.0.5: Tests
+## 0.0.5: Tests
 - [ ] Full length practice tests
 
-### 0.1
+# 0.1
 - [ ] 2 Player Mode
 - [ ] Decrease Lag
 - [ ] Multiple Instances

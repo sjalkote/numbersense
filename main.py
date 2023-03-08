@@ -420,8 +420,8 @@ if __name__ == "__main__":
 		elif quizMode == QuizType.HARD:
 			# player1.current_mode = QuizType.EASY
 			print("Error #3: Not implemented")
-			print("Hard is not yet implemented. Please try something else.")
-			input("Press enter to go back to the main menu")
+			print("Hard Mode is not yet implemented. Please try something else.")
+			input("\nPress enter to go back to the main menu\n")
 			continue
 		
 		elif quizMode == QuizType.TWO_PLAYER_VS:
@@ -437,5 +437,6 @@ if __name__ == "__main__":
 		userLeaderboardResponse = input("Display leaderboard? [Y/n] >> ").strip().lower()
 		if userLeaderboardResponse == "y" or userLeaderboardResponse == "":
 			utils.read_leaderboard(quiztype=quizMode, numQ=int(numQuestions))
-			input("\nPress enter to go back to main menu.")
+			
+			input("\nPress enter to go back to the main menu\n")
 		
