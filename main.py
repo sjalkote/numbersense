@@ -8,19 +8,14 @@ from colorama import init as colorama_init, Fore as C, Style, ansi
 from pick import pick
 import utils
 import learnmode as lm
+import sqlite3
 
 from rich.console import Console
 from rich.markdown import Markdown
 
 # TESTING -----------------------
-MARKDOWN = """
-## Numbersense.py
 
-[GitHub Page](https://github.com/TechnoShip123/numbersense)
-
-"""
-
-console = Console().print(Markdown(MARKDOWN))
+console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
 
 # -------------------------------
 colorama_init(True)
@@ -50,7 +45,6 @@ global player1
 
 
 def main(totalQuestions: int, player1: Player):
-    # TODO: @pikadabber24 This is not being used for some reason something must be wrong !!!!!!!!!!!!!!!!
     counter = 1
 
     while counter <= totalQuestions:

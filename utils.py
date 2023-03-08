@@ -9,6 +9,8 @@ import getpass
 import Player
 from tabulate import tabulate
 import bcrypt
+from rich.console import Console
+from rich.markdown import Markdown
 
 
 def purge_all_users(overrideUserConfirmation: bool = True) -> bool:
@@ -247,17 +249,12 @@ def giveInfo():
 	Recent updates have been focused on user-friendliness, including ensuring that non-numeric inputs do not raise errors. Learn Mode and basic features have also been implemented.
 	  """)
 		if index13 == 1:
-			print("  				Future Plans")
-			print("""
-	Coming Soon!
-		- Large scale bug fixing!
-		- Transfer to DB
-	Future updates:
-		- 0.0.1b: Learn mode additional groups, encryption
-		- 0.0.2: The decimal update! Coming mid-week
-  		
-		- 0.2: Two-Player Mode!
-	""")
+			with open('TODO.md', 'r') as todo_file:
+				md_from_todo = todo_file.read()
+				MARKDOWN = md_from_todo
+				
+				Console().print(Markdown(MARKDOWN))
+			todo_file.close()
 	input("\nPress enter to return to the main menu\n")
 
 

@@ -1,8 +1,12 @@
+# TODO.md
+
+## This file contains a list of TODO items, organized into planned release versions.
+
 ### 0.0.1b: Encryption and DB
 - [x] Info page uses `rich` package's markdown feature
 - [x] Make a proper [`README.md`](https://github.com/TechnoShip123/numbersense/blob/master/README.md)
 - [x] Ensure that error messages are not displayed at finishing of the program.
-- [ ] Migrate to DB
+- [ ] Migrate leaderboard to SQLite3
 - [x] Proper loop when in the `additional info` section so that we can navigate back to the main menu without exiting the program
 - [x] Finish more groups of Learn Mode
 	- [x] Group 2
@@ -24,6 +28,7 @@
   - [ ] Leaderboard
 - [ ] No more changing answers outside of easy mode
 - [ ] Finish Learn Mode
+- [ ] Finish migration by migrating users
 
 ### 0.0.2b: Fractions and Mixed Numbers
 - [ ] Adding and subtracting fractions
