@@ -55,15 +55,18 @@ class Score:
 class Player:
 
     @staticmethod
-    def checkPassword(username: str, password: str):
-        if utils.check_if_user_data_present(username):
+    def checkPassword(username: str, provided_password: str) -> bool:
+        try:
             with open(f"users/{username}.json") as f:
                 data = json.load(f)
-                return password == data["password"]
-        else:
-            return False
+                return utils.check_password(provided_password, data["password"])
+            f.close()
+        except FileNotFoundError:
+            print(f"{C.RED}Couldn't find player data for {C.BLUE}{username}{C.RED} when checking password.")
+        return False
 
-    def __init__(self, name, mode, pwd=None, newAccount=False):
+
+    def __init__(self, name, mode, password=None, newAccount=False):
         """If the name is empty or whitespace, it will generate a guest username"""
         # Guest Username ------
         if name.isspace() or name == '':
@@ -97,7 +100,7 @@ class Player:
         }
         self.current_mode: QuizType = mode
         self._USER_DATA_FILE = f"users/{self.name}.json"
-        self.password = pwd
+        self.password: str = utils.encrypt_password(password, True)  # Hashed password as str
 
         if newAccount:
             self.generateEmptyDataFile()

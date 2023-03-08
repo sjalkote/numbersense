@@ -8,7 +8,9 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 ### 0.0.1: Final Changes
 - [ ] Migrate leaderboard to SQLite3
-- [ ] Salt/Hash password if we are going for another approach? or cryptography
+- [x] Salt/Hash password if we are going for another approach? or cryptography
+    - [x] Either change/remove all instances of `createDefault(username)` because `None` type doesn't work with encryption (different hash each time).
+    Currently a temporary fix gives default users a password of `'password'` instead of `None`.
 - [ ] Add CI/CD deployments for code quality & error checking.
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
 Add [badges for build status](https://shields.io/category/build) when done.

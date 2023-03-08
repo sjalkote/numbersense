@@ -12,9 +12,6 @@ import learnmode as lm
 from rich.console import Console
 from rich.markdown import Markdown
 
-# TESTING -----------------------
-utils.testing_stuff()
-# -------------------------------
 
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
 colorama_init(True)

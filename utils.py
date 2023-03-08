@@ -22,21 +22,15 @@ def purge_all_users(overrideUserConfirmation: bool = True) -> bool:
     files = glob.glob('./users/*')
     option, index = pick(["Yes", "No"], "Permanently remove all user data files? (Purges `./users/*` folder contents)",
                          indicator='🤔', default_index=1)
-    if option == "Yes":
+    if index == 0:
         for f in files:
             try:
-                print(f)
+                print(f"{C.RED}Removing {C.CYAN}{f}{C.RED} permanently.")
                 os.remove(f)
             except Exception as e:
                 print(f"{C.RED}Error while purging 	{C.BLUE}`users/`{C.RED} folder!")
                 print(e)
                 return False
-        with open("whitelist.json", "r") as w:
-            data = json.load(w)
-            for user in data:
-                createDefault(user)
-        return True
-
     else:
         print("Cancelled operation.")
         return False
@@ -71,7 +65,7 @@ def changePassword(player: Player, new_password: str):
 def doThing(player: Player):
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
     options = [purge_all_users.__name__, check_if_user_data_present.__name__, changePassword.__name__,
-               whitelistUser.__name__, backupLeaderboard.__name__, resetLeaderboard.__name__, createDefault.__name__,
+               whitelistUser.__name__, backupLeaderboard.__name__, resetLeaderboard.__name__,
                unwhitelistUser.__name__, deleteAccount.__name__]
 
     option, index = pick(options, title, indicator='👉', default_index=1)
@@ -100,9 +94,6 @@ def doThing(player: Player):
         case backupLeaderboard.__name__:
             print("Leaderboard backed up.")
             backupLeaderboard()
-        case createDefault.__name__:
-            inp = input("Enter name: ")
-            createDefault(str(inp))
         case unwhitelistUser.__name__:
             unwhitelistUser(input("User to unwhitelist: "))
         case deleteAccount.__name__:
@@ -158,12 +149,6 @@ def resetLeaderboard():
     with open("myfile.json", "w") as lb:
         json.dump(lbd, lb)
     lb.close()
-
-
-def createDefault(username):
-    username = str(username)
-    newPlayer: Player = Player.Player(username, None, "")
-    return
 
 
 def read_leaderboard(quiztype=None, altqtype=None, numQ=0):
@@ -322,7 +307,7 @@ def encrypt_password(password: str, return_as_str: bool = False):
 	bytes = password.encode('utf-8')  # encodes password str to an array of bytes
 	hashed_pwd = bcrypt.hashpw(bytes, bcrypt.gensalt())  # Newly hashed & salted password
 	if return_as_str:
-		return hashed_pwd.decode('UTF-8')
+		return hashed_pwd.decode('utf-8')
 	return hashed_pwd
 
 
@@ -331,15 +316,4 @@ def check_password(user_pwd, retrieved_pwd) -> str:
 	user_pwd = user_pwd.encode("utf-8")
 	if not type(retrieved_pwd) == bytes:
 		retrieved_pwd = retrieved_pwd.encode("utf-8")
-	return (bcrypt.checkpw(user_pwd, retrieved_pwd))
-
-
-def testing_stuff():
-	password = input("enter password: ")
-	hashed_password = encrypt_password(password)
-
-
-	password = input("comparison pwd: ")
-	print(check_password(password, hashed_password))
-	
-	exit()
+	return bcrypt.checkpw(user_pwd, retrieved_pwd)
