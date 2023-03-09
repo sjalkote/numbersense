@@ -4,24 +4,12 @@
 
 You can find completed versions at [the bottom of the list](#Completed).
 
-## 0.0.1: Project & Git Cleanup
-
-### 0.0.1: Final Changes
-- [ ] Migrate leaderboard to SQLite3
-- [x] Salt/Hash password if we are going for another approach? or cryptography
-    - [x] Either change/remove all instances of `createDefault(username)` because `None` type doesn't work with encryption (different hash each time).
-    Currently a temporary fix gives default users a password of `'password'` instead of `None`.
-- [ ] Add CI/CD deployments for code quality & error checking.
-- [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
-Add [badges for build status](https://shields.io/category/build) when done.
-
-
 ### 0.0.2a: Decimals and Hard Mode
 - [ ] Finish Learn Mode
 - [ ] Hard mode
   - [ ] Leaderboard
-- [ ] Finish migration by migrating users
 - [ ] Ability to exit program at any point.
+
 
 ### 0.0.2b: Decimals and Hard Mode
 - [ ] Decimals!! 
@@ -35,6 +23,9 @@ Add [badges for build status](https://shields.io/category/build) when done.
 
 ## 0.0.2: Fractions and Mixed Numbers
 
+- [ ] Add CI/CD deployments for code quality & error checking.
+- [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
+Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Add more categories to the leaderboard
 - [ ] Feedback
 - [ ] Quick Mode
@@ -70,8 +61,11 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Improved Interface
 - [ ] Learning Plans
 	- [ ] Keep track of what needs improvement for each person.
+- [ ] Migration: Everything goes into a DB 
 
 # Completed
+
+
 ### 0.0.1a: Fixes
 - [x] **Project cleanup and VCS** (Saturday)
 	- [x] Pass in `player1` instead of `quizMode` to `main()` function
@@ -91,3 +85,10 @@ Add [badges for build status](https://shields.io/category/build) when done.
 	- [x] Group 2
     - [x] Group 3  
 - [x] Fix giveInfo() leaderboard option
+
+## 0.0.1: Project & Git Cleanup
+
+### 0.0.1: Final Changes
+- [x] Salt/Hash password if we are going for another approach? or cryptography
+    - [x] Either change/remove all instances of `createDefault(username)` because `None` type doesn't work with encryption (different hash each time).
+    Currently a temporary fix gives default users a password of `'password'` instead of `None`.

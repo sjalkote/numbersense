@@ -256,10 +256,12 @@ if __name__ == "__main__":
 		newAccount = True
 	
 	# ----------------------------------------------------
+	player1: Player = Player(username, None, password, newAccount=True)
+	
 	while True:
 		title = 'Choose a quiz mode: '
 		options = ["😀 Easy", "😐 Normal", "👺 Hard", "🤝 2 Player (v.s.)", "⚙️ Settings", "🔒 Administrative Menu",
-				   "📙 Learn Mode", "Exit"]
+				   "📙 Learn Mode", "🚪🏃 Exit"]
 		settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📄 Get additional Info"]
 		lmGroups = ["Multiplying, Dividing, and Fractions", "Powers", "Addition and Subtraction"]
 		lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11",
@@ -269,8 +271,6 @@ if __name__ == "__main__":
 		lmGroupsThree = ["Difference of Reverses", "Adding with Common Products", "Adding with Digits and 0's"]
 		
 		mode, index = pick(options, title, indicator='👉', default_index=1)
-		
-		player1: Player = Player(username, None, password, newAccount=True)
 		
 		# 😀 Easy
 		if index == 0:
@@ -408,18 +408,19 @@ if __name__ == "__main__":
 			print(f"Score: {player1.calculateScore(total)}")
 		
 		elif quizMode == QuizType.HARD:
-			# player1.current_mode = QuizType.EASY
-			print("Error #3: Not implemented")
-			print("Hard Mode is not yet implemented. Please try something else.")
-			input("\nPress enter to go back to the main menu\n")
+			player1.current_mode = QuizType.EASY
+			print(f"{C.RED}Error: Not implemented")
+			print(f"{C.RED}Hard mode is not yet implemented. Please try something else.")
+			input(f"\n{C.CYAN}Press enter to go back to the main menu{C.CYAN}\n")
 			continue
 		
 		elif quizMode == QuizType.TWO_PLAYER_VS:
-			# player1.current_mode = QuizType.TWO_PLAYER_VS
-			print("Error #3: Not implemented")
-			print("2 Player is not implemented. Please try something else.\n")
-			input("Press enter to go back to the main menu\n")
+			player1.current_mode = QuizType.TWO_PLAYER_VS
+			print(f"{C.RED}Error: Not implemented")
+			print(f"{C.RED}2 player mode is not yet implemented. Please try something else.")
+			input(f"\n{C.CYAN}Press enter to go back to the main menu{C.CYAN}\n")
 			continue
+
 		player1.saveToScoreboard(quizMode)
 		
 		write_leaderboard(quizMode, player1, total, time_lapsed)
@@ -427,6 +428,5 @@ if __name__ == "__main__":
 		userLeaderboardResponse = input("Display leaderboard? [Y/n] >> ").strip().lower()
 		if userLeaderboardResponse == "y" or userLeaderboardResponse == "":
 			utils.read_leaderboard(quiztype=quizMode, numQ=int(numQuestions))
-			
 			input("\nPress enter to go back to the main menu\n")
 		
