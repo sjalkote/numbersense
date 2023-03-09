@@ -263,13 +263,13 @@ if __name__ == "__main__":
 		options = ["😀 Easy", "😐 Normal", "👺 Hard", "🤝 2 Player (v.s.)", "⚙️ Settings", "🔒 Administrative Menu",
 				   "📙 Learn Mode", "🚪🏃 Exit"]
 		settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📄 Get additional Info"]
-		lmGroups = ["Multiplying, Dividing, and Fractions", "Powers", "Addition and Subtraction"]
+		lmGroups = ["Multiplying, Dividing, and Fractions", "Powers", "Addition and Subtraction", "Data and Algebra"]
 		lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11",
 					   "Multiplying Fractions", "Multiplying Two Numbers Centered Around a Third", "Remainders",
 					   "Compare Fractions", "Multiplying Numbers Close to 100", "Dividing Fractions", "Multiplying over 37"]
 		lmGroupsTwo = ["Squaring Numbers", "Cubing Numbers", "Square Rooting Numbers", "Cube Rooting Numbers", "Adding Square Type One", "Adding Square Type Two", "Difference of squares", "Logarithms"]
 		lmGroupsThree = ["Difference of Reverses", "Adding with Common Products", "Adding with Digits and 0's"]
-		
+		lmGroupsFour = ["GCF and LCM", "Mean, Median, and Range", "Integral Divisors", "Subsets", "Order of Operations", "x to y +/- 1", "x and y cubed Algebra"]
 		mode, index = pick(options, title, indicator='👉', default_index=1)
 		
 		# 😀 Easy
@@ -325,7 +325,7 @@ if __name__ == "__main__":
 						bFile.close()
 					exit()
 			print("You do not have sufficient permissions to complete this action.  Do not try this again.")
-			input("\nPress enter to return to the main menu\n")
+			
 			continue
 		elif index == 6:
 			lmmode, lmgindex = pick(lmGroups, "What topic? ", indicator='👉', default_index=0)
@@ -379,9 +379,28 @@ if __name__ == "__main__":
 					lm.learn_addCommon()
 				if lmg3index == 2:
 					lm.learn_sepDigits()
+			elif lmgindex == 3:
+				lmg4mode, lmg4index = pick(lmGroupsFour, "What lesson? ", indicator='👉', default_index=0)
+				if lmg4index == 0:
+					lm.learn_gcflcm()
+				if lmg4index == 1:
+					lm.learn_stats()
+				if lmg4index == 2:
+					lm.learn_integralDivisors()
+				if lmg4index == 3:
+					lm.learn_subsets()
+				if lmg4index == 4:
+					lm.learn_OrderofOperations()
+				if lmg4index == 5:
+					lm.learn_xtoy1()
+				if lmg4index == 6:
+					lm.learn_xAndYCubed()
+				
+					
 			else:
 				print("Error #1: Not found")
 				exit()
+			input("\nPress enter to return to the main menu\n")
 			continue
 		elif index == 7:
 			break

@@ -533,4 +533,84 @@ def learn_sepDigits():
 	questions.sepDigits()
 	questions.sepDigits()
 	
+# Data & Algebra
 
+def learn_gcflcm():
+	print("Finding the GCF, LCM, and the product of the two.")
+	print("""
+	Finding gcf is very simple and doesn't usually require a trick. For example:
+ 	16 and 20
+ 	The greatest common factor of these two is easily 4, as it is the largest number that goes into both. 
+  	""")
+	input("Press enter to continue. ")
+	print("""LCM can have a trick, however. Remember that the LCM of two numbers is equal to their product over their GCF. For example:
+   	16 and 20
+	GCF = 4
+ 	16 * 20 = 320
+  	320/4 = 80
+   	The least common multiple is 80.
+ """)
+	input("Press enter to continue. ")
+	print("""Finally, remember that lcm(x,y) * gcf(x,y) = x * y. For example,
+ 	GCF(14,18) * LCM(14,18) = 14 * 18
+  	14 * 18 = 252
+   	Here are some practice problems:
+   """)
+	questions.gcflcmQuestion()
+	questions.gcflcmQuestion()
+	questions.gcflcmQuestion()
+
+def learn_stats():
+	print("Statistics")
+	print("""
+Most statistic questions are really quite easy.
+Range: Biggest number minus smallest number
+Median: Middle number 
+Mean: Sum of the numbers over the number of numbers
+
+Let's take the set of numbers: 1,2,3,4,5
+5 (Biggest) - 1 (Smallest) = 4, or the range
+Because there are 5 numbers, the middle number is the third one ((num + 1)/2). The third number, or 3, is the median.
+The sum of all the numbers is 1 + 2 + 3 + 4 + 5, or 15.
+15 / 5(Number of numbers) is 3, or our mean.
+
+Example #2:
+26, 30, 6, 17, 11
+30 - 6 = 24, or the range
+3rd is median. 6, 11, 17 (Smallest to biggest)
+26 + 30 + 6 + 17 + 11 = 90
+90 / 5 = 18
+Mean: 18 
+	Let's try out the set: 23,18,10,9,16
+ """)
+	questions.printAnswerValidation(utils.betterNumInput("What is the range? "), "14", "14")
+	questions.printAnswerValidation(utils.betterNumInput("What is the median? "), "16", "16")
+	questions.printAnswerValidation(utils.betterFracInput("What is the mean? "), "15.2", "15.2")
+
+def learn_integralDivisors():
+	print("Finding the number of integral divisors.")
+	print("""
+	To find the number of integral divisors, we have to create a prime factorization and multiply all of the exponents plus one. For example,
+ 	How many integral divisors does 24 have?
+  	The prime factorization of 24 is 2^3 * 3^1
+   	(3 + 1) * (1 + 1) = 4 * 2 = 8
+	24 has 8 integral divisors.
+
+  	In order to apply this trick efficiently, practice is key.
+   Here are some practice problems:
+ """)
+	questions.integralDivisorsQuestion()
+	questions.integralDivisorsQuestion()
+	questions.integralDivisorsQuestion()
+	
+def learn_subsets():
+	print("Error #6: Not implemented")
+
+def learn_OrderofOperations():
+	print("Error #6: Not implemented")
+
+def learn_xtoy1():
+	print("Error #6: Not implemented")
+
+def learn_xAndYCubed():
+	print("Error #6: Not implemented")
