@@ -41,123 +41,154 @@ global player1
 
 
 def main(totalQuestions: int, player1: Player):
-    counter = 1
-
-    while counter <= totalQuestions:
-        if player1.current_mode == QuizType.NORMAL:
-            print(f"{counter}) ", end="")
-            questionType = random.randint(1, 26)
-            # Print the question number
-            match questionType:
-                case 1:
-                    if questions.divideBy(random.randint(1, 25)):
-                        player1.num_correct += 1
-                case 2:
-                    if questions.multiplyBy():
-                        player1.num_correct += 1
-                case 3:
-                    if questions.multiplyFractions():
-                        player1.num_correct += 1
-                case 4:
-                    if questions.centeredAroundThird():
-                        player1.num_correct += 1
-                case 5:
-                    if questions.squareNumber():
-                        player1.num_correct += 1
-                case 6:
-                    if questions.cubeNumber():
-                        player1.num_correct += 1
-                case 7:
-                    if questions.squareRootNumber():
-                        player1.num_correct += 1
-                case 8:
-                    if questions.cubeRootNumber():
-                        player1.num_correct += 1
-                case 9:
-                    if questions.differenceOfReverses(random.randint(3, 4)):
-                        player1.num_correct += 1
-                case 10:
-                    if questions.gcflcmQuestion():
-                        player1.num_correct += 1
-                case 11:
-                    if questions.addSquares(random.randint(1, 2)):
-                        player1.num_correct += 1
-                case 12:
-                    if questions.remainder():
-                        player1.num_correct += 1
-                case 13:
-                    if questions.compareFractions():
-                        player1.num_correct += 1
-                case 14:
-                    if questions.differenceOfSquares():
-                        player1.num_correct += 1
-                case 15:
-                    if questions.closeToHundred():
-                        player1.num_correct += 1
-                case 16:
-                    if questions.xAndyCubed():
-                        player1.num_correct += 1
-                case 17:
-                    if questions.divideFractions():
-                        player1.num_correct += 1
-                case 18:
-                    if questions.stats():
-                        player1.num_correct += 1
-                case 19:
-                    if questions.integralDivisorsQuestion():
-                        player1.num_correct += 1
-                case 20:
-                    if questions.logarithmQuestion():
-                        player1.num_correct += 1
-                case 21:
-                    if questions.sepDigits():
-                        player1.num_correct += 1
-                case 22:
-                    if questions.xtoy1():
-                        player1.num_correct += 1
-                case 23:
-                    if questions.addCommonProducts():
-                        player1.num_correct += 1
-                case 24:
-                    if questions.subsetsQuestion():
-                        player1.num_correct += 1
-                case 25:
-                    if questions.multiplyOver37():
-                        player1.num_correct += 1
-                case 26:
-                    if questions.orderOfOperationsQuestion():
-                        player1.num_correct += 1
-
-            counter += 1
-
-        elif player1.current_mode == quizMode.EASY:
-            QuestionType = random.randint(1, 6)
-            print(f"{counter}) ", end="")
-            match QuestionType:
-                case 1:
-                    if questions.divideBy(random.randint(1, 10)):
-                        player1.num_correct += 1
-                case 2:
-                    if questions.multiplyBy():
-                        player1.num_correct += 1
-                case 3:
-                    if questions.multiplyFractions():
-                        player1.num_correct += 1
-                case 4:
-                    if questions.squareNumber(easy=True):
-                        player1.num_correct += 1
-                case 5:
-                    if questions.addSquares(1):
-                        player1.num_correct += 1
-                case 6:
-                    if questions.gcflcmQuestion():
-                        player1.num_correct += 1
-            counter += 1
-        else:
-            print("Error #0: Not found")
-            exit()
-    print(f"Questions answered correctly: {player1.num_correct}/{totalQuestions}")
-    return totalQuestions
+	counter = 1
+	
+	while counter <= totalQuestions:
+		if player1.current_mode == QuizType.NORMAL:
+			print(f"{counter}) ", end="")
+			questionType = random.randint(1, 26)
+			# Print the question number
+			match questionType:
+				case 1:
+					if questions.divideBy(random.randint(1, 25)):
+						player1.num_correct += 1
+				case 2:
+					if questions.multiplyBy():
+						player1.num_correct += 1
+				case 3:
+					if questions.multiplyFractions():
+						player1.num_correct += 1
+				case 4:
+					if questions.centeredAroundThird():
+						player1.num_correct += 1
+				case 5:
+					if questions.squareNumber():
+						player1.num_correct += 1
+				case 6:
+					if questions.cubeNumber():
+						player1.num_correct += 1
+				case 7:
+					if questions.squareRootNumber():
+						player1.num_correct += 1
+				case 8:
+					if questions.cubeRootNumber():
+						player1.num_correct += 1
+				case 9:
+					if questions.differenceOfReverses(random.randint(3, 4)):
+						player1.num_correct += 1
+				case 10:
+					if questions.gcflcmQuestion():
+						player1.num_correct += 1
+				case 11:
+					if questions.addSquares(random.randint(1, 2)):
+						player1.num_correct += 1
+				case 12:
+					if questions.remainder():
+						player1.num_correct += 1
+				case 13:
+					if questions.compareFractions():
+						player1.num_correct += 1
+				case 14:
+					if questions.differenceOfSquares():
+						player1.num_correct += 1
+				case 15:
+					if questions.closeToHundred():
+						player1.num_correct += 1
+				case 16:
+					if questions.xAndyCubed():
+						player1.num_correct += 1
+				case 17:
+					if questions.divideFractions():
+						player1.num_correct += 1
+				case 18:
+					if questions.stats():
+						player1.num_correct += 1
+				case 19:
+					if questions.integralDivisorsQuestion():
+						player1.num_correct += 1
+				case 20:
+					if questions.logarithmQuestion():
+						player1.num_correct += 1
+				case 21:
+					if questions.sepDigits():
+						player1.num_correct += 1
+				case 22:
+					if questions.xtoy1():
+						player1.num_correct += 1
+				case 23:
+					if questions.addCommonProducts():
+						player1.num_correct += 1
+				case 24:
+					if questions.subsetsQuestion():
+						player1.num_correct += 1
+				case 25:
+					if questions.multiplyOver37():
+						player1.num_correct += 1
+				case 26:
+					if questions.orderOfOperationsQuestion():
+						player1.num_correct += 1
+	
+			counter += 1
+	
+		elif player1.current_mode == quizMode.EASY:
+			QuestionType = random.randint(1, 6)
+			print(f"{counter}) ", end="")
+			match QuestionType:
+				case 1:
+					if questions.divideBy(random.randint(1, 10)):
+						player1.num_correct += 1
+				case 2:
+					if questions.multiplyBy():
+						player1.num_correct += 1
+				case 3:
+					if questions.multiplyFractions():
+						player1.num_correct += 1
+				case 4:
+					if questions.squareNumber(easy=True):
+						player1.num_correct += 1
+				case 5:
+					if questions.addSquares(1):
+						player1.num_correct += 1
+				case 6:
+					if questions.gcflcmQuestion():
+						player1.num_correct += 1
+			counter += 1
+		elif player1.current_mode == quizMode.HARD:
+			QuestionType = random.randint(1, 6)
+			print(f"{counter}) ", end="")
+			match QuestionType:
+				case 1:
+						if questions.cubeNumber():
+							player1.num_correct += 1
+				case 2:
+					if questions.cubeRootNumber():
+						player1.num_correct += 1
+				case 3:
+					if questions.addSquares(2):
+						player1.num_correct += 1
+				case 4:
+					if questions.differenceOfSquares(easy=True):
+						player1.num_correct += 1
+				case 5:
+					if questions.closeToHundred():
+						player1.num_correct += 1
+				case 6:
+					if questions.xAndyCubed():
+						player1.num_correct += 1
+				case 7:
+					if questions.logarithmQuestion():
+						player1.num_correct += 1
+				case 8:
+					if questions.xtoy1():
+						player1.num_correct += 1
+				case 9:
+					if questions.addCommonProducts():
+						player1.num_correct += 1
+		else:
+			print("Error #0: Not found")
+			exit()
+	print(f"Questions answered correctly: {player1.num_correct}/{totalQuestions}")
+	return totalQuestions
 
 
 def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None):
@@ -416,7 +447,7 @@ if __name__ == "__main__":
 		numQuestions = int(numQuestions)
 		
 		# If EASY mode
-		if quizMode == QuizType.EASY or quizMode == quizMode.NORMAL:
+		if quizMode == QuizType.EASY or quizMode == quizMode.NORMAL or quizMode == QuizType.HARD:
 			# player1.current_mode = QuizType.EASY
 			input("Press Enter to start\n--------------------")
 			start_time = time.time()
@@ -426,11 +457,7 @@ if __name__ == "__main__":
 			time_convert(time_lapsed)
 			print(f"Score: {player1.calculateScore(total)}")
 		
-		elif quizMode == QuizType.HARD:
-			player1.current_mode = QuizType.EASY
-			print(f"{C.RED}Error: Not implemented")
-			print(f"{C.RED}Hard mode is not yet implemented. Please try something else.")
-			input(f"\n{C.CYAN}Press enter to go back to the main menu{C.CYAN}\n")
+	
 			continue
 		
 		elif quizMode == QuizType.TWO_PLAYER_VS:
