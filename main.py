@@ -15,6 +15,8 @@ from rich.markdown import Markdown
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
 colorama_init(True)
 
+while True:
+	questions.decimalToFractions()
 
 def write_leaderboard(quiztype: QuizType, player1: Player, total, time_lapsed):
 	numC = float(player1.getNumStuff())
@@ -45,7 +47,7 @@ def main(totalQuestions: int, player1: Player):
 	while counter <= totalQuestions:
 		if player1.current_mode == QuizType.NORMAL:
 			print(f"{counter}) ", end="")
-			questionType = random.randint(1, 26)
+			questionType = random.randint(1, 27)
 			# Print the question number
 			match questionType:
 				case 1:
@@ -126,6 +128,9 @@ def main(totalQuestions: int, player1: Player):
 				case 26:
 					if questions.orderOfOperationsQuestion():
 						player1.num_correct += 1
+				case 27:
+					if questions.decimalToFractions():
+						player1.num_correct += 1
 	
 			counter += 1
 	
@@ -153,7 +158,7 @@ def main(totalQuestions: int, player1: Player):
 						player1.num_correct += 1
 			counter += 1
 		elif player1.current_mode == quizMode.HARD:
-			QuestionType = random.randint(1, 6)
+			QuestionType = random.randint(1, 10)
 			print(f"{counter}) ", end="")
 			match QuestionType:
 				case 1:
@@ -182,6 +187,9 @@ def main(totalQuestions: int, player1: Player):
 						player1.num_correct += 1
 				case 9:
 					if questions.addCommonProducts():
+						player1.num_correct += 1
+				case 10:
+					if questions.decimalToFractions():
 						player1.num_correct += 1
 			counter += 1
 		else:

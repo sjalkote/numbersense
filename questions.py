@@ -464,28 +464,35 @@ def decimalToFractions():
 			numerator, denominator = simplify(numerator, denominator)
 			printt = str(round(numerator/denominator,3))
 		case 2:
-			denominator = 99
-			numerator = random.randint(1,98)
-			numerator, denominator = simplify(numerator, denominator)
-			printt = str(round(numerator/denominator,6)) + "..."
+			a = random.randint(1,9)
+			b = random.randint(1,9)
+			printt = f"0.{a}{b}{a}{b}{a}{b}..."
+			numerator, denominator = simplify(int(f"{a}{b}"),99)
+			
 		case 3:
 			wType = random.randint(1,2)
 			match wType:
 				case 1:
-					denominator = 90
+					a = random.randint(1,9)
+					b = random.randint(1,9)
+					printt = f"0.{a}{b}{b}{b}{b}{b}..."
+					numerator, denominator = simplify(int(f"{a}{b}") - a, 90)
 				case 2:
-					denominator = 990
-			numerator = random.randint(1, denominator - 1)
-			numerator, denominator = simplify(numerator, denominator)
-			printt = str(round(numerator/denominator,7)) + "..."
+					a = random.randint(1,9)
+					b = random.randint(1,9)
+					c = random.randint(1,9)
+					printt = f"0.{a}{b}{c}{b}{c}{b}{c}..."
+					numerator, denominator = simplify(int(f"{a}{b}{c}") - a, 990)
+					
+			
 		case 4:
-			denominator = 999
-			numerator = random.randint(1, denominator - 1)
-			numerator, denominator = simplify(numerator, denominator)
-			printt = str(round(numerator/denominator,6)) + "..."
-
-	uinput = betterFracInput(f"What is {printt} as a Fraction? ")
-	pAnswer = f"{numerator}/{denominator}"
+			a = random.randint(1,9)
+			b = random.randint(1,9)
+			c = random.randint(1,9)
+			printt = f"0.{a}{b}{c}{a}{b}{c}..."
+			numerator, denominator = simplify(int(f"{a}{b}{c}"), 999)	
+	uinput = betterFracInput(f"What is {printt} as a fraction? ")
+	pAnswer = f"{int(numerator)}/{int(denominator)}"
 	return printAnswerValidation(eval(uinput),numerator/denominator,pAnswer)
 
 def simplify(numerator, denominator):

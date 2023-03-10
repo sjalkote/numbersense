@@ -322,11 +322,12 @@ def betterFracInput(question_reprint, decimal=False):
 		for i in thing:
 			if first and (i == "/"):
 				state = False
-			if (not (i.isnumeric())) and (i != "/" or decimal) and i != ".":
+			if (not (i.isnumeric())) and (i != "/" or decimal) and  i != ".":
 				state = False
+			
 			first = False
 			numDig += 1
-	
+			emptyList.append(i)
 		if (emptyList[0] == "." or emptyList[0] == "/") and numDig == 1:
 			state = False
 	return thing

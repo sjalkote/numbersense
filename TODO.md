@@ -10,8 +10,6 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Decimals!! 
 	- [ ] Converting decimals to fraction
     - [ ] Converting fractions to decimals
-- [ ] Percentages!
-- [ ] Learn mode: Parts of the Whole Group
 - [ ] Options menu
 	- [ ] Option to turn off changing answers
     - [ ]   
@@ -30,11 +28,13 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Feedback
 - [ ] Quick Mode
 - [ ] Censoring
+- [ ] Learn mode: Parts of the Whole Group
 
 ## 0.0.3: Practice mode and notifications
 
 ### 0.0.3a: Practice Mode
 - [ ] Practice mode: Practice specific concepts & problems
+- [ ] Percentages!
 
 ### 0.0.3b: Inbox
 - [ ] Inbox with notifications (ex.: failed login attempts)
