@@ -10,6 +10,9 @@ import utils
 import learnmode as lm
 from getpass import getpass
 
+"""with open("adminpwd.json","w+") as pF:
+	json.dump(utils.encrypt_password("Admin", return_as_str=True),pF)
+pF.close()"""
 from rich.console import Console
 from rich.markdown import Markdown
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
@@ -40,7 +43,7 @@ global player1
 
 def main(totalQuestions: int, player1: Player):
 	counter = 1
-	
+	player1.num_correct = 0
 	while counter <= totalQuestions:
 		if player1.current_mode == QuizType.NORMAL:
 			print(f"{counter}) ", end="")
