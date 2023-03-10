@@ -8,6 +8,7 @@ from colorama import init as colorama_init, Fore as C, Style, ansi
 from pick import pick
 import utils
 import learnmode as lm
+from getpass import getpass
 
 from rich.console import Console
 from rich.markdown import Markdown
@@ -18,23 +19,23 @@ colorama_init(True)
 
 
 def write_leaderboard(quiztype: QuizType, player1: Player, total, time_lapsed):
-    numC = float(player1.getNumStuff())
-    if numC / float(total) == 1.0:
-        datae = displayLeaderboard(quizMode, time=time_lapsed, numQuestions=total, player=player1)
-    else:
-        datae = displayLeaderboard(quizMode)
-    with open('myfile.json', 'w') as leaderboard_file:
-        json.dump(datae, leaderboard_file)
-    leaderboard_file.close()
-
+	numC = float(player1.getNumStuff())
+	if numC / float(total) == 1.0:
+		datae = displayLeaderboard(quizMode, time=time_lapsed, numQuestions=total, player=player1)
+	else:
+		datae = displayLeaderboard(quizMode)
+	with open('myfile.json', 'w') as leaderboard_file:
+		json.dump(datae, leaderboard_file)
+	leaderboard_file.close()
+	
 
 def time_convert(sec):
-    sec = round(sec)
-    mins = sec // 60
-    sec = sec % 60
-    hours = mins // 60
-    mins = mins % 60
-    print("Time Lapsed = {:02d}:{:02d}:{:02d}".format(int(hours), int(mins), sec))
+	sec = round(sec)
+	mins = sec // 60
+	sec = sec % 60
+	hours = mins // 60
+	mins = mins % 60
+	print("Time Lapsed = {:02d}:{:02d}:{:02d}".format(int(hours), int(mins), sec))
 
 
 global player1
@@ -158,8 +159,8 @@ def main(totalQuestions: int, player1: Player):
 			print(f"{counter}) ", end="")
 			match QuestionType:
 				case 1:
-						if questions.cubeNumber():
-							player1.num_correct += 1
+					if questions.cubeNumber():
+						player1.num_correct += 1
 				case 2:
 					if questions.cubeRootNumber():
 						player1.num_correct += 1
@@ -167,7 +168,7 @@ def main(totalQuestions: int, player1: Player):
 					if questions.addSquares(2):
 						player1.num_correct += 1
 				case 4:
-					if questions.differenceOfSquares(easy=True):
+					if questions.differenceOfSquares():
 						player1.num_correct += 1
 				case 5:
 					if questions.closeToHundred():
@@ -184,6 +185,7 @@ def main(totalQuestions: int, player1: Player):
 				case 9:
 					if questions.addCommonProducts():
 						player1.num_correct += 1
+			counter += 1
 		else:
 			print("Error #0: Not found")
 			exit()
@@ -192,65 +194,67 @@ def main(totalQuestions: int, player1: Player):
 
 
 def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None):
-    # start of where error could occur
-
-    if time != None:
-        time = int(round(time, 0))
-    if numQuestions != None:
-        numQ = int(numQuestions)
-
-    with open("myfile.json", "r+") as data_file:
-        data = json.load(data_file)
-
-    # end
-    data_file.close()
-    if time == None:
-        return data
-    if numQuestions == None:
-        return data
-
-    # 20 questions
-    # TODO: we shouldn't need this since we implemented __str__() method for the enum
-    match mode:
-        case QuizType.NORMAL:
-            mode = "Normal Mode"
-        case QuizType.EASY:
-            mode = "Easy Mode"
-
-    if numQ != 3 and numQ != 10 and numQ != 20:
-        return data
-
-    match numQ:
-        case 3:
-            numQ = "threeq"
-            pnumQ = "Three Questions"
-        case 10:
-            numQ = "tenq"
-            pnumQ = "Ten Questions"
-        case 20:
-            numQ = "twentyq"
-            pnumQ = "Twenty Questions"
-
-    if time < int(data[f"{mode}, {numQ}"]["First"][0]):
-        print(f"Congratulations! You made First Place in {pnumQ}, {mode}")
-        data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
-                                                                                   data[f"{mode}, {numQ}"]["Second"][1]
-        data[f"{mode}, {numQ}"]["Second"][0], data[f"{mode}, {numQ}"]["Second"][1] = data[f"{mode}, {numQ}"]["First"][
-                                                                                         0], \
-                                                                                     data[f"{mode}, {numQ}"]["First"][1]
-        data[f"{mode}, {numQ}"]["First"][0], data[f"{mode}, {numQ}"]["First"][1] = time, str(player1)
-
-    elif time < int(data[f"{mode}, {numQ}"]["Second"][0]):
-        print(f"Congratulations! You made Second Place in {pnumQ}, {mode}")
-        data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
-                                                                                   data[f"{mode}, {numQ}"]["Second"][1]
-        data[f"{mode}, {numQ}"]["Second"][0], data[f"{mode}, {numQ}"]["Second"][1] = time, str(player1)
-
-    elif time < int(data[f"{mode}, {numQ}"]["Third"][0]):
-        print(f"Congratulations! You made Third Place in {pnumQ}, {mode}")
-        data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = time, str(player1)
-
-    return data
+	# start of where error could occur
+	
+	if time != None:
+		time = int(round(time, 0))
+	if numQuestions != None:
+		numQ = int(numQuestions)
+	
+	with open("myfile.json", "r+") as data_file:
+		data = json.load(data_file)
+	
+	# end
+	data_file.close()
+	if time == None:
+		return data
+	if numQuestions == None:
+		return data
+	
+	# 20 questions
+	# TODO: we shouldn't need this since we implemented __str__() method for the enum
+	match mode:
+		case QuizType.NORMAL:
+			mode = "Normal Mode"
+		case QuizType.EASY:
+			mode = "Easy Mode"
+		case QuizType.HARD:
+			mode = "Hard Mode"
+	
+	if numQ != 3 and numQ != 10 and numQ != 20:
+		return data
+	
+	match numQ:
+		case 3:
+			numQ = "threeq"
+			pnumQ = "Three Questions"
+		case 10:
+			numQ = "tenq"
+			pnumQ = "Ten Questions"
+		case 20:
+			numQ = "twentyq"
+			pnumQ = "Twenty Questions"
+	
+	if time < int(data[f"{mode}, {numQ}"]["First"][0]):
+		print(f"Congratulations! You made First Place in {pnumQ}, {mode}")
+		data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
+																				   data[f"{mode}, {numQ}"]["Second"][1]
+		data[f"{mode}, {numQ}"]["Second"][0], data[f"{mode}, {numQ}"]["Second"][1] = data[f"{mode}, {numQ}"]["First"][
+																						 0], \
+																					 data[f"{mode}, {numQ}"]["First"][1]
+		data[f"{mode}, {numQ}"]["First"][0], data[f"{mode}, {numQ}"]["First"][1] = time, str(player1)
+	
+	elif time < int(data[f"{mode}, {numQ}"]["Second"][0]):
+		print(f"Congratulations! You made Second Place in {pnumQ}, {mode}")
+		data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
+																				   data[f"{mode}, {numQ}"]["Second"][1]
+		data[f"{mode}, {numQ}"]["Second"][0], data[f"{mode}, {numQ}"]["Second"][1] = time, str(player1)
+	
+	elif time < int(data[f"{mode}, {numQ}"]["Third"][0]):
+		print(f"Congratulations! You made Third Place in {pnumQ}, {mode}")
+		data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = time, str(player1)
+	
+	return data
 
 
 # Make sure this is the main file ------------------------------
@@ -263,31 +267,8 @@ if __name__ == "__main__":
 	newAccount: bool = False
 	print(ansi.BEL, end='')
 	username = input("Username: ")
-	
-	# Entering Password ---------------
-	if utils.check_if_user_data_present(username):
-		tries: int = 0
-		loginSuccessful: bool = False
-		while not loginSuccessful:
-			tries += 1  # Because you start on the first try
-			# Max no. of tries is 3
-			if tries > 3:
-				print(f"{C.RED}Max tries reached, exiting...")
-				exit()
-	
-			password = input("Password: ")
-			if Player.checkPassword(username, password):
-				print(f"{C.GREEN}Correct password.{Style.RESET_ALL} Welcome back, {C.MAGENTA}{username}")
-				loginSuccessful = True
-			else:
-				print(
-					f"{C.RED}Incorrect password.{Style.RESET_ALL} Try again ({C.YELLOW}{tries}/3 tries{Style.RESET_ALL})")
-	else:
-		password = input("Enter new password for this account: ")
-		newAccount = True
-	
+	player1: Player = Player(username, quizMode)
 	# ----------------------------------------------------
-	player1: Player = Player(username, None, password, newAccount=True)
 	
 	while True:
 		title = 'Choose a quiz mode: '
@@ -346,7 +327,7 @@ if __name__ == "__main__":
 			bFile.close()
 			for element in data:
 				if username == element:
-					if input("Enter Password: ") == "admin":
+					if getpass() == "amogus":
 						utils.doThing(player1)
 					else:
 						print(f"{C.RED}Incorrect password. Aborting...")
@@ -456,9 +437,7 @@ if __name__ == "__main__":
 			time_lapsed = end_time - start_time
 			time_convert(time_lapsed)
 			print(f"Score: {player1.calculateScore(total)}")
-		
 	
-			continue
 		
 		elif quizMode == QuizType.TWO_PLAYER_VS:
 			player1.current_mode = QuizType.TWO_PLAYER_VS
@@ -466,7 +445,7 @@ if __name__ == "__main__":
 			print(f"{C.RED}2 player mode is not yet implemented. Please try something else.")
 			input(f"\n{C.CYAN}Press enter to go back to the main menu{C.CYAN}\n")
 			continue
-
+	
 		player1.saveToScoreboard(quizMode)
 		
 		write_leaderboard(quizMode, player1, total, time_lapsed)

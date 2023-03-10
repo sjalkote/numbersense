@@ -7,9 +7,10 @@ You can find completed versions at [the bottom of the list](#Completed).
 ### 0.0.2a: Decimals and Hard Mode
 - [ ] Finish Learn Mode
 - [x] Hard mode
-  - [ ] Leaderboard
+  - [x] Leaderboard
 - [ ] Ability to exit program at any point.
-
+- [x] Fix the character-hack bug
+- [ ] Encrypt Admin Password
 
 ### 0.0.2b: Decimals and Hard Mode
 - [ ] Decimals!! 
@@ -26,6 +27,8 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Add CI/CD deployments for code quality & error checking.
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
 Add [badges for build status](https://shields.io/category/build) when done.
+- [ ] ~Do not commit `blacklist/whitelist.json` but autogenerate if not exists otherwise an error occurs.~
+This should not be needed because we will plan to migrate to database anyway.
 - [ ] Add more categories to the leaderboard
 - [ ] Feedback
 - [ ] Quick Mode

@@ -152,32 +152,34 @@ def resetLeaderboard():
 
 
 def read_leaderboard(quiztype=None, altqtype=None, numQ=0):
-    if numQ == 3:
-        numQ = "threeq"
-    elif numQ == 10:
-        numQ = "tenq"
-    elif numQ == 20:
-        numQ = "twentyq"
-    elif numQ == None:
-        pass
-    else:
-        numQ = "threeq"
-
-    with open("myfile.json", "r+") as lb_file:
-        lb_data = json.load(lb_file)
-        if quiztype == Player.QuizType.EASY:
-            quiztype = "Easy Mode"
-        if quiztype == Player.QuizType.NORMAL:
-            quiztype = "Normal Mode"
-        if quiztype == None:
-            quiztype = altqtype
-
-        print(tabulate(
-            ([mode for mode in lb_data[f"{quiztype}, {numQ}"].values()]),
-            headers=["Time", "Username"],
-            tablefmt='orgtbl'
-        ))
-    lb_file.close()
+	if numQ == 3:
+		numQ = "threeq"
+	elif numQ == 10:
+		numQ = "tenq"
+	elif numQ == 20:
+		numQ = "twentyq"
+	elif numQ == None:
+		pass
+	else:
+		numQ = "threeq"
+	
+	with open("myfile.json", "r+") as lb_file:
+		lb_data = json.load(lb_file)
+		if quiztype == Player.QuizType.EASY:
+			quiztype = "Easy Mode"
+		if quiztype == Player.QuizType.NORMAL:
+			quiztype = "Normal Mode"
+		if quiztype == Player.QuizType.HARD:
+			quiztype = "Hard Mode"
+		if quiztype == None:
+			quiztype = altqtype
+	
+		print(tabulate(
+			([mode for mode in lb_data[f"{quiztype}, {numQ}"].values()]),
+			headers=["Time", "Username"],
+			tablefmt='orgtbl'
+		))
+	lb_file.close()
 
 
 def deleteAccount(username):
@@ -270,36 +272,41 @@ def betterNumInput(question_reprint: str = ""):
 
 
 def betterFracInput(question_reprint, decimal=False):
-    thing = input(question_reprint + "\n👉" )
-    state = True
-    first = True
-    emptyList = []
-    for i in thing:
-        if first and i == "/":
-            state = False
-
-        if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
-            state = False
-        first = False
-        emptyList.append(i)
-    if emptyList[0] == ".":
-        state = False
-    while not state:
-        first = True
-        thing = input("Invalid input. " + question_reprint + "\n👉 ")
-        state = True
-        numDig = 0
-        for i in thing:
-            if first and (i == "/"):
-                state = False
-            if (not (i.isnumeric())) and (i != "/" or decimal) and i != ".":
-                state = False
-            first = False
-            numDig += 1
-
-        if (emptyList[0] == "." or emptyList[0] == "/") and numDig == 1:
-            state = False
-    return thing
+	thing = input(question_reprint + "\n👉" )
+	state = True
+	first = True
+	emptyList = []
+	if thing == "":
+		state = False
+	for i in thing:
+		if first and i == "/":
+			state = False
+	
+		if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
+			state = False
+		first = False
+		emptyList.append(i)
+	if emptyList[0] == ".":
+		state = False
+	while not state:
+		
+		first = True
+		thing = input("Invalid input. " + question_reprint + "\n👉 ")
+		if thing == "":
+			continue
+		state = True
+		numDig = 0
+		for i in thing:
+			if first and (i == "/"):
+				state = False
+			if (not (i.isnumeric())) and (i != "/" or decimal) and i != ".":
+				state = False
+			first = False
+			numDig += 1
+	
+		if (emptyList[0] == "." or emptyList[0] == "/") and numDig == 1:
+			state = False
+	return thing
 
 
 def encrypt_password(password: str, return_as_str: bool = False):
