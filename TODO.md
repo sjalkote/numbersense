@@ -4,13 +4,7 @@
 
 You can find completed versions at [the bottom of the list](#Completed).
 
-### 0.0.2a: Decimals and Hard Mode
-- [x] Finish Learn Mode
-- [x] Hard mode
-  - [x] Leaderboard
-- [ ] Ability to exit program at any point.
-- [x] Fix the character-hack bug
-- [x] Encrypt Admin Password
+
 
 ### 0.0.2b: Decimals and Hard Mode
 - [ ] Decimals!! 
@@ -95,3 +89,11 @@ This should not be needed because we will plan to migrate to database anyway.
 - [x] Salt/Hash password if we are going for another approach? or cryptography
     - [x] Either change/remove all instances of `createDefault(username)` because `None` type doesn't work with encryption (different hash each time).
     Currently a temporary fix gives default users a password of `'password'` instead of `None`.
+
+### 0.0.2a: Decimals and Hard Mode
+- [x] Finish Learn Mode
+- [x] Hard mode
+  - [x] Leaderboard
+- [x] Ability to exit program at any point.
+- [x] Fix the character-hack bug
+- [x] Encrypt Admin Password

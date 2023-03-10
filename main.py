@@ -435,6 +435,7 @@ if __name__ == "__main__":
 		# If EASY mode
 		if quizMode == QuizType.EASY or quizMode == quizMode.NORMAL or quizMode == QuizType.HARD:
 			# player1.current_mode = QuizType.EASY
+			print("Remember, leave your answer blank to exit.")
 			input("Press Enter to start\n--------------------")
 			start_time = time.time()
 			total = main(int(numQuestions), player1)

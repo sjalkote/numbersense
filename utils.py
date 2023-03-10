@@ -11,6 +11,7 @@ from tabulate import tabulate
 import bcrypt
 from rich.console import Console
 from rich.markdown import Markdown
+import time
 
 
 def purge_all_users(overrideUserConfirmation: bool = True) -> bool:
@@ -249,14 +250,22 @@ def giveInfo():
 
 
 def betterNumInput(question_reprint: str = ""):
-    while True:
-        try:
-            thing = input(question_reprint + "\n👉 ")
-            int(thing)
-            break
-        except ValueError:
-            print("Invalid input. ", end="")
-    return thing
+	while True:
+		try:
+			thing = input(question_reprint + "\n👉 ")
+			if thing == "":
+				eP = input("Exit program? Y/n ")
+				if eP == "y" or eP == "":
+					print("Exited program")
+					exit()
+				else:
+					print("Exit cancelled.")
+					continue
+			int(thing)
+			break
+		except ValueError:
+			print("Invalid input. ", end="")
+	return thing
 
 
 """def betterNumInput(question_reprint: str = ""):
@@ -279,7 +288,12 @@ def betterFracInput(question_reprint, decimal=False):
 	first = True
 	emptyList = []
 	if thing == "":
-		state = False
+		eP = input("Exit program? Y/n ")
+		if eP == "y" or eP == "":
+			print("Exited program")
+			exit()
+		else:
+			print("Exit cancelled.")
 	for i in thing:
 		if first and i == "/":
 			state = False
@@ -295,7 +309,14 @@ def betterFracInput(question_reprint, decimal=False):
 		first = True
 		thing = input("Invalid input. " + question_reprint + "\n👉 ")
 		if thing == "":
-			continue
+			eP = input("Exit program? Y/n ")
+			if eP == "y" or eP == "":
+				print("Exiting program...")
+				time.delay(1)
+				exit()
+			else:
+				print("Exit cancelled.")
+				continue
 		state = True
 		numDig = 0
 		for i in thing:
@@ -325,8 +346,6 @@ def check_password(user_pwd, retrieved_pwd) -> str:
 	user_pwd = user_pwd.encode("utf-8")
 	if not type(retrieved_pwd) == bytes:
 		retrieved_pwd = retrieved_pwd.encode("utf-8")
-		print(user_pwd)
-		print(retrieved_pwd)
 	return bcrypt.checkpw(user_pwd, retrieved_pwd)
 
 def changeAdminPassword(newPwd):
