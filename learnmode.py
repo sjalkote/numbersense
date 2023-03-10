@@ -604,10 +604,40 @@ def learn_integralDivisors():
 	questions.integralDivisorsQuestion()
 	
 def learn_subsets():
-	print("Error #6: Not implemented")
+	print("Find the Number Of Subsets")
+	print("""
+	Finding the number of subsets is very simple. The number of subsets is equal to two to the power of the number of elements in the set, and the number of proper subsets is one less than that. For example,
+ 	A 3 element set has how many subets?
+  	2^3 = 8
+   	It would have 8 subsets.
+	Example #2:
+ 	A 3 element set has how many PROPER subsets?
+  	2^3 = 8
+   	8 - 7
+	It has 7 proper subsets.
+
+  	Here are some practice problems
+ """)
+	questions.subsetsQuestion()
+	questions.subsetsQuestion()
+	questions.subsetsQuestion()
 
 def learn_OrderofOperations():
-	print("Error #6: Not implemented")
+	print("Order of operations.")
+	print("""
+	In order to do order of operations, all you have to do is keep in mind PEMDAS:
+ 	Parentheses
+  	Exponents
+   	Multiplication and
+	Divison
+ 	Addition and
+  	Subtraction
+
+	Evaluate in this order, and you will be able to do the questions fine.
+ """)
+	questions.orderOfOperationsQuestion()
+	questions.orderOfOperationsQuestion()
+	questions.orderOfOperationsQuestion()
 
 def learn_xtoy1():
 	print("Error #6: Not implemented")
