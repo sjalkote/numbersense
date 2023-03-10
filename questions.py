@@ -11,7 +11,7 @@ multiplyFactors = [25, 25, 25, 75, 75, 101, 11, 11, 11, 111, 101]
 remainderFactors = [3, 3, 3, 3, 4, 4, 8, 9, 9, 9, 11, 11, 11]
 logFactors = [2, 4, 5, 10]
 operations = ["*", "+", "-"]
-
+normBaseFractions = [2,4,5,8,10,20,40]
 
 def printAnswerValidation(uinput, ans, returnAns, twoPlayer=False):
     """Returns whether the question was answered correctly"""
@@ -452,3 +452,45 @@ def orderOfOperationsQuestion():
     uinput = betterNumInput(answer + "= ")
     answer = eval(answer)
     return printAnswerValidation(int(uinput), answer, answer)
+
+# Needs some bug fixing
+def decimalToFractions():
+	type = random.randint(1,4)
+	match type:
+		case 1:
+			# Non-repeating decimals
+			denominator = random.choice(normBaseFractions)
+			numerator = random.randint(1,denominator - 1)
+			numerator, denominator = simplify(numerator, denominator)
+			printt = str(round(numerator/denominator,3))
+		case 2:
+			denominator = 99
+			numerator = random.randint(1,98)
+			numerator, denominator = simplify(numerator, denominator)
+			printt = str(round(numerator/denominator,6)) + "..."
+		case 3:
+			wType = random.randint(1,2)
+			match wType:
+				case 1:
+					denominator = 90
+				case 2:
+					denominator = 990
+			numerator = random.randint(1, denominator - 1)
+			numerator, denominator = simplify(numerator, denominator)
+			printt = str(round(numerator/denominator,7)) + "..."
+		case 4:
+			denominator = 999
+			numerator = random.randint(1, denominator - 1)
+			numerator, denominator = simplify(numerator, denominator)
+			printt = str(round(numerator/denominator,6)) + "..."
+
+	uinput = betterFracInput(f"What is {printt} as a Fraction? ")
+	pAnswer = f"{numerator}/{denominator}"
+	return printAnswerValidation(eval(uinput),numerator/denominator,pAnswer)
+
+def simplify(numerator, denominator):
+	while getgcf(numerator,denominator) != 1:
+		gcf = getgcf(numerator, denominator)
+		numerator /= gcf
+		denominator /= gcf
+	return numerator, denominator

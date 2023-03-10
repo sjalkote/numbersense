@@ -12,9 +12,6 @@ from getpass import getpass
 
 from rich.console import Console
 from rich.markdown import Markdown
-
-
-
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
 colorama_init(True)
 

@@ -6,15 +6,18 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 
 
-### 0.0.2b: Decimals and Hard Mode
+### 0.0.2b: Parts of the Whole
 - [ ] Decimals!! 
 	- [ ] Converting decimals to fraction
     - [ ] Converting fractions to decimals
 - [ ] Percentages!
 - [ ] Learn mode: Parts of the Whole Group
-- [ ] No more changing answers outside of easy mode
+- [ ] Options menu
+	- [ ] Option to turn off changing answers
+    - [ ]   
 - [ ] Adding and subtracting fractions
 - [ ] Mixed numbers
+- [ ] Play Again Option
 
 ## 0.0.2: Fractions and Mixed Numbers
 
@@ -22,12 +25,11 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
 Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] ~Do not commit `blacklist/whitelist.json` but autogenerate if not exists otherwise an error occurs.~
-This should not be needed because we will plan to migrate to database anyway.
+	- [ ] This should not be needed because we will plan to migrate to database anyway.
 - [ ] Add more categories to the leaderboard
 - [ ] Feedback
 - [ ] Quick Mode
 - [ ] Censoring
-- [ ] Play Again Option
 
 ## 0.0.3: Practice mode and notifications
 
