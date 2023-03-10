@@ -14,6 +14,7 @@ from rich.console import Console
 from rich.markdown import Markdown
 
 
+
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
 colorama_init(True)
 
@@ -325,9 +326,13 @@ if __name__ == "__main__":
 			with open("whitelist.json", "r") as bFile:
 				data = json.load(bFile)
 			bFile.close()
+			with open("adminpwd.json","r+") as pF:
+				password1 = json.load(pF)
+			pF.close()
 			for element in data:
 				if username == element:
-					if getpass() == "amogus":
+					password = getpass()
+					if utils.check_password(password,password1):
 						utils.doThing(player1)
 					else:
 						print(f"{C.RED}Incorrect password. Aborting...")

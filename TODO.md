@@ -10,7 +10,7 @@ You can find completed versions at [the bottom of the list](#Completed).
   - [x] Leaderboard
 - [ ] Ability to exit program at any point.
 - [x] Fix the character-hack bug
-- [ ] Encrypt Admin Password
+- [x] Encrypt Admin Password
 
 ### 0.0.2b: Decimals and Hard Mode
 - [ ] Decimals!! 

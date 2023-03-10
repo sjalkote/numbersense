@@ -63,44 +63,46 @@ def changePassword(player: Player, new_password: str):
 
 # --------------------------------
 def doThing(player: Player):
-    title = 'Please choose an option from the menu (use arrow keys to navigate): '
-    options = [purge_all_users.__name__, check_if_user_data_present.__name__, changePassword.__name__,
-               whitelistUser.__name__, backupLeaderboard.__name__, resetLeaderboard.__name__,
-               unwhitelistUser.__name__, deleteAccount.__name__]
-
-    option, index = pick(options, title, indicator='👉', default_index=1)
-
-    match options[index]:
-        case purge_all_users.__name__:
-            purge_all_users()
-        case check_if_user_data_present.__name__:
-            username = input("Please enter the user's name to check for >> ")
-            if check_if_user_data_present(username):
-                print(f"{C.GREEN}User data file {C.BLUE}{getUserSaveDataPath(username)}{C.GREEN} exists!")
-            else:
-                print(
-                    f"{C.RED}User data file {C.BLUE}{getUserSaveDataPath(username)}{C.RED} does {C.MAGENTA}NOT{C.RED} exist.")
-        case whitelistUser.__name__:
-            username = input("User to whitelist: ")
-            whitelistUser(username)
-        case changePassword.__name__:
-            new_password = getpass.getpass("Enter your new password: ")
-            changePassword(player, new_password)
-            print(f"{C.BLUE}Password changed, logging out...")
-            exit(0)
-        case resetLeaderboard.__name__:
-            print("Reset leaderboard.")
-            resetLeaderboard()
-        case backupLeaderboard.__name__:
-            print("Leaderboard backed up.")
-            backupLeaderboard()
-        case unwhitelistUser.__name__:
-            unwhitelistUser(input("User to unwhitelist: "))
-        case deleteAccount.__name__:
-            deleteAccount(input("Account to delete: "))
-        case _:
-            print(f"No command was executed, {C.RED}something may be wrong with the menu code.{Style.RESET_ALL}")
-            exit(1)
+	title = 'Please choose an option from the menu (use arrow keys to navigate): '
+	options = [purge_all_users.__name__, check_if_user_data_present.__name__, changePassword.__name__,
+			   whitelistUser.__name__, backupLeaderboard.__name__, resetLeaderboard.__name__,
+			   unwhitelistUser.__name__, deleteAccount.__name__, changeAdminPassword.__name__]
+	
+	option, index = pick(options, title, indicator='👉', default_index=1)
+	
+	match options[index]:
+		case purge_all_users.__name__:
+			purge_all_users()
+		case check_if_user_data_present.__name__:
+			username = input("Please enter the user's name to check for >> ")
+			if check_if_user_data_present(username):
+				print(f"{C.GREEN}User data file {C.BLUE}{getUserSaveDataPath(username)}{C.GREEN} exists!")
+			else:
+				print(
+					f"{C.RED}User data file {C.BLUE}{getUserSaveDataPath(username)}{C.RED} does {C.MAGENTA}NOT{C.RED} exist.")
+		case whitelistUser.__name__:
+			username = input("User to whitelist: ")
+			whitelistUser(username)
+		case changePassword.__name__:
+			new_password = getpass.getpass("Enter your new password: ")
+			changePassword(player, new_password)
+			print(f"{C.BLUE}Password changed, logging out...")
+			exit(0)
+		case resetLeaderboard.__name__:
+			print("Reset leaderboard.")
+			resetLeaderboard()
+		case backupLeaderboard.__name__:
+			print("Leaderboard backed up.")
+			backupLeaderboard()
+		case unwhitelistUser.__name__:
+			unwhitelistUser(input("User to unwhitelist: "))
+		case deleteAccount.__name__:
+			deleteAccount(input("Account to delete: "))
+		case changeAdminPassword.__name__:
+			changeAdminPassword(input("New password: "))
+		case _:
+			print(f"No command was executed, {C.RED}something may be wrong with the menu code.{Style.RESET_ALL}")
+			exit(1)
 
 
 def whitelistUser(newUser):
@@ -323,4 +325,14 @@ def check_password(user_pwd, retrieved_pwd) -> str:
 	user_pwd = user_pwd.encode("utf-8")
 	if not type(retrieved_pwd) == bytes:
 		retrieved_pwd = retrieved_pwd.encode("utf-8")
+		print(user_pwd)
+		print(retrieved_pwd)
 	return bcrypt.checkpw(user_pwd, retrieved_pwd)
+
+def changeAdminPassword(newPwd):
+	newPwd = encrypt_password(newPwd,return_as_str=True)
+	with open("adminpwd.json","w+") as pF:
+		json.dump(newPwd, pF)
+	print("Password changed successfully.")
+	pF.close()
+	
