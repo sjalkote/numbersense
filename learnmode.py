@@ -640,7 +640,33 @@ def learn_OrderofOperations():
 	questions.orderOfOperationsQuestion()
 
 def learn_xtoy1():
-	print("Error #6: Not implemented")
+	print("Algebra with changing the exponent.")
+	print("""
+	These problems generally involve identifying what needs to be done and keeping in mind that adding one to the exponent is the same as multiplying by the base number. For example, 
+ 	Let's say 3^(x-1) = 4
+  	This means that 3^x = 4 * 3, or 12
+   	If 3^(x+1) = 24, then we subtract one from the exponent, or divide by the base number. 24 / 3 = 8.
+	Finally, let's say 3^.5x = 4. When we multiply the exponent by 2, we simply square. So in this case, 3^x = 4^2, or 16.
+ 	Keep these tricks in mind when trying the following problem practice:
+ """)
+	questions.xtoy1()
+	questions.xtoy1()
+	questions.xtoy1()
 
 def learn_xAndYCubed():
-	print("Error #6: Not implemented")
+	print("Algebra with X and Y cubed")
+	print("""
+	Even knowing the trick, this is one of the harder types of questions.
+ 	Let's take these equations:
+  	x + y = 3
+   	xy = 2
+	What is x + y?
+ 	Simplifying the equations, we can see that
+  	x + y is equal to (x + y)^3 - 3xy(x + y)
+   	So in this equation, the answer is 3^3 - 3 * 2 * 3, or 9
+	This trick requires a lot of practice to perfect. 
+	Here are some practice problems:
+ """)
+	questions.xAndyCubed()
+	questions.xAndyCubed()
+	questions.xAndyCubed()

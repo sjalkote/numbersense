@@ -5,7 +5,7 @@
 You can find completed versions at [the bottom of the list](#Completed).
 
 ### 0.0.2a: Decimals and Hard Mode
-- [ ] Finish Learn Mode
+- [x] Finish Learn Mode
 - [x] Hard mode
   - [x] Leaderboard
 - [ ] Ability to exit program at any point.
