@@ -8,11 +8,8 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 ### 0.0.2b: Parts of the Whole
 - [ ] Decimals!! 
-	- [ ] Converting decimals to fraction
+	- [x] Converting decimals to fraction
     - [ ] Converting fractions to decimals
-- [ ] Options menu
-	- [ ] Option to turn off changing answers
-    - [ ]   
 - [ ] Adding and subtracting fractions
 - [ ] Mixed numbers
 - [ ] Play Again Option
@@ -35,6 +32,8 @@ Add [badges for build status](https://shields.io/category/build) when done.
 ### 0.0.3a: Practice Mode
 - [ ] Practice mode: Practice specific concepts & problems
 - [ ] Percentages!
+- [ ] Options menu
+	- [ ] Option to turn off changing answers 
 
 ### 0.0.3b: Inbox
 - [ ] Inbox with notifications (ex.: failed login attempts)

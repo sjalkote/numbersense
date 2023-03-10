@@ -15,9 +15,6 @@ from rich.markdown import Markdown
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
 colorama_init(True)
 
-while True:
-	questions.decimalToFractions()
-
 def write_leaderboard(quiztype: QuizType, player1: Player, total, time_lapsed):
 	numC = float(player1.getNumStuff())
 	if numC / float(total) == 1.0:
