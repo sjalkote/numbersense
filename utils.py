@@ -12,7 +12,8 @@ import bcrypt
 from rich.console import Console
 from rich.markdown import Markdown
 import time
-
+from Player import QuizType
+import random
 
 def purge_all_users(overrideUserConfirmation: bool = True) -> bool:
     """
@@ -383,4 +384,8 @@ def changeAdminPassword(newPwd):
 		json.dump(newPwd, pF)
 	print("Password changed successfully.")
 	pF.close()
-	
+
+def genRandomMode():
+	modes = [QuizType.EASY,QuizType.NORMAL,QuizType.HARD]
+	numQuestions = [3,10,20]
+	return random.choice(modes), random.choice(numQuestions)

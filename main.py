@@ -289,7 +289,7 @@ if __name__ == "__main__":
 	
 	while True:
 		title = 'Choose a quiz mode: '
-		options = ["😀 Easy", "😐 Normal", "👺 Hard", "🤝 2 Player (v.s.)", "⚙️ Settings", "🔒 Administrative Menu",
+		options = ["😀 Easy", "😐 Normal", "👺 Hard", "🤝 2 Player (v.s.)", "🎲 Random", "⚙️ Settings", "🔒 Administrative Menu",
 				   "📙 Learn Mode", "🚪🏃 Exit"]
 		settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📄 Get additional Info"]
 		lmGroups = ["Multiplying, Dividing, and Fractions", "Powers", "Addition and Subtraction", "Data and Algebra"]
@@ -315,9 +315,12 @@ if __name__ == "__main__":
 		
 		elif index == 3:
 			quizMode = QuizType.TWO_PLAYER_VS
-		
-		# ⚙️ Settings
+
 		elif index == 4:
+			quizMode, numQuestions = utils.genRandomMode()
+			
+		# ⚙️ Settings
+		elif index == 5:
 		
 			mode2, index2 = pick(settingsOptions, "Settings", indicator='👉', default_index=1)
 			if index2 == 0:
@@ -338,7 +341,7 @@ if __name__ == "__main__":
 				continue
 		
 		# 🔒 Administrative Menu
-		elif index == 5:
+		elif index == 6:
 			with open("whitelist.json", "r") as bFile:
 				data = json.load(bFile)
 			bFile.close()
@@ -360,7 +363,7 @@ if __name__ == "__main__":
 			print("You do not have sufficient permissions to complete this action.  Do not try this again.")
 			
 			continue
-		elif index == 6:
+		elif index == 7:
 			lmmode, lmgindex = pick(lmGroups, "What topic? ", indicator='👉', default_index=0)
 			if lmgindex == 0:
 				lmg1mode, lmg1index = pick(lmGroupsOne, "What lesson? ", indicator='👉', default_index=0)
@@ -435,7 +438,7 @@ if __name__ == "__main__":
 				exit()
 			input("\nPress enter to return to the main menu\n")
 			continue
-		elif index == 7:
+		elif index == 8:
 			break
 		else:
 			print(" Error #2: Not found")
@@ -443,13 +446,23 @@ if __name__ == "__main__":
 		
 		# ----------------------------------------------------
 		player1.current_mode = quizMode
-		numQuestions = input("How many questions? >> ")
-		while not numQuestions.isnumeric():
-			numQuestions = input("Invalid input. How many questions? >> ")
-		numQuestions = int(numQuestions)
 		
-		# If EASY mode
-		if quizMode == QuizType.EASY or quizMode == quizMode.NORMAL or quizMode == QuizType.HARD:
+		if index == 4:
+			print(quizMode, numQuestions)
+			print("Remember, leave your answer blank to exit.")
+			input("Press Enter to start\n--------------------")
+			start_time = time.time()
+			total = main(int(numQuestions), player1)
+			end_time = time.time()
+			time_lapsed = end_time - start_time
+			time_convert(time_lapsed)
+			print(f"Score: {player1.calculateScore(total)}")
+		# If  mode
+		elif quizMode == QuizType.EASY or quizMode == quizMode.NORMAL or quizMode == QuizType.HARD:
+			numQuestions = input("How many questions? >> ")
+			while not numQuestions.isnumeric():
+				numQuestions = input("Invalid input. How many questions? >> ")
+			numQuestions = int(numQuestions)
 			# player1.current_mode = QuizType.EASY
 			print("Remember, leave your answer blank to exit.")
 			input("Press Enter to start\n--------------------")

@@ -13,7 +13,7 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [x] Adding and subtracting reverse fractions @Pikamaster23
 - [ ] Play Again Option @TechnoShip123
 - [ ] Fix getting 0 as a number of questions @TechnoShip123
-- [ ] Random Mode @Pikamaster23
+- [x] Random Mode @Pikamaster23
 
 ## 0.0.2: Fractions and Mixed Numbers
 
@@ -42,6 +42,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Percentages!
 - [ ] Options menu
 	- [ ] Option to turn off changing answers
+- [ ] Fix createDefault 
 
 
 ### 0.0.3b: Inbox
