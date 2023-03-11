@@ -43,8 +43,11 @@ global player1
 
 
 def main(totalQuestions: int, player1: Player):
+	
 	counter = 1
 	player1.num_correct = 0
+	if totalQuestions == 0:
+		return 0
 	while counter <= totalQuestions:
 		if player1.current_mode == QuizType.NORMAL:
 			print(f"{counter}) ", end="")
@@ -470,8 +473,9 @@ if __name__ == "__main__":
 			total = main(int(numQuestions), player1)
 			end_time = time.time()
 			time_lapsed = end_time - start_time
-			time_convert(time_lapsed)
-			print(f"Score: {player1.calculateScore(total)}")
+			if total > 0 :
+				time_convert(time_lapsed)
+				print(f"Score: {player1.calculateScore(total)}")
 	
 		
 		elif quizMode == QuizType.TWO_PLAYER_VS:
@@ -482,8 +486,8 @@ if __name__ == "__main__":
 			continue
 	
 		player1.saveToScoreboard(quizMode)
-		
-		write_leaderboard(quizMode, player1, total, time_lapsed)
+		if total > 0:
+			write_leaderboard(quizMode, player1, total, time_lapsed)
 		
 		userLeaderboardResponse = input("Display leaderboard? [Y/n] >> ").strip().lower()
 		if userLeaderboardResponse == "y" or userLeaderboardResponse == "":

@@ -12,7 +12,7 @@ You can find completed versions at [the bottom of the list](#Completed).
     - [x] Converting fractions to decimals
 - [x] Adding and subtracting reverse fractions @Pikamaster23
 - [ ] Play Again Option @TechnoShip123
-- [ ] Fix getting 0 as a number of questions @TechnoShip123
+- [x] Fix getting 0 as a number of questions @Pikamaster23
 - [x] Random Mode @Pikamaster23
 
 ## 0.0.2: Fractions and Mixed Numbers
