@@ -7,9 +7,9 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 
 ### 0.0.2b: Parts of the Whole
-- [ ] Decimals!! 
+- [x] Decimals!! 
 	- [x] Converting decimals to fraction
-    - [ ] Converting fractions to decimals
+    - [x] Converting fractions to decimals
 - [ ] Adding and subtracting fractions
 - [ ] Mixed numbers
 - [ ] Play Again Option
@@ -20,12 +20,16 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
 Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] ~Do not commit `blacklist/whitelist.json` but autogenerate if not exists otherwise an error occurs.~
-	- [ ] This should not be needed because we will plan to migrate to database anyway.
+	- This should not be needed because we will plan to migrate to database anyway.
 - [ ] Add more categories to the leaderboard
 - [ ] Feedback
 - [ ] Quick Mode
 - [ ] Censoring
 - [ ] Learn mode: Parts of the Whole Group
+- [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error.
+- [ ] Answers should only be counted correct without the leading zero.
+
+# Public Release: 0.0.2
 
 ## 0.0.3: Practice mode and notifications
 

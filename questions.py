@@ -501,3 +501,13 @@ def simplify(numerator, denominator):
 		numerator /= gcf
 		denominator /= gcf
 	return numerator, denominator
+
+def fracToDec():
+	denominator = random.choice(normBaseFractions)
+	numerator = random.randint(1,denominator - 1)
+	numerator, denominator = simplify(numerator, denominator)
+	pAnswer = f"{int(numerator)}/{int(denominator)}"
+	uinput = betterFracInput(f"What is {pAnswer} as a decimal? ")
+	answer = numerator/denominator
+	pAnswer = round(numerator/denominator,3)
+	return printAnswerValidation(eval(uinput), answer,pAnswer)

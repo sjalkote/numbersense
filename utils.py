@@ -286,6 +286,10 @@ def betterFracInput(question_reprint, decimal=False):
 	thing = input(question_reprint + "\n👉" )
 	state = True
 	first = True
+	numDig = 0
+	numDot = 0
+	numSlash = 0
+	numDash = 0
 	emptyList = []
 	if thing == "":
 		eP = input("Exit program? Y/n ")
@@ -300,9 +304,18 @@ def betterFracInput(question_reprint, decimal=False):
 	
 		if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
 			state = False
+		if i == ".":
+			numDot += 1
+		if i == "/":
+			numSlash += 1
+		if i == "-":
+			numDash += 1
 		first = False
 		emptyList.append(i)
-	if emptyList[0] == ".":
+		numDig += 1
+	if (emptyList[0] == "." or emptyList[0] == "/" or emptyList[0] == "-") and numDig == 1:
+		state = False
+	if numDot > 1 or numSlash > 1 or numDash > 1:
 		state = False
 	while not state:
 		
@@ -319,17 +332,32 @@ def betterFracInput(question_reprint, decimal=False):
 				continue
 		state = True
 		numDig = 0
+		numDot = 0
+		numDash = 0
+		numSlash = 0
+		emptyList = []
 		for i in thing:
 			if first and (i == "/"):
 				state = False
+				print(1)
 			if (not (i.isnumeric())) and (i != "/" or decimal) and  i != ".":
 				state = False
-			
+			if i == ".":
+				numDot += 1
+			if i == "/":
+				numSlash += 1
+			if i == "-":
+				numDash += 1
 			first = False
 			numDig += 1
 			emptyList.append(i)
-		if (emptyList[0] == "." or emptyList[0] == "/") and numDig == 1:
+		if (emptyList[0] == "." or emptyList[0] == "/" or emptyList[0] == "-") and numDig == 1:
 			state = False
+			print(2)
+		
+		if numDot > 1 or numSlash > 1 or numDash > 1:
+			state = False
+			print(3)
 	return thing
 
 

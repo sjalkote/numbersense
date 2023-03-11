@@ -10,9 +10,9 @@ import utils
 import learnmode as lm
 from getpass import getpass
 
-"""with open("adminpwd.json","w+") as pF:
-	json.dump(utils.encrypt_password("Admin", return_as_str=True),pF)
-pF.close()"""
+
+
+# utils.changeAdminPassword("Admin")
 from rich.console import Console
 from rich.markdown import Markdown
 console = Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
@@ -47,7 +47,7 @@ def main(totalQuestions: int, player1: Player):
 	while counter <= totalQuestions:
 		if player1.current_mode == QuizType.NORMAL:
 			print(f"{counter}) ", end="")
-			questionType = random.randint(1, 27)
+			questionType = random.randint(1, 28)
 			# Print the question number
 			match questionType:
 				case 1:
@@ -131,11 +131,14 @@ def main(totalQuestions: int, player1: Player):
 				case 27:
 					if questions.decimalToFractions():
 						player1.num_correct += 1
+				case 28:
+					if questions.fracToDec():
+						player1.num_correct += 1
 	
 			counter += 1
 	
 		elif player1.current_mode == quizMode.EASY:
-			QuestionType = random.randint(1, 6)
+			QuestionType = random.randint(1, 7)
 			print(f"{counter}) ", end="")
 			match QuestionType:
 				case 1:
@@ -155,6 +158,9 @@ def main(totalQuestions: int, player1: Player):
 						player1.num_correct += 1
 				case 6:
 					if questions.gcflcmQuestion():
+						player1.num_correct += 1
+				case 7:
+					if questions.fracToDec():
 						player1.num_correct += 1
 			counter += 1
 		elif player1.current_mode == quizMode.HARD:
@@ -191,6 +197,7 @@ def main(totalQuestions: int, player1: Player):
 				case 10:
 					if questions.decimalToFractions():
 						player1.num_correct += 1
+				
 			counter += 1
 		else:
 			print("Error #0: Not found")
