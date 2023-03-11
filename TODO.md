@@ -10,24 +10,28 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [x] Decimals!! 
 	- [x] Converting decimals to fraction
     - [x] Converting fractions to decimals
-- [ ] Adding and subtracting fractions
-- [ ] Mixed numbers
-- [ ] Play Again Option
+- [x] Adding and subtracting reverse fractions @Pikamaster23
+- [ ] Play Again Option @TechnoShip123
+- [ ] Fix getting 0 as a number of questions @TechnoShip123
+- [ ] Random Mode @Pikamaster23
 
 ## 0.0.2: Fractions and Mixed Numbers
 
-- [ ] Add CI/CD deployments for code quality & error checking.
-- [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction).
+- [ ] Add CI/CD deployments for code quality & error checking. @TechnoShip123
+- [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
 Add [badges for build status](https://shields.io/category/build) when done.
-- [ ] ~Do not commit `blacklist/whitelist.json` but autogenerate if not exists otherwise an error occurs.~
+- [ ] ~Do not commit `blacklist/whitelist.json` but autogenerate if not exists otherwise an error occurs.~ @TechnoShip123
 	- This should not be needed because we will plan to migrate to database anyway.
-- [ ] Add more categories to the leaderboard
-- [ ] Feedback
-- [ ] Quick Mode
-- [ ] Censoring
-- [ ] Learn mode: Parts of the Whole Group
-- [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error.
-- [ ] Answers should only be counted correct without the leading zero.
+- [ ] Add more categories to the leaderboard @Pikamaster23
+- [ ] Feedback @TechnoShip123
+- [ ] Quick Mode @Pikamaster23
+- [ ] Censoring @TechnoShip123
+- [ ] Learn mode: Parts of the Whole Group @Pikamaster23
+- [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
+- [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
+- [ ] Leaderboard in ms @TechnoShip123
+- [ ] View high scores options on main menu
+- [ ] Answers should be simplfied to be counted correct
 
 # Public Release: 0.0.2
 
@@ -37,10 +41,12 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Practice mode: Practice specific concepts & problems
 - [ ] Percentages!
 - [ ] Options menu
-	- [ ] Option to turn off changing answers 
+	- [ ] Option to turn off changing answers
+
 
 ### 0.0.3b: Inbox
 - [ ] Inbox with notifications (ex.: failed login attempts)
+- [ ] Mixed numbers
 
 ## 0.0.3
 - [ ] Timed Mode

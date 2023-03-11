@@ -12,6 +12,7 @@ from getpass import getpass
 
 
 
+
 # utils.changeAdminPassword("Admin")
 from rich.console import Console
 from rich.markdown import Markdown
@@ -47,7 +48,7 @@ def main(totalQuestions: int, player1: Player):
 	while counter <= totalQuestions:
 		if player1.current_mode == QuizType.NORMAL:
 			print(f"{counter}) ", end="")
-			questionType = random.randint(1, 28)
+			questionType = random.randint(1, 29)
 			# Print the question number
 			match questionType:
 				case 1:
@@ -133,6 +134,9 @@ def main(totalQuestions: int, player1: Player):
 						player1.num_correct += 1
 				case 28:
 					if questions.fracToDec():
+						player1.num_correct += 1
+				case 29:
+					if questions.addOppositeFractions():
 						player1.num_correct += 1
 	
 			counter += 1
@@ -471,5 +475,5 @@ if __name__ == "__main__":
 		userLeaderboardResponse = input("Display leaderboard? [Y/n] >> ").strip().lower()
 		if userLeaderboardResponse == "y" or userLeaderboardResponse == "":
 			utils.read_leaderboard(quiztype=quizMode, numQ=int(numQuestions))
-			input("\nPress enter to go back to the main menu\n")
+		input("\nPress enter to go back to the main menu\n")
 		

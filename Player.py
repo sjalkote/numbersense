@@ -87,7 +87,7 @@ class Player:
 				.decode("ascii")
 			)
             # Commented this line to allow upper and lower case
-			# value = re.sub(r"[^\w\s-]", "", value.lower())
+			value = re.sub(r"[^\w\s-]", "", value)
 			value = re.sub(r"[-\s]+", "-", value).strip("-_")
 			if username != value:
 				print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")

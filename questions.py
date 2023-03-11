@@ -511,3 +511,14 @@ def fracToDec():
 	answer = numerator/denominator
 	pAnswer = round(numerator/denominator,3)
 	return printAnswerValidation(eval(uinput), answer,pAnswer)
+
+def addOppositeFractions():
+	numerator1 = 1
+	denominator1 = 1
+	while numerator1 == 1 or denominator1 == 1:
+		numerator1, denominator1 = simplify(random.randint(2,9),random.randint(2,9))
+	uinput = betterFracInput(f"{int(numerator1)}/{int(denominator1)} + {int(denominator1)}/{int(numerator1)} = 2 + ")
+	ansNum, ansDem = simplify(abs(numerator1 - denominator1), (numerator1 * denominator1))
+	pAnswer = f"{ansNum}/{ansDem}"
+	answer = ansNum / ansDem
+	return printAnswerValidation(eval(uinput),answer,pAnswer)
