@@ -6,16 +6,15 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 
 
-### 0.0.2b: Parts of the Whole
+### 0.0.2b: Fractions & Decimals
 - [x] Decimals!! 
 	- [x] Converting decimals to fraction
     - [x] Converting fractions to decimals
 - [x] Adding and subtracting reverse fractions @Pikamaster23
-- [ ] Play Again Option @TechnoShip123
 - [x] Fix getting 0 as a number of questions @Pikamaster23
 - [x] Random Mode @Pikamaster23
 
-## 0.0.2: Fractions and Mixed Numbers
+## 0.0.2: The Everything Update
 
 - [ ] Add CI/CD deployments for code quality & error checking. @TechnoShip123
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
@@ -32,12 +31,13 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Leaderboard in ms @TechnoShip123
 - [ ] View high scores options on main menu
 - [ ] Answers should be simplfied to be counted correct
+- [ ] Play Again Option @TechnoShip123
 
 # Public Release: 0.0.2
 
 ## 0.0.3: Practice mode and notifications
 
-### 0.0.3a: Practice Mode
+### 0.0.3a: Practice Mode and Percentages
 - [ ] Practice mode: Practice specific concepts & problems
 - [ ] Percentages!
 - [ ] Options menu
@@ -49,7 +49,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Inbox with notifications (ex.: failed login attempts)
 - [ ] Mixed numbers
 
-## 0.0.3
+## 0.0.3: Timed Mode
 - [ ] Timed Mode
 
 ## 0.0.4: Questions!

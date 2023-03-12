@@ -325,8 +325,7 @@ def betterFracInput(question_reprint, decimal=False):
 		if thing == "":
 			eP = input("Exit program? Y/n ")
 			if eP == "y" or eP == "":
-				print("Exiting program...")
-				time.delay(1)
+				print("Exited program")
 				exit()
 			else:
 				print("Exit cancelled.")
