@@ -28,7 +28,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Learn mode: Parts of the Whole Group @Pikamaster23
 - [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
 - [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
-- [ ] Leaderboard in ms @TechnoShip123
+- [x] Leaderboard in ms @TechnoShip123
 - [ ] View high scores options on main menu
 - [ ] Answers should be simplfied to be counted correct
 - [ ] Play Again Option @TechnoShip123

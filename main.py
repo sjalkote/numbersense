@@ -31,12 +31,15 @@ def write_leaderboard(quiztype: QuizType, player1: Player, total, time_lapsed):
 	
 
 def time_convert(sec):
+	sec = round(sec,2)
+	ms = sec % 1 * 100
 	sec = round(sec)
 	mins = sec // 60
 	sec = sec % 60
 	hours = mins // 60
 	mins = mins % 60
-	print("Time Lapsed = {:02d}:{:02d}:{:02d}".format(int(hours), int(mins), sec))
+	print("Time Lapsed = {:02d}:{:02d}:{:02d}:{:02d}".format(int(hours), int(mins), sec,int(ms)))
+	return sec + .01 * ms
 
 
 global player1
@@ -217,7 +220,7 @@ def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None
 	# start of where error could occur
 	
 	if time != None:
-		time = int(round(time, 0))
+		time = time
 	if numQuestions != None:
 		numQ = int(numQuestions)
 	
@@ -458,7 +461,7 @@ if __name__ == "__main__":
 			total = main(int(numQuestions), player1)
 			end_time = time.time()
 			time_lapsed = end_time - start_time
-			time_convert(time_lapsed)
+			time_lapsed = time_convert(time_lapsed)
 			print(f"Score: {player1.calculateScore(total)}")
 		# If  mode
 		elif quizMode == QuizType.EASY or quizMode == quizMode.NORMAL or quizMode == QuizType.HARD:
@@ -474,7 +477,7 @@ if __name__ == "__main__":
 			end_time = time.time()
 			time_lapsed = end_time - start_time
 			if total > 0 :
-				time_convert(time_lapsed)
+				time_lapsed = time_convert(time_lapsed)
 				print(f"Score: {player1.calculateScore(total)}")
 	
 		
