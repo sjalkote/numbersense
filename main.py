@@ -4,11 +4,12 @@ import questions
 import time
 import json
 from Player import Player, QuizType
-from colorama import init as colorama_init, Fore as C, Style, ansi
+from colorama import init as colorama_init, Fore as C, ansi
 from pick import pick
 import utils
 import learnmode as lm
 from getpass import getpass
+
 
 # utils.changeAdminPassword("Admin")
 from rich.console import Console
@@ -18,12 +19,12 @@ Console().print(Markdown(f"# Numbersense.{C.BLUE}py"))
 colorama_init(True)
 
 
-def write_leaderboard(quiztype: QuizType, player1: Player, total, time_lapsed):
+def write_leaderboard(quiz_type: QuizType, player1: Player, total, time_lapsed):
     numC = float(player1.get_nem_stuff())
     if numC / float(total) == 1.0:
-        datae = displayLeaderboard(quizMode, time=time_lapsed, numQuestions=total, player=player1)
+        datae = displayLeaderboard(quiz_type, time=time_lapsed, numQuestions=total, player=player1)
     else:
-        datae = displayLeaderboard(quizMode)
+        datae = displayLeaderboard(quiz_type)
     with open('myfile.json', 'w') as leaderboard_file:
         json.dump(datae, leaderboard_file)
     leaderboard_file.close()
@@ -217,20 +218,22 @@ def main(totalQuestions: int, player1: Player):
 def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None):
     # start of where error could occur
 
-    if time != None:
+    if time is not None:
         time = time
-    if numQuestions != None:
-        numQ = int(numQuestions)
-
+    if numQuestions is not None:
+        num_of_questions = int(numQuestions)
+    else:
+        num_of_questions = None
+    pnumQ = None
     with open("myfile.json", "r+") as data_file:
-        data = json.load(data_file)
+        other_data = json.load(data_file)
 
     # end
     data_file.close()
-    if time == None:
-        return data
-    if numQuestions == None:
-        return data
+    if time is None:
+        return other_data
+    if numQuestions is None:
+        return other_data
 
     # 20 questions
     # TODO: we shouldn't need this since we implemented __str__() method for the enum
@@ -242,40 +245,40 @@ def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None
         case QuizType.HARD:
             mode = "Hard Mode"
 
-    if numQ != 3 and numQ != 10 and numQ != 20:
-        return data
+    if num_of_questions != 3 and num_of_questions != 10 and num_of_questions != 20:
+        return other_data
 
-    match numQ:
+    match num_of_questions:
         case 3:
-            numQ = "threeq"
+            num_of_questions = "threeq"
             pnumQ = "Three Questions"
         case 10:
-            numQ = "tenq"
+            num_of_questions = "tenq"
             pnumQ = "Ten Questions"
         case 20:
-            numQ = "twentyq"
+            num_of_questions = "twentyq"
             pnumQ = "Twenty Questions"
 
-    if time < float(data[f"{mode}, {numQ}"]["First"][0]):
+    if time < float(other_data[f"{mode}, {num_of_questions}"]["First"][0]):
         print(f"Congratulations! You made First Place in {pnumQ}, {mode}")
-        data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
-                                                                                   data[f"{mode}, {numQ}"]["Second"][1]
-        data[f"{mode}, {numQ}"]["Second"][0], data[f"{mode}, {numQ}"]["Second"][1] = data[f"{mode}, {numQ}"]["First"][
+        other_data[f"{mode}, {num_of_questions}"]["Third"][0], other_data[f"{mode}, {num_of_questions}"]["Third"][1] = other_data[f"{mode}, {num_of_questions}"]["Second"][0], \
+                                                                                   other_data[f"{mode}, {num_of_questions}"]["Second"][1]
+        other_data[f"{mode}, {num_of_questions}"]["Second"][0], other_data[f"{mode}, {num_of_questions}"]["Second"][1] = other_data[f"{mode}, {num_of_questions}"]["First"][
                                                                                          0], \
-                                                                                     data[f"{mode}, {numQ}"]["First"][1]
-        data[f"{mode}, {numQ}"]["First"][0], data[f"{mode}, {numQ}"]["First"][1] = time, str(player1)
+                                                                                     other_data[f"{mode}, {num_of_questions}"]["First"][1]
+        other_data[f"{mode}, {num_of_questions}"]["First"][0], other_data[f"{mode}, {num_of_questions}"]["First"][1] = time, str(player1)
 
-    elif time < float(data[f"{mode}, {numQ}"]["Second"][0]):
+    elif time < float(other_data[f"{mode}, {num_of_questions}"]["Second"][0]):
         print(f"Congratulations! You made Second Place in {pnumQ}, {mode}")
-        data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
-                                                                                   data[f"{mode}, {numQ}"]["Second"][1]
-        data[f"{mode}, {numQ}"]["Second"][0], data[f"{mode}, {numQ}"]["Second"][1] = time, str(player1)
+        other_data[f"{mode}, {num_of_questions}"]["Third"][0], other_data[f"{mode}, {num_of_questions}"]["Third"][1] = other_data[f"{mode}, {num_of_questions}"]["Second"][0], \
+                                                                                   other_data[f"{mode}, {num_of_questions}"]["Second"][1]
+        other_data[f"{mode}, {num_of_questions}"]["Second"][0], other_data[f"{mode}, {num_of_questions}"]["Second"][1] = time, str(player1)
 
-    elif time < float(data[f"{mode}, {numQ}"]["Third"][0]):
+    elif time < float(other_data[f"{mode}, {num_of_questions}"]["Third"][0]):
         print(f"Congratulations! You made Third Place in {pnumQ}, {mode}")
-        data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = time, str(player1)
+        other_data[f"{mode}, {num_of_questions}"]["Third"][0], other_data[f"{mode}, {num_of_questions}"]["Third"][1] = time, str(player1)
 
-    return data
+    return other_data
 
 
 # Make sure this is the main file ------------------------------
@@ -377,28 +380,29 @@ if __name__ == "__main__":
             lmmode, lmgindex = pick(lmGroups, "What topic? ", indicator='👉', default_index=0)
             if lmgindex == 0:
                 lmg1mode, lmg1index = pick(lmGroupsOne, "What lesson? ", indicator='👉', default_index=0)
-                if lmg1index == 0:
-                    lm.learn_multiplyBy25()
-                if lmg1index == 1:
-                    lm.learn_multiplyBy75()
-                if lmg1index == 2:
-                    lm.learn_multiplyBy101()
-                if lmg1index == 3:
-                    lm.learn_multiplyBy11()
-                if lmg1index == 4:
-                    lm.learn_multiplyFractions()
-                if lmg1index == 5:
-                    lm.learn_centeredAroundThird()
-                if lmg1index == 6:
-                    lm.learn_remainder()
-                if lmg1index == 7:
-                    lm.learn_compareFractions()
-                if lmg1index == 8:
-                    lm.learn_closeToHundred()
-                if lmg1index == 9:
-                    lm.learn_divideFractions()
-                if lmg1index == 10:
-                    lm.learn_multiplyOver37()
+                match lmg1index:
+                    case 0:
+                        lm.learn_multiplyBy25()
+                    case 1:
+                        lm.learn_multiplyBy75()
+                    case 2:
+                        lm.learn_multiplyBy101()
+                    case 3:
+                        lm.learn_multiplyBy11()
+                    case 4:
+                        lm.learn_multiplyFractions()
+                    case 5:
+                        lm.learn_centeredAroundThird()
+                    case 6:
+                        lm.learn_remainder()
+                    case 7:
+                        lm.learn_compareFractions()
+                    case 8:
+                        lm.learn_closeToHundred()
+                    case 9:
+                        lm.learn_divideFractions()
+                    case 10:
+                        lm.learn_multiplyOver37()
             elif lmgindex == 1:
                 lmg2mode, lmg2index = pick(lmGroupsTwo, "What lesson? ", indicator='👉', default_index=0)
                 if lmg2index == 0:
@@ -441,7 +445,6 @@ if __name__ == "__main__":
                     lm.learn_xtoy1()
                 if lmg4index == 6:
                     lm.learn_xAndYCubed()
-
 
             else:
                 print("Error #1: Not found")

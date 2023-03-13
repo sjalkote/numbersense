@@ -51,8 +51,8 @@ def get_user_save_data_path(username: str) -> str:
 
 def check_if_user_data_present(user_name: str) -> bool:
     """
-     Checks whether a user's save data file exists and is not empty.
-      :param: user_name The user's name to look for
+    Checks whether a user's save data file exists and is not empty.
+    :param: user_name The user's name to look for
     :return: Whether the save data file was present in the `users/` directory.
      """
     # If the file exists
