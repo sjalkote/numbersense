@@ -28,10 +28,13 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Learn mode: Parts of the Whole Group @Pikamaster23
 - [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
 - [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
-- [x] Leaderboard in ms @TechnoShip123
-- [ ] View high scores options on main menu
+- [x] Leaderboard in ms @Pikamaster23
+- [x] View high scores options on main menu
 - [ ] Answers should be simplfied to be counted correct
 - [ ] Play Again Option @TechnoShip123
+- [ ] Reformat milliseconds in leaderboard
+- [x] Encrypt change password
+- [ ] Fix choosing not to exit program on first attempt
 
 # Public Release: 0.0.2
 
@@ -59,6 +62,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Calculus
 - [ ] Subscripts
 - [ ] Estimation Questions
+- [ ] Reset leaderboard 
 
 ## 0.0.5: Tests
 - [ ] Full length practice tests

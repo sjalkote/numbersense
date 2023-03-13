@@ -299,6 +299,7 @@ def betterFracInput(question_reprint, decimal=False):
 			exit()
 		else:
 			print("Exit cancelled.")
+			thing = input(question_reprint + "\n👉" )
 	for i in thing:
 		if first and i == "/":
 			state = False

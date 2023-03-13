@@ -154,7 +154,23 @@ class Player:
 				score_file.close()
 			else:
 				print(f"{C.RED}No save data found! Creating basic data file: {C.CYAN}{self.generateEmptyDataFile()}")
-	
+
+	def getHighScores(self): 
+		with open(self._USER_DATA_FILE, "r") as score_file:
+			player_data = json.load(score_file)
+			try:
+				self.password = player_data["password"]
+				# If the key is not yet in the file (e.g. no HARD value, it will add it)
+				self.highscore.update(player_data['highscore'])
+				print(f"{C.GREEN}Retrieved High Scores!{Style.RESET_ALL}")
+				print(tabulate([
+					[score for score in self.highscore.values()]
+				],
+					headers=[mode for mode in self.highscore.keys()],
+					tablefmt='orgtbl'))
+
+			except KeyError:
+				pass
 	def generateEmptyDataFile(self) -> str:
 		with open(self._USER_DATA_FILE, "w+") as data_file:
 			self.password = self.password
@@ -194,6 +210,7 @@ class Player:
 	def changePassword(self, newPassword):
 		with open(self._USER_DATA_FILE, 'r') as data_file:
 			user_data = json.load(data_file)
+			newPassword = utils.encrypt_password(newPassword, return_as_str=True)
 			user_data['password'] = newPassword
 		data_file.close()
 		with open(self._USER_DATA_FILE, 'w') as data_file:

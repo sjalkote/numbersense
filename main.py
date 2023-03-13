@@ -38,8 +38,8 @@ def time_convert(sec):
 	sec = sec % 60
 	hours = mins // 60
 	mins = mins % 60
-	print("Time Lapsed = {:02d}:{:02d}:{:02d}:{:02d}".format(int(hours), int(mins), sec,int(ms)))
-	return sec + .01 * ms
+	print("Time Lapsed = {:02d}:{:02d}:{:02d}:{:02d}".format(int(hours), int(mins), sec,int(round(ms))))
+	return mins * 60 + sec + .01 * ms
 
 
 global player1
@@ -258,7 +258,7 @@ def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None
 			numQ = "twentyq"
 			pnumQ = "Twenty Questions"
 	
-	if time < int(data[f"{mode}, {numQ}"]["First"][0]):
+	if time < float(data[f"{mode}, {numQ}"]["First"][0]):
 		print(f"Congratulations! You made First Place in {pnumQ}, {mode}")
 		data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
 																				   data[f"{mode}, {numQ}"]["Second"][1]
@@ -267,13 +267,13 @@ def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None
 																					 data[f"{mode}, {numQ}"]["First"][1]
 		data[f"{mode}, {numQ}"]["First"][0], data[f"{mode}, {numQ}"]["First"][1] = time, str(player1)
 	
-	elif time < int(data[f"{mode}, {numQ}"]["Second"][0]):
+	elif time < float(data[f"{mode}, {numQ}"]["Second"][0]):
 		print(f"Congratulations! You made Second Place in {pnumQ}, {mode}")
 		data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = data[f"{mode}, {numQ}"]["Second"][0], \
 																				   data[f"{mode}, {numQ}"]["Second"][1]
 		data[f"{mode}, {numQ}"]["Second"][0], data[f"{mode}, {numQ}"]["Second"][1] = time, str(player1)
 	
-	elif time < int(data[f"{mode}, {numQ}"]["Third"][0]):
+	elif time < float(data[f"{mode}, {numQ}"]["Third"][0]):
 		print(f"Congratulations! You made Third Place in {pnumQ}, {mode}")
 		data[f"{mode}, {numQ}"]["Third"][0], data[f"{mode}, {numQ}"]["Third"][1] = time, str(player1)
 	
@@ -296,8 +296,8 @@ if __name__ == "__main__":
 	while True:
 		title = 'Choose a quiz mode: '
 		options = ["😀 Easy", "😐 Normal", "👺 Hard", "🤝 2 Player (v.s.)", "🎲 Random", "⚙️ Settings", "🔒 Administrative Menu",
-				   "📙 Learn Mode", "🚪🏃 Exit"]
-		settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📄 Get additional Info"]
+				   "📙 Learn Mode", "Display High Scores", "🚪🏃 Exit"]
+		settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📄 Get additional Info", "Go Back"]
 		lmGroups = ["Multiplying, Dividing, and Fractions", "Powers", "Addition and Subtraction", "Data and Algebra"]
 		lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11",
 					   "Multiplying Fractions", "Multiplying Two Numbers Centered Around a Third", "Remainders",
@@ -344,6 +344,8 @@ if __name__ == "__main__":
 					continue
 			if index2 == 2:
 				utils.giveInfo()
+				continue
+			if index2 == 3:
 				continue
 		
 		# 🔒 Administrative Menu
@@ -445,7 +447,12 @@ if __name__ == "__main__":
 			input("\nPress enter to return to the main menu\n")
 			continue
 		elif index == 8:
+			player1.getHighScores()
+			input("Press enter to go back. ")
+			continue
+		elif index == 9:
 			break
+		
 		else:
 			print(" Error #2: Not found")
 			exit(1)
