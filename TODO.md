@@ -4,16 +4,8 @@
 
 You can find completed versions at [the bottom of the list](#Completed).
 
-- Create users file if does not exist
+- Create users file if it does not exist
 
-
-### 0.0.2b: Fractions & Decimals
-- [x] Decimals!! 
-	- [x] Converting decimals to fraction
-    - [x] Converting fractions to decimals
-- [x] Adding and subtracting reverse fractions @Pikamaster23
-- [x] Fix getting 0 as a number of questions @Pikamaster23
-- [x] Random Mode @Pikamaster23
 
 ## 0.0.2: The Everything Update
 
@@ -31,7 +23,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
 - [x] Leaderboard in ms @Pikamaster23
 - [x] View high scores options on main menu
-- [ ] Answers should be simplfied to be counted correct
+- [ ] Answers should be simplified to be counted correct
 - [ ] Play Again Option @TechnoShip123
 - [ ] Reformat milliseconds in leaderboard
 - [x] Encrypt change password
@@ -105,7 +97,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 ### 0.0.1: Final Changes
 - [x] Salt/Hash password if we are going for another approach? or cryptography
     - [x] Either change/remove all instances of `createDefault(username)` because `None` type doesn't work with encryption (different hash each time).
-    Currently a temporary fix gives default users a password of `'password'` instead of `None`.
+    Currently, a temporary fix gives default users a password of `'password'` instead of `None`.
 
 ### 0.0.2a: Decimals and Hard Mode
 - [x] Finish Learn Mode
@@ -114,3 +106,11 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [x] Ability to exit program at any point.
 - [x] Fix the character-hack bug
 - [x] Encrypt Admin Password
+
+### 0.0.2b: Fractions & Decimals
+- [x] Decimals!! 
+	- [x] Converting decimals to fraction
+    - [x] Converting fractions to decimals
+- [x] Adding and subtracting reverse fractions @Pikamaster23
+- [x] Fix getting 0 as a number of questions @Pikamaster23
+- [x] Random Mode @Pikamaster23
