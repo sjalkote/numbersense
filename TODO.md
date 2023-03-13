@@ -4,6 +4,7 @@
 
 You can find completed versions at [the bottom of the list](#Completed).
 
+- Create users file if does not exist
 
 
 ### 0.0.2b: Fractions & Decimals

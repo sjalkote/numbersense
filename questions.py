@@ -3,7 +3,7 @@ from colorama import init as colorama_init, Fore as C, Style
 
 colorama_init(True)
 import math as m
-from utils import betterNumInput, betterFracInput
+from utils import better_num_input, better_frac_input
 
 RESET = Style.RESET_ALL
 
@@ -36,7 +36,7 @@ def multiplyBy(randFactor=None, diffTypes=False):
         multiple = random.randint(11, 30)
     else:
         multiple = random.randint(3, 25) * 4
-    answer = betterNumInput(f"{multiple} x {factor} = ")
+    answer = better_num_input(f"{multiple} x {factor} = ")
     return printAnswerValidation(answer, str(int(multiple * factor)), str(int(multiple * factor)))
 
 
@@ -45,7 +45,7 @@ def divideBy(factor):
     multiplier = random.randint(1, 20)
     product = multiplier * factor
     # answer = input(f"{product} ➗ {factor} = ")
-    answer = betterNumInput(f"{product} ➗ {factor} = ")
+    answer = better_num_input(f"{product} ➗ {factor} = ")
     return printAnswerValidation(answer, str(int(product / factor)), str(int(product / factor)))
 
 
@@ -71,7 +71,7 @@ def multiplyFractions():
     numFinal /= gcfFinal
     denFinal /= gcfFinal
     product = numFinal / denFinal
-    uinput = betterFracInput(f"{int(num1)}/{int(den1)} x {int(num2)}/{int(den2)} = ")
+    uinput = better_frac_input(f"{int(num1)}/{int(den1)} x {int(num2)}/{int(den2)} = ")
     if denFinal == 1:
         return printAnswerValidation(eval(uinput), product, int(numFinal))
     return printAnswerValidation(eval(uinput), product, f"{int(numFinal)}/{int(denFinal)}")
@@ -99,7 +99,7 @@ def integralDivisors(a):
 def centeredAroundThird():
     factor = random.randint(1, 4)
     num = random.randint(0, 9) * 10 + 5
-    uinput = betterNumInput(f"{num - factor} x {num + factor} = ")
+    uinput = better_num_input(f"{num - factor} x {num + factor} = ")
     answer = (num - factor) * (num + factor)
     return printAnswerValidation(eval(uinput), answer, answer)
 
@@ -115,28 +115,28 @@ def squareNumber(easy=False):
     else:
         num = random.randint(11, 60)
     answer = num * num
-    uinput = betterNumInput(f"What is {num} squared? ")
+    uinput = better_num_input(f"What is {num} squared? ")
     return printAnswerValidation(int(uinput), answer, answer)
 
 
 def cubeNumber():
     num = random.randint(2, 15)
     answer = num * num * num
-    uinput = betterNumInput(f"What is {num} cubed? ")
+    uinput = better_num_input(f"What is {num} cubed? ")
     return printAnswerValidation(int(uinput), answer, answer)
 
 
 def squareRootNumber():
     num = random.randint(11, 100)
     answer = num
-    uinput = betterNumInput(f"What is the square root of {num * num}? ")
+    uinput = better_num_input(f"What is the square root of {num * num}? ")
     return printAnswerValidation(int(uinput), answer, answer)
 
 
 def cubeRootNumber():
     num = random.randint(11, 100)
     answer = num
-    uinput = betterNumInput(f"What is the cube root of {num * num * num}? ")
+    uinput = better_num_input(f"What is the cube root of {num * num * num}? ")
 
     return printAnswerValidation(int(uinput), answer, answer)
 
@@ -147,14 +147,14 @@ def differenceOfReverses(digits):
         num2 = random.randint(1, 9)
         num3 = random.randint(1, 9)
         answer = (100 * num1 + 10 * num2 + num3) - (100 * num3 + 10 * num2 + num1)
-        uinput = betterFracInput(f"{num1}{num2}{num3} - {num3}{num2}{num1} = ")
+        uinput = better_frac_input(f"{num1}{num2}{num3} - {num3}{num2}{num1} = ")
         return printAnswerValidation(int(uinput), answer, answer)
 
     if digits == 4:
         num1 = random.randint(1, 9)
         num2 = random.randint(1, 9)
         answer = (1000 * num1 + num2) - (1000 * num2 + num1)
-        uinput = int(betterNumInput(f"{num1}00{num2} - {num2}00{num1} = "))
+        uinput = int(better_num_input(f"{num1}00{num2} - {num2}00{num1} = "))
         return printAnswerValidation(int(uinput), answer, answer)
 
 
@@ -162,7 +162,7 @@ def lcmQuestion():
     num1 = random.randint(1, 20)
     num2 = random.randint(1, 20)
     answer = getlcm(num1, num2)
-    uinput = betterNumInput(f"lcm({num1},{num2}) = ")
+    uinput = better_num_input(f"lcm({num1},{num2}) = ")
 
     return uinput, answer
 
@@ -172,7 +172,7 @@ def gcfQuestion():
     num2 = random.randint(1, 20)
 
     answer = getgcf(num1, num2)
-    uinput = betterNumInput(f"gcf({num1},{num2}) = ")
+    uinput = better_num_input(f"gcf({num1},{num2}) = ")
 
     return uinput, answer
 
@@ -182,7 +182,7 @@ def gcfxlcmQuestion():
     num2 = random.randint(1, 10)
 
     answer = num1 * num2
-    uinput = betterNumInput(f"gcf({num1},{num2}) x lcm({num1},{num2}) = ")
+    uinput = better_num_input(f"gcf({num1},{num2}) x lcm({num1},{num2}) = ")
 
     return uinput, answer
 
@@ -190,7 +190,7 @@ def gcfxlcmQuestion():
 def addSquares(type):
     if type == 1:
         num1 = random.randint(1, 20)
-        uinput = betterNumInput(f"{num1} squared + {num1 * 3} squared? ")
+        uinput = better_num_input(f"{num1} squared + {num1 * 3} squared? ")
         answer = num1 * num1 * 10
 
     if type == 2:
@@ -200,7 +200,7 @@ def addSquares(type):
         dig22 = 10 - dig11
         num1 = 10 * dig11 + dig12
         num2 = 10 * dig21 + dig22
-        uinput = betterNumInput(f"{num1} squared + {num2} squared? ")
+        uinput = better_num_input(f"{num1} squared + {num2} squared? ")
         answer = num1 * num1 + num2 * num2
     return printAnswerValidation(int(uinput), answer, answer)
 
@@ -209,7 +209,7 @@ def remainder():
     num1 = random.randint(1, 100000)
     num2 = random.choice(remainderFactors)
     answer = num1 % num2
-    uinput = betterNumInput(f"Remainder of {num1} / {num2} = ")
+    uinput = better_num_input(f"Remainder of {num1} / {num2} = ")
 
     return printAnswerValidation(int(uinput), answer, answer)
 
@@ -251,7 +251,7 @@ def compareFractions():
         answer = f"{int(num2)}/{int(den2)}"
     else:
         answer = "neither"
-    uinput = betterFracInput(f"""Which is larger: 
+    uinput = better_frac_input(f"""Which is larger: 
 {int(num1)}/{int(den1)} or {int(num2)}/{int(den2)}: """)
 
     return printAnswerValidation(uinput, answer, answer)
@@ -261,7 +261,7 @@ def differenceOfSquares():
     num1 = random.randint(11, 46)
     num2 = num1 + random.randint(1, 2) * 2
     answer = num2 * num2 - num1 * num1
-    uinput = betterNumInput(f"What is {num2} squared - {num1} squared? ")
+    uinput = better_num_input(f"What is {num2} squared - {num1} squared? ")
 
     return printAnswerValidation(int(uinput), answer, answer)
 
@@ -275,7 +275,7 @@ def closeToHundred():
         num1 = random.randint(101, 115)
         num2 = random.randint(101, 110)
     answer = num1 * num2
-    uinput = betterNumInput(f"{num1} * {num2} = ")
+    uinput = better_num_input(f"{num1} * {num2} = ")
     return printAnswerValidation(int(uinput), answer, answer)
 
 
@@ -283,7 +283,7 @@ def xAndyCubed():
     a = random.randint(1, 5)
     b = random.randint(1, 10)
     answer = b * b * b - 3 * a * b
-    uinput = betterNumInput(f"If x + y = {b} and xy = {a} then x cubed + y cubed is: ")
+    uinput = better_num_input(f"If x + y = {b} and xy = {a} then x cubed + y cubed is: ")
 
     return printAnswerValidation(int(uinput), answer, answer)
 
@@ -310,7 +310,7 @@ def divideFractions():
     numFinal /= gcfFinal
     denFinal /= gcfFinal
     product = numFinal / denFinal
-    uinput = betterFracInput(f"{int(num1)}/{int(den1)} ➗ {int(num2)}/{int(den2)} = ")
+    uinput = better_frac_input(f"{int(num1)}/{int(den1)} ➗ {int(num2)}/{int(den2)} = ")
 
     if denFinal == 1:
         return printAnswerValidation(eval(uinput), product, int(numFinal))
@@ -338,7 +338,7 @@ def stats():
         case 3:
             term = "mean"
             answer = (num1 + num2 + num3 + num4 + num5) / 5
-    uinput = betterFracInput(f"What is the {term} of {num1}, {num2}, {num3}, {num4}, and {num5}? ")
+    uinput = better_frac_input(f"What is the {term} of {num1}, {num2}, {num3}, {num4}, and {num5}? ")
 
     return printAnswerValidation(eval(uinput), answer, answer)
 
@@ -346,7 +346,7 @@ def stats():
 def integralDivisorsQuestion():
     num = random.randint(6, 50) * 2
     answer = integralDivisors(num)
-    uinput = betterNumInput(f"{num} has how many integral divisors? ")
+    uinput = better_num_input(f"{num} has how many integral divisors? ")
 
     return printAnswerValidation(int(uinput), answer, answer)
 
@@ -355,7 +355,7 @@ def logarithmQuestion():
     base = random.choice(logFactors)
     x = int(round(m.pow(base, random.randint(1, 5))))
     answer = round(m.log(x, base))
-    uinput = betterNumInput(f"What is log base {base} of {x}? ")
+    uinput = better_num_input(f"What is log base {base} of {x}? ")
     """
  key = getkey()
     uinput = input(f"BUZZER PRESSED ({''.join(['player1' if key == player1Buzzer elif key == player2Buzzer 'player2'])}!) \n>> ")
@@ -376,7 +376,7 @@ def sepDigits():
     num1 = 100 * dig1 + dig3 + .1 * dig4
     num2 = 10 * dig2 + .01 * dig5
     answer = round(num1 + num2, 2)
-    uinput = betterFracInput(f"{num1} + {num2} = ", decimal=True)
+    uinput = better_frac_input(f"{num1} + {num2} = ", decimal=True)
     return printAnswerValidation(float(uinput), answer, answer)
 
 
@@ -395,7 +395,7 @@ def xtoy1():
         case 3:
             operation = "(.5y)"
             answer = z * z
-    uinput = betterNumInput(f"If {x}^{operation} = {z}, what is {x}^y?: ")
+    uinput = better_num_input(f"If {x}^{operation} = {z}, what is {x}^y?: ")
     return printAnswerValidation(round(eval(uinput), 2), answer, answer)
 
 
@@ -405,7 +405,7 @@ def addCommonProducts():
     num3 = random.randint(1, num2 - 1)
     num4 = num2 - num3
     answer = num4 * num1 + num3 * num1
-    uinput = betterNumInput(f"{num1} x {num3} + {num1} x {num4} = ")
+    uinput = better_num_input(f"{num1} x {num3} + {num1} x {num4} = ")
     return printAnswerValidation(int(uinput), answer, answer)
 
 
@@ -428,7 +428,7 @@ def subsetsQuestion():
         case 2:
             answer, numE = properSubsets()
             term = "proper subsets"
-    uinput = betterNumInput(f"How many {term} does a {numE}-element set have?: ")
+    uinput = better_num_input(f"How many {term} does a {numE}-element set have?: ")
     return printAnswerValidation(int(uinput), answer, answer)
 
 
@@ -436,7 +436,7 @@ def multiplyOver37():
     num1 = random.randint(1, 9) * 111
     num2 = random.randint(1, 5)
     answer = int(num1 / 37 * num2)
-    uinput = betterNumInput(f"What is {num1} x {num2}/37?: ")
+    uinput = better_num_input(f"What is {num1} x {num2}/37?: ")
     return printAnswerValidation(int(uinput), answer, answer)
 
 
@@ -449,7 +449,7 @@ def orderOfOperationsQuestion():
     op2 = random.choice(operations) + " "
     op3 = random.choice(operations) + " "
     answer = num1 + op1 + num2 + op2 + num3 + op3 + num4
-    uinput = betterNumInput(answer + "= ")
+    uinput = better_num_input(answer + "= ")
     answer = eval(answer)
     return printAnswerValidation(int(uinput), answer, answer)
 
@@ -491,7 +491,7 @@ def decimalToFractions():
 			c = random.randint(1,9)
 			printt = f"0.{a}{b}{c}{a}{b}{c}..."
 			numerator, denominator = simplify(int(f"{a}{b}{c}"), 999)	
-	uinput = betterFracInput(f"What is {printt} as a fraction? ")
+	uinput = better_frac_input(f"What is {printt} as a fraction? ")
 	pAnswer = f"{int(numerator)}/{int(denominator)}"
 	return printAnswerValidation(eval(uinput),numerator/denominator,pAnswer)
 
@@ -507,7 +507,7 @@ def fracToDec():
 	numerator = random.randint(1,denominator - 1)
 	numerator, denominator = simplify(numerator, denominator)
 	pAnswer = f"{int(numerator)}/{int(denominator)}"
-	uinput = betterFracInput(f"What is {pAnswer} as a decimal? ")
+	uinput = better_frac_input(f"What is {pAnswer} as a decimal? ")
 	answer = numerator/denominator
 	pAnswer = round(numerator/denominator,3)
 	return printAnswerValidation(eval(uinput), answer,pAnswer)
@@ -517,7 +517,7 @@ def addOppositeFractions():
 	denominator1 = 1
 	while numerator1 == 1 or denominator1 == 1:
 		numerator1, denominator1 = simplify(random.randint(2,9),random.randint(2,9))
-	uinput = betterFracInput(f"{int(numerator1)}/{int(denominator1)} + {int(denominator1)}/{int(numerator1)} = 2 + ")
+	uinput = better_frac_input(f"{int(numerator1)}/{int(denominator1)} + {int(denominator1)}/{int(numerator1)} = 2 + ")
 	ansNum, ansDem = simplify((numerator1 - denominator1) ** 2, (numerator1 * denominator1))
 	pAnswer = f"{ansNum}/{ansDem}"
 	answer = ansNum / ansDem
