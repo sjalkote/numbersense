@@ -339,15 +339,15 @@ def learn_squareNumbers():
     print("You can square any other number with this trick:")
     print("""
 To square a number, you add the ones digit, then multiply by the tens digit, then finally append the ones digit squared at the end. For example:
-	22^2
- 	22 + 2(The ones digit) = 24
-  	24 * 2(The tens digit) = 48
-   	The ones digit (2) squared is 4
-	And we append that the end to get 484.
- 	22 ^ 2 = 484
-  	Remember to carry over if the ones digit squared is more than one digit.
-	Let's try one together: 24 ^ 2
- """)
+    22^2
+    22 + 2(The ones digit) = 24
+    24 * 2(The tens digit) = 48
+    The ones digit (2) squared is 4
+    And we append that the end to get 484.
+    22 ^ 2 = 484
+    Remember to carry over if the ones digit squared is more than one digit.
+    Let's try one together: 24 ^ 2
+    """)
     questions.printAnswerValidation(utils.better_num_input("After adding the ones digit, what do we have? "), "28",
                                     "28")
     questions.printAnswerValidation(utils.better_num_input("After multiplying by the tens digit, what do we have? "),
@@ -364,27 +364,27 @@ To square a number, you add the ones digit, then multiply by the tens digit, the
 
 def learn_cubeNumbers():
     print("""There are no viable tricks to cube numbers. Because the numbers you will have to cube will mostly be below 15 anyway, however, it is best to memorize your cubes up to 15. Here:
-	1^3 = 1
-	2^3 = 8
-	3^3 = 27 
-	4^3 = 64
-	5^3 = 125
-	""")
+    1^3 = 1
+    2^3 = 8
+    3^3 = 27 
+    4^3 = 64
+    5^3 = 125
+    """)
     input("Press enter to continue")
     print("""
-	6^3 = 216
- 	7^3 = 343
- 	8^3 = 512
-  	9^3 = 729
-   	10^3 = 1000
-	11^3 = 1331
- 	12^3 = 1728
-  	13^3 = 2197
-   	14^3 = 2744
-	15^3 = 3375
-
- 	Here are a few practice problems:
- """)
+        6^3 = 216
+        7^3 = 343
+        8^3 = 512
+        9^3 = 729
+        10^3 = 1000
+        11^3 = 1331
+        12^3 = 1728
+        13^3 = 2197
+        14^3 = 2744
+        15^3 = 3375
+    
+        Here are a few practice problems:
+    """)
     questions.cubeNumber()
     questions.cubeNumber()
     questions.cubeNumber()
@@ -394,20 +394,19 @@ def learn_squareRootNumber():
     list = ["0", "1 or 9", "No rational square root", "No rational square root", "2 or 8", "5", "4 or 6",
             "No rational square root", "No rational square root", "3 or 7", ]
     print("Square rooting numbers")
-    print("""
-	Taking the square root of numbers quickly requires a good amount of memorization. First, we use the last digit of the square and see what last digits of the roots they correspond to. Here is the table:
- """)
+    print("Taking the square root of numbers quickly requires a good amount of memorization. First, we use the last "
+          "digit of the square and see what last digits of the roots they correspond to. Here is the table:")
 
     print(tabulate({"Last digit of Square": [num for num in range(10)], "Last digit of Square root": list},
                    headers="keys"))
     print("""Finally, we find what multiply-of-ten squares the square is between and which one it is closer to in order to figure out the first digit and the second digit in the case of multiply options. For example:
- 	Square root of 2704
-  	Because 4 means 2 or 8 as the last digit (Based on the table), we 	know the last digit of the root is 2 or 8. 
-	Because 2704 is between 2500 (50^2) and 3600 (60^2), we know the first digit is 5.
- 	And finally, since 2704 is closer to 2500 (50^2), we know it ends in two rather than 8.
-   	Let's try one together: Square root of 1681
-	1 corresponds with 1 or 9 according to the table.
-	""")
+    Square root of 2704
+    Because 4 means 2 or 8 as the last digit (Based on the table), we 	know the last digit of the root is 2 or 8. 
+    Because 2704 is between 2500 (50^2) and 3600 (60^2), we know the first digit is 5.
+    And finally, since 2704 is closer to 2500 (50^2), we know it ends in two rather than 8.
+    Let's try one together: Square root of 1681
+    1 corresponds with 1 or 9 according to the table.
+    """)
     questions.printAnswerValidation(
         utils.better_num_input("What is the tens digit? (Find what multiple-of-ten squares it is between) "), "4", "4")
     questions.printAnswerValidation(
@@ -419,17 +418,22 @@ def learn_squareRootNumber():
 
 
 def learn_cubeRootNumber():
-    list = [0, 1, 8, 7, 4, 5, 6, 3, 2, 9]
+    last_digit_of_cube_root = [0, 1, 8, 7, 4, 5, 6, 3, 2, 9]
     print("Cube rooting numbers")
     print(
-        "Finding the cube root of numbers is very similar to finding the square root of numbers. The main differences are that the table is slightly different and that there are no ors. We also have to use multiple-of-ten cubes rather than squares. Here is the table:")
-    print(tabulate({"Last digit of cube": [num for num in range(10)], "Last digit of cube root": list}, headers="keys"))
+        "Finding the cube root of numbers is very similar to finding the square root of numbers. The main differences "
+        "are that the table is slightly different and that there are no ors. We also have to use multiple-of-ten cubes "
+        "rather than squares. Here is the table:"
+    )
+    print(
+        tabulate({"Last digit of cube": [num for num in range(10)], "Last digit of cube root": last_digit_of_cube_root},
+                 headers="keys"))
     print("""For example,
- 	The cube root of 148877
-  	First, we see that the ending of the cube (7) corresponds with the ending of the cube root (3). Next, we see that 148,877 is between 50^3 (125000) and 60^3 (216000).
-   	This means the first digit is 5 and the last digit is 3, to get a cube root of 53.
-	Let's try one together: the cube root of 74,088
- 	""")
+    The cube root of 148877
+    First, we see that the ending of the cube (7) corresponds with the ending of the cube root (3). Next, we see that 148,877 is between 50^3 (125000) and 60^3 (216000).
+    This means the first digit is 5 and the last digit is 3, to get a cube root of 53.
+    Let's try one together: the cube root of 74,088
+    """)
     questions.printAnswerValidation(
         utils.better_num_input("According to the table, what would the cube root end with? "),
         "2", "2")
@@ -444,12 +448,12 @@ def learn_cubeRootNumber():
 def learn_addSquares3x():
     print("Adding squares with x and 3x")
     print("""
-	This is a specific type of adding squares. When adding the square of a number and the square of three times that number, the answer is simply the number squared times 10. For example,
- 	20^2 + 60^2
-  	Because 60 is three times 20, this rule applies.
-   	20^2 is 400, times 10 is 4000, which is our answer.
-	Let's try some practice problems:
- """)
+    This is a specific type of adding squares. When adding the square of a number and the square of three times that number, the answer is simply the number squared times 10. For example,
+    20^2 + 60^2
+    Because 60 is three times 20, this rule applies.
+    20^2 is 400, times 10 is 4000, which is our answer.
+    Let's try some practice problems:
+    """)
     questions.addSquares(1)
     questions.addSquares(1)
     questions.addSquares(1)
@@ -458,18 +462,18 @@ def learn_addSquares3x():
 def learn_addSquaresSpec():
     print("Adding squares with special case")
     print("""
-	In specific scenarios, adding squares can be very easy. 
- 	Let's take numbers ab and cd
-  	Adding ab^2 and cd^2 where c = b - 1 and a + d = 10, the answer is (a^2 + b^2) * 101.
-   	For example,
-	32^2 + 17^2
- 	Because 1 is one less than 2 and 3 + 7 = 10, the rule applies
-  	The answer is simply (3^2 + 2^2) * 101
-   	(9 + 4) * 101
-	13 * 101
- 	32^2 + 17^2 = 1313
-  	Remember to arrange the numbers so that they are in the correct order.
-   	Here are some practice problems:
+    In specific scenarios, adding squares can be very easy. 
+    Let's take numbers ab and cd
+    Adding ab^2 and cd^2 where c = b - 1 and a + d = 10, the answer is (a^2 + b^2) * 101.
+    For example,
+    32^2 + 17^2
+    Because 1 is one less than 2 and 3 + 7 = 10, the rule applies
+    The answer is simply (3^2 + 2^2) * 101
+    (9 + 4) * 101
+    13 * 101
+    32^2 + 17^2 = 1313
+    Remember to arrange the numbers so that they are in the correct order.
+    Here are some practice problems:
  """)
     questions.addSquares(2)
     questions.addSquares(2)
@@ -479,14 +483,14 @@ def learn_addSquaresSpec():
 def learn_differenceOfSquares():
     print("Difference of squares")
     print("""
-	Differences of squares are very easy. 
-	a^2 - b^2 is (a + b)(a - b)
- 	For example,
-  	10^2 - 8^2 = (10 + 8) * (10 - 8)
-   	18 * 2 = 36
-	10^2 - 8^2 = 36
- 	Here are some practice problems:
- """)
+    Differences of squares are very easy. 
+    a^2 - b^2 is (a + b)(a - b)
+    For example,
+    10^2 - 8^2 = (10 + 8) * (10 - 8)
+    18 * 2 = 36
+    10^2 - 8^2 = 36
+    Here are some practice problems:
+    """)
     questions.differenceOfSquares()
     questions.differenceOfSquares()
     questions.differenceOfSquares()
@@ -495,12 +499,12 @@ def learn_differenceOfSquares():
 def learn_logarithms():
     print("Logarithms")
     print("""
-	The major part of doing logarithms in your head is ensuring that you know how to rethink them. log base a (c) = b means b^a = c
- 	For example,
-  	log base 3 of 81 means 3 to the power of what is 81.
-   	Because 3^4 is 81, the answer is 4.
-	Here are some practice problems:
- """)
+    The major part of doing logarithms in your head is ensuring that you know how to rethink them. log base a (c) = b means b^a = c
+    For example,
+    log base 3 of 81 means 3 to the power of what is 81.
+    Because 3^4 is 81, the answer is 4.
+    Here are some practice problems:
+    """)
     questions.logarithmQuestion()
     questions.logarithmQuestion()
     questions.logarithmQuestion()
@@ -509,18 +513,18 @@ def learn_logarithms():
 def learn_diffOfReverses():
     print("Difference of reverses.")
     print("""
- 	Subtracting reverses is very easy. It works with three digit numbers and four digit numbers with zeros in the middle. You find the difference of the first digits, multiply it by 100 or 1000 depending on the number of digits, then subtract the difference again. For example,
-  	321 - 123
-   	3-1 = 2
-	2 * 100 - 2 = 198
- 	321 - 123 = 198
+    Subtracting reverses is very easy. It works with three digit numbers and four digit numbers with zeros in the middle. You find the difference of the first digits, multiply it by 100 or 1000 depending on the number of digits, then subtract the difference again. For example,
+    321 - 123
+    3-1 = 2
+    2 * 100 - 2 = 198
+    321 - 123 = 198
 Example #2:
-	2004 - 4002
- 	2 - 4 = -2
-  	-2 * 1000 - (-2) = -1998
-  	2004 - 4002 = -1998
-   	Let's try some practice problems.
-  """)
+    2004 - 4002
+    2 - 4 = -2
+    -2 * 1000 - (-2) = -1998
+    2004 - 4002 = -1998
+    Let's try some practice problems.
+    """)
     questions.differenceOfReverses(random.randint(3, 4))
     questions.differenceOfReverses(random.randint(3, 4))
     questions.differenceOfReverses(random.randint(3, 4))
@@ -529,11 +533,11 @@ Example #2:
 def learn_addCommon():
     print("Adding common factors")
     print("""
- 	To add two numbers multiplied by the same number, the answer is the the sum of the two numbers multiplied by the other. For example,
-  	17 * 10 + 13 * 10
-   	This is the same as (17 + 13) * 10, or 30 * 10 = 300.
-	Here are some practice problems:
-   """)
+    To add two numbers multiplied by the same number, the answer is the the sum of the two numbers multiplied by the other. For example,
+    17 * 10 + 13 * 10
+    This is the same as (17 + 13) * 10, or 30 * 10 = 300.
+    Here are some practice problems:
+    """)
     questions.addCommonProducts()
     questions.addCommonProducts()
     questions.addCommonProducts()
@@ -542,16 +546,16 @@ def learn_addCommon():
 def learn_sepDigits():
     print("Adding with numbers and 0's")
     print("""
-	This can be done very easily. A lot of questions like this will split up 5 digits between two numbers and have one 0 and one number for each place value. For example:
- 	103.4 + 12.05
-  	Hundreds: 1
-   	Tens: 2
-	Ones: 3
- 	Tenths: 4
-  	Hundreths: 5
-   	The answer is 123.45
-	Here are some practice problems:
- """)
+    This can be done very easily. A lot of questions like this will split up 5 digits between two numbers and have one 0 and one number for each place value. For example:
+    103.4 + 12.05
+    Hundreds: 1
+    Tens: 2
+    Ones: 3
+    Tenths: 4
+    Hundreths: 5
+    The answer is 123.45
+    Here are some practice problems:
+    """)
     questions.sepDigits()
     questions.sepDigits()
     questions.sepDigits()
@@ -562,24 +566,24 @@ def learn_sepDigits():
 def learn_gcflcm():
     print("Finding the GCF, LCM, and the product of the two.")
     print("""
-	Finding gcf is very simple and doesn't usually require a trick. For example:
- 	16 and 20
- 	The greatest common factor of these two is easily 4, as it is the largest number that goes into both. 
-  	""")
+    Finding gcf is very simple and doesn't usually require a trick. For example:
+    16 and 20
+    The greatest common factor of these two is easily 4, as it is the largest number that goes into both. 
+    """)
     input("Press enter to continue. ")
     print("""LCM can have a trick, however. Remember that the LCM of two numbers is equal to their product over their GCF. For example:
-   	16 and 20
-	GCF = 4
- 	16 * 20 = 320
-  	320/4 = 80
-   	The least common multiple is 80.
+    16 and 20
+    GCF = 4
+    16 * 20 = 320
+    320/4 = 80
+    The least common multiple is 80.
  """)
     input("Press enter to continue. ")
     print("""Finally, remember that lcm(x,y) * gcf(x,y) = x * y. For example,
- 	GCF(14,18) * LCM(14,18) = 14 * 18
-  	14 * 18 = 252
-   	Here are some practice problems:
-   """)
+    GCF(14,18) * LCM(14,18) = 14 * 18
+    14 * 18 = 252
+    Here are some practice problems:
+    """)
     questions.gcflcmQuestion()
     questions.gcflcmQuestion()
     questions.gcflcmQuestion()
@@ -606,8 +610,8 @@ Example #2:
 26 + 30 + 6 + 17 + 11 = 90
 90 / 5 = 18
 Mean: 18 
-	Let's try out the set: 23,18,10,9,16
- """)
+    Let's try out the set: 23,18,10,9,16
+    """)
     questions.printAnswerValidation(utils.better_num_input("What is the range? "), "14", "14")
     questions.printAnswerValidation(utils.better_num_input("What is the median? "), "16", "16")
     questions.printAnswerValidation(utils.better_frac_input("What is the mean? "), "15.2", "15.2")
@@ -616,15 +620,15 @@ Mean: 18
 def learn_integralDivisors():
     print("Finding the number of integral divisors.")
     print("""
-	To find the number of integral divisors, we have to create a prime factorization and multiply all of the exponents plus one. For example,
- 	How many integral divisors does 24 have?
-  	The prime factorization of 24 is 2^3 * 3^1
-   	(3 + 1) * (1 + 1) = 4 * 2 = 8
-	24 has 8 integral divisors.
+    To find the number of integral divisors, we have to create a prime factorization and multiply all of the exponents plus one. For example,
+    How many integral divisors does 24 have?
+    The prime factorization of 24 is 2^3 * 3^1
+    (3 + 1) * (1 + 1) = 4 * 2 = 8
+    24 has 8 integral divisors.
 
-  	In order to apply this trick efficiently, practice is key.
-   Here are some practice problems:
- """)
+    In order to apply this trick efficiently, practice is key.
+    Here are some practice problems:
+    """)
     questions.integralDivisorsQuestion()
     questions.integralDivisorsQuestion()
     questions.integralDivisorsQuestion()
@@ -633,17 +637,17 @@ def learn_integralDivisors():
 def learn_subsets():
     print("Find the Number Of Subsets")
     print("""
-	Finding the number of subsets is very simple. The number of subsets is equal to two to the power of the number of elements in the set, and the number of proper subsets is one less than that. For example,
- 	A 3 element set has how many subets?
-  	2^3 = 8
-   	It would have 8 subsets.
-	Example #2:
- 	A 3 element set has how many PROPER subsets?
-  	2^3 = 8
-   	8 - 7
-	It has 7 proper subsets.
+    Finding the number of subsets is very simple. The number of subsets is equal to two to the power of the number of elements in the set, and the number of proper subsets is one less than that. For example,
+    A 3 element set has how many subsets?
+    2^3 = 8
+    It would have 8 subsets.
+    Example #2:
+    A 3 element set has how many PROPER subsets?
+    2^3 = 8
+    8 - 7
+    It has 7 proper subsets.
 
-  	Here are some practice problems
+    Here are some practice problems
  """)
     questions.subsetsQuestion()
     questions.subsetsQuestion()
@@ -653,16 +657,16 @@ def learn_subsets():
 def learn_OrderofOperations():
     print("Order of operations.")
     print("""
-	In order to do order of operations, all you have to do is keep in mind PEMDAS:
- 	Parentheses
-  	Exponents
-   	Multiplication and
-	Divison
- 	Addition and
-  	Subtraction
+    In order to do order of operations, all you have to do is keep in mind PEMDAS:
+    Parentheses
+    Exponents
+    Multiplication and
+    Divison
+    Addition and
+    Subtraction
 
-	Evaluate in this order, and you will be able to do the questions fine.
- """)
+    Evaluate in this order, and you will be able to do the questions fine.
+    """)
     questions.orderOfOperationsQuestion()
     questions.orderOfOperationsQuestion()
     questions.orderOfOperationsQuestion()
