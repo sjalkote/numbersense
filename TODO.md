@@ -7,7 +7,7 @@ You can find completed versions at [the bottom of the list](#Completed).
 - Create users file if it does not exist
 
 ## Bugs
-- [ ] Choosing not to exit program on first attempt 
+- [x] Choosing not to exit program on first attempt 
 
 ## 0.0.2: The Everything Update
 
@@ -38,11 +38,15 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Fix createDefault
 - [ ] No duplicates in whitelist.json
 - [ ] Add more categories to the leaderboard @Pikamaster23
+- [ ] Start tracking analytics/statistics
+    - [ ] ex.: Most/Least played modes 
+
 
 
 ### 0.0.3b: Inbox
 - [ ] Inbox with notifications (ex.: failed login attempts)
 - [ ] Mixed numbers
+- [ ] Guest information should not be saved
 
 ## 0.0.3: Timed Mode
 - [ ] Timed Mode

@@ -345,6 +345,7 @@ def better_frac_input(question_reprint, decimal=False):
     num_slash = 0
     num_dash = 0
     empty_list = []
+    skip_to_while_loop = False
     if thing == "":
         exit_choice = input("Exit program? Y/n ")
         if exit_choice == "y" or exit_choice == "":
@@ -352,32 +353,37 @@ def better_frac_input(question_reprint, decimal=False):
             exit()
         else:
             print("Exit cancelled.")
-            thing = input(question_reprint + "\n👉")
-    for i in thing:
-        if first and i == "/":
+            skip_to_while_loop = True
             state = False
-
-        if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
+    if not skip_to_while_loop:
+        for i in thing:
+            if first and i == "/":
+                state = False
+    
+            if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
+                state = False
+            if i == ".":
+                num_dot += 1
+            if i == "/":
+                num_slash += 1
+            if i == "-":
+                num_dash += 1
+            first = False
+            empty_list.append(i)
+            num_dig += 1
+        if (empty_list[0] == "." or empty_list[0] == "/" or empty_list[0] == "-") and num_dig == 1:
             state = False
-        if i == ".":
-            num_dot += 1
-        if i == "/":
-            num_slash += 1
-        if i == "-":
-            num_dash += 1
-        first = False
-        empty_list.append(i)
-        num_dig += 1
-    if (empty_list[0] == "." or empty_list[0] == "/" or empty_list[0] == "-") and num_dig == 1:
-        state = False
-    if num_dot > 1 or num_slash > 1 or num_dash > 1:
-        state = False
-    if num_dig == 2 and num_slash == 1:
-        state = False
+        if num_dot > 1 or num_slash > 1 or num_dash > 1:
+            state = False
+        if num_dig == 2 and num_slash == 1:
+            state = False
     while not state:
         dot_char = None
         first = True
-        thing = input("Invalid input. " + question_reprint + "\n👉 ")
+        if not skip_to_while_loop:
+            print("Invalid input. ", end="")
+        thing = input(question_reprint + "\n👉 ")
+        skip_to_while_loop = False
         if thing == "":
             exit_choice = input("Exit program? Y/n ")
             if exit_choice == "y" or exit_choice == "":
@@ -385,6 +391,7 @@ def better_frac_input(question_reprint, decimal=False):
                 exit()
             else:
                 print("Exit cancelled.")
+                skip_to_while_loop = True
                 continue
         state = True
         num_dig = 0
@@ -413,7 +420,6 @@ def better_frac_input(question_reprint, decimal=False):
             state = False
         if num_dig == 2 and num_slash == 1:
             state = False
-        print(empty_list)
         
         
     return thing
