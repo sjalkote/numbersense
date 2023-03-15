@@ -342,6 +342,8 @@ def better_frac_input(question_reprint, decimal=False):
         state = False
     if num_dot > 1 or num_slash > 1 or num_dash > 1:
         state = False
+    if num_dig == 2 and num_slash == 1:
+        state = False
     while not state:
 
         first = True
@@ -363,7 +365,6 @@ def better_frac_input(question_reprint, decimal=False):
         for i in thing:
             if first and (i == "/"):
                 state = False
-                print(1)
             if (not (i.isnumeric())) and (i != "/" or decimal) and i != ".":
                 state = False
             if i == ".":
@@ -377,11 +378,11 @@ def better_frac_input(question_reprint, decimal=False):
             empty_list.append(i)
         if (empty_list[0] == "." or empty_list[0] == "/" or empty_list[0] == "-") and num_dig == 1:
             state = False
-            print(2)
 
         if num_dot > 1 or num_slash > 1 or num_dash > 1:
             state = False
-            print(3)
+        if num_dig == 2 and num_slash == 1:
+            state = False
     return thing
 
 

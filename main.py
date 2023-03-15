@@ -10,6 +10,8 @@ import utils
 import learnmode as lm
 from getpass import getpass
 
+while True:
+    questions.multiplyFractions()
 
 
 # utils.changeAdminPassword("Admin")

@@ -6,6 +6,8 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 - Create users file if it does not exist
 
+## Bugs
+- [ ] Choosing not to exit program on first attempt 
 
 ## 0.0.2: The Everything Update
 
@@ -14,11 +16,11 @@ You can find completed versions at [the bottom of the list](#Completed).
 Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Create testing suite
 - [ ] Add more categories to the leaderboard @Pikamaster23
-- [ ] Feedback @TechnoShip123
+- [x] Feedback @Pikamaster23
 - [x] Quick Mode @Pikamaster23
 - [ ] Censoring @TechnoShip123
 - [ ] Learn mode: Parts of the Whole Group @Pikamaster23
-- [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
+- [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
 - [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
 - [x] Leaderboard in ms @Pikamaster23
 - [x] View high scores options on main menu
