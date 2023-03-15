@@ -13,18 +13,16 @@ logFactors = [2, 4, 5, 10]
 operations = ["*", "+", "-"]
 normBaseFractions = [2,4,5,8,10,20,25,40]
 
-def printAnswerValidation(uinput, ans, returnAns, twoPlayer=False):
+def printAnswerValidation(uinput, ans, returnAns, decimal=False):
     """Returns whether the question was answered correctly"""
     # TODO: Have an option for multiple attempts, skips the question if pressing enter with empty answer
-    if twoPlayer:
-        pass
+    
+    if uinput == ans:
+        print(f"{C.GREEN}✅ Correct")
+        return True
     else:
-        if uinput == ans:
-            print(f"{C.GREEN}✅ Correct")
-            return True
-        else:
-            print(f"{C.RED}❌ Incorrect.{RESET} Answer is {returnAns}")
-            return False
+        print(f"{C.RED}❌ Incorrect.{RESET} Answer is {returnAns}")
+        return False
 
 
 def multiplyBy(randFactor=None, diffTypes=False):

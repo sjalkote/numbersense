@@ -12,7 +12,6 @@ from getpass import getpass
 
 
 
-
 # utils.changeAdminPassword("Admin")
 from rich.console import Console
 from rich.markdown import Markdown

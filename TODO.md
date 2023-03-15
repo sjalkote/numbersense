@@ -15,18 +15,15 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
 Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Create testing suite
-- [ ] Add more categories to the leaderboard @Pikamaster23
 - [x] Feedback @Pikamaster23
 - [x] Quick Mode @Pikamaster23
 - [ ] Censoring @TechnoShip123
 - [ ] Learn mode: Parts of the Whole Group @Pikamaster23
 - [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
-- [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
 - [x] Leaderboard in ms @Pikamaster23
 - [x] View high scores options on main menu
-- [ ] Answers should be simplified to be counted correct
 - [ ] Play Again Option @TechnoShip123
-- [ ] Reformat milliseconds in leaderboard
+- [x] Reformat milliseconds in leaderboard
 - [x] Encrypt change password
 
 # Public Release: 0.0.2
@@ -40,6 +37,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 	- [ ] Option to turn off changing answers
 - [ ] Fix createDefault
 - [ ] No duplicates in whitelist.json
+- [ ] Add more categories to the leaderboard @Pikamaster23
 
 
 ### 0.0.3b: Inbox
@@ -48,6 +46,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 
 ## 0.0.3: Timed Mode
 - [ ] Timed Mode
+- [ ] Answers should be simplified to be counted correct
 
 ## 0.0.4: Questions!
 - [ ] Introduce loads of new questions
@@ -57,6 +56,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Subscripts
 - [ ] Estimation Questions
 - [ ] Reset leaderboard 
+- [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
 
 ## 0.0.5: Tests
 - [ ] Full length practice tests

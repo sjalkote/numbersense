@@ -210,6 +210,18 @@ def read_leaderboard(quiz_mode=None, alternate_question_type=None, num_questions
             times_in_ms.append(int(mode % 1 * 100))
             times_in_s.append(int(mode // 1) % 60)
             times_in_min.append(int(mode // 60))
+        for ms_ind in range(len(times_in_ms)):
+            if len(str(times_in_ms[ms_ind])) == 1:
+                times_in_ms[ms_ind] = f"0{times_in_ms[ms_ind]}"
+            times_in_ms[ms_ind] = str(times_in_ms[ms_ind])
+        for s_ind in range(len(times_in_s)):
+            if len(str(times_in_s[s_ind])) == 1:
+                times_in_s[s_ind] = f"0{times_in_s[s_ind]}"
+            times_in_s[s_ind] = str(times_in_s[s_ind])
+        for min_ind in range(len(times_in_min)):
+            if len(str(times_in_min[min_ind])) == 1:
+                times_in_min[min_ind] = f"0{times_in_min[min_ind]}"
+            times_in_min[min_ind] = str(times_in_min[min_ind])
         for mode in range(len(lb_data[f"{quiz_mode}, {num_questions}"].values())):
             mode = list(lb_data[f"{quiz_mode}, {num_questions}"].values())[mode][1]
             names.append(mode)
@@ -363,7 +375,7 @@ def better_frac_input(question_reprint, decimal=False):
     if num_dig == 2 and num_slash == 1:
         state = False
     while not state:
-
+        dot_char = None
         first = True
         thing = input("Invalid input. " + question_reprint + "\n👉 ")
         if thing == "":
@@ -401,6 +413,9 @@ def better_frac_input(question_reprint, decimal=False):
             state = False
         if num_dig == 2 and num_slash == 1:
             state = False
+        print(empty_list)
+        
+        
     return thing
 
 
