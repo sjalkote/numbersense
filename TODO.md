@@ -28,7 +28,6 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Play Again Option @TechnoShip123
 - [ ] Reformat milliseconds in leaderboard
 - [x] Encrypt change password
-- [ ] Fix choosing not to exit program on first attempt
 
 # Public Release: 0.0.2
 

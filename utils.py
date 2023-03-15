@@ -5,7 +5,7 @@ import getpass
 import random
 import Player
 import bcrypt
-
+import itertools
 from pick import pick
 from colorama import init as colorama_init, Fore as C, Style
 from tabulate import tabulate
@@ -201,10 +201,28 @@ def read_leaderboard(quiz_mode=None, alternate_question_type=None, num_questions
             quiz_mode = "Quick Mode"
         if quiz_mode == None:
             quiz_mode = alternate_question_type
-
+        times_in_min = []
+        times_in_ms = []
+        times_in_s = []
+        names = []
+        for mode in range(len(lb_data[f"{quiz_mode}, {num_questions}"].values())):
+            mode = list(lb_data[f"{quiz_mode}, {num_questions}"].values())[mode][0]
+            times_in_ms.append(int(mode % 1 * 100))
+            times_in_s.append(int(mode // 1) % 60)
+            times_in_min.append(int(mode // 60))
+        for mode in range(len(lb_data[f"{quiz_mode}, {num_questions}"].values())):
+            mode = list(lb_data[f"{quiz_mode}, {num_questions}"].values())[mode][1]
+            names.append(mode)
+        combined_times = []
+        for i in range(3):
+            combined_times.append(f"{times_in_min[i]}:{times_in_s[i]}:{times_in_ms[i]}")
+        print_times = []
+        combined = []
+        for i in range(3):
+            combined.append([combined_times[i],names[i]])
         print(tabulate(
-            ([mode for mode in lb_data[f"{quiz_mode}, {num_questions}"].values()]),
-            headers=["Time", "Username"],
+            [time for time in combined],
+            headers=["Time (min)", "Username"],
             tablefmt='orgtbl'
         ))
     lb_file.close()
