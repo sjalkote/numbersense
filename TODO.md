@@ -12,11 +12,10 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Add CI/CD deployments for code quality & error checking. @TechnoShip123
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
 Add [badges for build status](https://shields.io/category/build) when done.
-- [ ] ~Do not commit `blacklist/whitelist.json` but autogenerate if not exists otherwise an error occurs.~ @TechnoShip123
-	- This should not be needed because we will plan to migrate to database anyway.
+- [ ] Create testing suite
 - [ ] Add more categories to the leaderboard @Pikamaster23
 - [ ] Feedback @TechnoShip123
-- [ ] Quick Mode @Pikamaster23
+- [x] Quick Mode @Pikamaster23
 - [ ] Censoring @TechnoShip123
 - [ ] Learn mode: Parts of the Whole Group @Pikamaster23
 - [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
@@ -38,7 +37,8 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Percentages!
 - [ ] Options menu
 	- [ ] Option to turn off changing answers
-- [ ] Fix createDefault 
+- [ ] Fix createDefault
+- [ ] No duplicates in whitelist.json
 
 
 ### 0.0.3b: Inbox
@@ -63,11 +63,17 @@ Add [badges for build status](https://shields.io/category/build) when done.
 # 0.1
 - [ ] 2 Player Mode
 - [ ] Decrease Lag
-- [ ] Multiple Instances
 - [ ] Improved Interface
 - [ ] Learning Plans
 	- [ ] Keep track of what needs improvement for each person.
-- [ ] Migration: Everything goes into a DB 
+- [ ] Migration: Everything goes into a DB
+- [ ] Discord bot
+
+# 0.2
+- [ ] Create website?
+- [ ] Mobile mode???
+
+
 
 # Completed
 

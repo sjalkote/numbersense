@@ -11,7 +11,7 @@ multiplyFactors = [25, 25, 25, 75, 75, 101, 11, 11, 11, 111, 101]
 remainderFactors = [3, 3, 3, 3, 4, 4, 8, 9, 9, 9, 11, 11, 11]
 logFactors = [2, 4, 5, 10]
 operations = ["*", "+", "-"]
-normBaseFractions = [2,4,5,8,10,20,40]
+normBaseFractions = [2,4,5,8,10,20,25,40]
 
 def printAnswerValidation(uinput, ans, returnAns, twoPlayer=False):
     """Returns whether the question was answered correctly"""

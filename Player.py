@@ -23,6 +23,7 @@ class QuizType(Enum):
     NORMAL = "Normal"
     HARD = "Hard"
     TWO_PLAYER_VS = "Two Player (v.s.)"
+    QUICK = "Quick"
 
 
 @unique  # Prevents overlap (Cannot be both EASY and HARD simultaneously)
@@ -54,7 +55,6 @@ class Score:
 
 # PLAYER CLASS –------------------------
 class Player:
-
     @staticmethod
     def checkPassword(username: str, provided_password: str) -> bool:
         try:
@@ -123,7 +123,8 @@ class Player:
         self.highscore: dict = {
             QuizType.EASY.value: 0,
             QuizType.NORMAL.value: 0,
-            QuizType.HARD.value: 0
+            QuizType.HARD.value: 0,
+            QuizType.QUICK.value: 0
         }
         self.current_mode: QuizType = mode
         self._USER_DATA_FILE = f"users/{self.name}.json"

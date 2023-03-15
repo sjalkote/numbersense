@@ -72,47 +72,62 @@ def changePassword(player: Player, new_password: str):
 
 # --------------------------------
 def doThing(player: Player):
+    
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
     options = [purge_all_users.__name__, check_if_user_data_present.__name__, changePassword.__name__,
                whitelist_user.__name__, backup_leaderboard.__name__, resetLeaderboard.__name__,
-               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__]
-
-    option, index = pick(options, title, indicator='👉', default_index=1)
-
-    match options[index]:
-        case purge_all_users.__name__:
-            purge_all_users()
-        case check_if_user_data_present.__name__:
-            username = input("Please enter the user's name to check for >> ")
-            if check_if_user_data_present(username):
-                print(f"{C.GREEN}User data file {C.BLUE}{get_user_save_data_path(username)}{C.GREEN} exists!")
-            else:
-                print(
-                    f"{C.RED}User data file {C.BLUE}{get_user_save_data_path(username)}{C.RED} does {C.MAGENTA}NOT{C.RED} exist.")
-        case whitelist_user.__name__:
-            username = input("User to whitelist: ")
-            whitelist_user(username)
-        case changePassword.__name__:
-            new_password = getpass.getpass("Enter your new password: ")
-            changePassword(player, new_password)
-            print(f"{C.BLUE}Password changed, logging out...")
-            exit(0)
-        case resetLeaderboard.__name__:
-            print("Reset leaderboard.")
-            resetLeaderboard()
-        case backup_leaderboard.__name__:
-            print("Leaderboard backed up.")
-            backup_leaderboard()
-        case un_whitelist_user.__name__:
-            un_whitelist_user(input("User to unwhitelist: "))
-        case delete_account.__name__:
-            delete_account(input("Account to delete: "))
-        case change_admin_password.__name__:
-            change_admin_password(input("New password: "))
-        case _:
-            print(f"No command was executed, {C.RED}something may be wrong with the menu code.{Style.RESET_ALL}")
-            exit(1)
-
+               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__, "feedback", "exit"]
+    fb_options = [view_feedback.__name__, clear_feedback.__name__, "go back"]
+    while True:
+        option, index = pick(options, title, indicator='👉', default_index=1)
+    
+        match options[index]:
+            case purge_all_users.__name__:
+                purge_all_users()
+            case check_if_user_data_present.__name__:
+                username = input("Please enter the user's name to check for >> ")
+                if check_if_user_data_present(username):
+                    print(f"{C.GREEN}User data file {C.BLUE}{get_user_save_data_path(username)}{C.GREEN} exists!")
+                else:
+                    print(
+                        f"{C.RED}User data file {C.BLUE}{get_user_save_data_path(username)}{C.RED} does {C.MAGENTA}NOT{C.RED} exist.")
+            case whitelist_user.__name__:
+                username = input("User to whitelist: ")
+                whitelist_user(username)
+            case changePassword.__name__:
+                new_password = getpass.getpass("Enter your new password: ")
+                changePassword(player, new_password)
+                print(f"{C.BLUE}Password changed, logging out...")
+            case resetLeaderboard.__name__:
+                print("Reset leaderboard.")
+                resetLeaderboard()
+            case backup_leaderboard.__name__:
+                print("Leaderboard backed up.")
+                backup_leaderboard()
+            case un_whitelist_user.__name__:
+                un_whitelist_user(input("User to unwhitelist: "))
+            case delete_account.__name__:
+                delete_account(input("Account to delete: "))
+                print("Account deleted.")
+            case change_admin_password.__name__:
+                change_admin_password(input("New password: "))
+            case "feedback":
+                fb, fb_index = pick(fb_options, "Feedback", indicator="👉")
+                match fb:
+                    case view_feedback.__name__:
+                        view_feedback()
+                    case clear_feedback.__name__:
+                        clear_feedback()
+                        print("Feedback cleared.")
+                    case "go back":
+                        continue
+            case "exit":
+                exit()
+            case _:
+                print(f"No command was executed, {C.RED}something may be wrong with the menu code.{Style.RESET_ALL}")
+                exit(1)
+        input("Press enter to return to the administrative menu. ")
+    
 
 def whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
@@ -182,6 +197,8 @@ def read_leaderboard(quiz_mode=None, alternate_question_type=None, num_questions
             quiz_mode = "Normal Mode"
         if quiz_mode == Player.QuizType.HARD:
             quiz_mode = "Hard Mode"
+        if quiz_mode == Player.QuizType.QUICK:
+            quiz_mode = "Quick Mode"
         if quiz_mode == None:
             quiz_mode = alternate_question_type
 
@@ -202,13 +219,13 @@ def delete_account(username):
 def give_info():
     options1 = ["Leaderboard", "Programmers", "Updates"]
     options11 = ["3 Questions", "10 Questions", "20 Questions"]
-    options12 = ["Easy Mode", "Normal Mode"]
+    options12 = ["Easy Mode", "Normal Mode", "Hard Mode", "Quick Mode"]
     options13 = ["Recent Updates", "Future Plans"]
     mmm, index1 = pick(options1, "What would you like info on?", indicator='👉', default_index=0)
     if index1 == 0:
         print("  					Info about leaderboard.", end="")
         print("""
-        The leaderboard keeps track of the top three fastest times for getting every question correct. To qualify, you must not answer any questions wrong, and do so as quickly as possible. The categories are 3, 10 and 20 questions easy or hard.
+        The leaderboard keeps track of the top three fastest times for getting every question correct. To qualify, you must not answer any questions wrong, and do so as quickly as possible. The categories are 3, 10 and 20 questions quick, easy, normal, or hard.
         """)
 
         view_leaderboard_choice: str = input("View leaderboard? (Y/n) >> ").lower()
@@ -394,6 +411,42 @@ def change_admin_password(new_pwd):
 
 
 def gen_random_mode():
-    modes = [QuizType.EASY, QuizType.NORMAL, QuizType.HARD]
+    modes = [QuizType.EASY, QuizType.NORMAL, QuizType.HARD, QuizType.QUICK]
     num_questions = [3, 10, 20]
     return random.choice(modes), random.choice(num_questions)
+
+def log_feedback(username, feedback):
+    with open("feedback.json","r") as a_file:
+        fb_data = json.load(a_file)
+    a_file.close()
+    state = False
+    for thing in fb_data.keys():
+        if username == thing:
+            state = True
+    if not state:
+        fb_data[username] = []
+    fb_data[username].append(feedback)
+    with open("feedback.json","w+") as a_file:
+        json.dump(fb_data,a_file)
+
+def clear_feedback():
+    with open("feedback.json", "w") as a_file:
+        json.dump({}, a_file)
+    a_file.close()
+
+def view_feedback():
+    try:
+        with open("feedback.json", "r") as a_file:
+            fb_data = json.load(a_file)
+    
+        users = []
+        for user in fb_data.keys():
+            users.append(user)
+        user_to_get_feedback, index = pick(users, "Feedback from which user?",indicator="👉")
+        num_list = []
+        for i in range(1,len(fb_data[user_to_get_feedback])+ 1):
+           num_list.append(i)
+        feedback_num, feedback_index = pick(num_list, "Which entry?", indicator="👉")
+        print(fb_data[user_to_get_feedback][feedback_index])
+    except ValueError:
+        print("No feedback to be displayed at this moment.")
