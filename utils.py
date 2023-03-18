@@ -5,7 +5,8 @@ import getpass
 import random
 import Player
 import bcrypt
-import itertools
+import re
+import unicodedata
 from pick import pick
 from colorama import init as colorama_init, Fore as C, Style
 from tabulate import tabulate
@@ -74,9 +75,9 @@ def changePassword(player: Player, new_password: str):
 def doThing(player: Player):
     
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
-    options = [purge_all_users.__name__, check_if_user_data_present.__name__, changePassword.__name__,
+    options = [purge_all_users.__name__, check_if_user_data_present.__name__, 
                whitelist_user.__name__, backup_leaderboard.__name__, resetLeaderboard.__name__,
-               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__, "feedback", "exit"]
+               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__, createDefault.__name__, "feedback", "exit"]
     fb_options = [view_feedback.__name__, clear_feedback.__name__, "go back"]
     while True:
         option, index = pick(options, title, indicator='👉', default_index=1)
@@ -94,10 +95,7 @@ def doThing(player: Player):
             case whitelist_user.__name__:
                 username = input("User to whitelist: ")
                 whitelist_user(username)
-            case changePassword.__name__:
-                new_password = getpass.getpass("Enter your new password: ")
-                changePassword(player, new_password)
-                print(f"{C.BLUE}Password changed, logging out...")
+            
             case resetLeaderboard.__name__:
                 print("Reset leaderboard.")
                 resetLeaderboard()
@@ -121,6 +119,8 @@ def doThing(player: Player):
                         print("Feedback cleared.")
                     case "go back":
                         continue
+            case createDefault.__name__:
+                createDefault(str(input("Username: ")))
             case "exit":
                 exit()
             case _:
@@ -490,3 +490,24 @@ def view_feedback():
         print(fb_data[user_to_get_feedback][feedback_index])
     except ValueError:
         print("No feedback to be displayed at this moment.")
+
+def createDefault(username):
+    value = (
+                unicodedata.normalize("NFKD", username)
+                .encode("ascii", "ignore")
+                .decode("ascii")
+            )
+            # Commented this line to allow upper and lower case
+    value = re.sub(r"[^\w\s-]", "", value)
+    value = re.sub(r"[-\s]+", "-", value).strip("-_")
+    if username != value:
+        print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")
+        username = value
+    else:
+        username = username
+    if not check_if_user_data_present(username):
+        Player.Player(username, Player.QuizType.EASY, password=0)
+        return True
+    else:
+        print("User already exists.")
+        return False

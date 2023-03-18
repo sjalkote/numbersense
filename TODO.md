@@ -19,12 +19,16 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [x] Quick Mode @Pikamaster23
 - [ ] Censoring @TechnoShip123
 - [ ] Learn mode: Parts of the Whole Group @Pikamaster23
+    - [ ] Restructure
+    - [ ] Add three new lessons  
 - [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
 - [x] Leaderboard in ms @Pikamaster23
 - [x] View high scores options on main menu
 - [ ] Play Again Option @TechnoShip123
 - [x] Reformat milliseconds in leaderboard
 - [x] Encrypt change password
+- [ ] Fix createDefault
+- [ ] No duplicates in whitelist.json
 
 # Public Release: 0.0.2
 
@@ -35,8 +39,6 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Percentages!
 - [ ] Options menu
 	- [ ] Option to turn off changing answers
-- [ ] Fix createDefault
-- [ ] No duplicates in whitelist.json
 - [ ] Add more categories to the leaderboard @Pikamaster23
 - [ ] Start tracking analytics/statistics
     - [ ] ex.: Most/Least played modes 

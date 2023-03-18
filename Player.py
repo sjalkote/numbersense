@@ -94,29 +94,32 @@ class Player:
                 self.name = username
 
         # ACCOUNT LOGIN / CREATION ----------------------------------------------------
-
+        
         # Entering Password ---------------
-        if utils.check_if_user_data_present(
-                username):  # Check to make sure a user with this name does not already exist
-            tries: int = 0
-            login_successful: bool = False
-            while not login_successful:
-                tries += 1  # Because you start on the first try
-                # Max no. of tries is 3
-                if tries > 3:
-                    print(f"{C.RED}Max tries reached, exiting...")
-                    exit()
-
-                password = getpass()
-                if Player.checkPassword(username, password):
-                    print(f"{C.GREEN}Correct password.{Style.RESET_ALL} Welcome back, {C.MAGENTA}{username}")
-                    login_successful = True
-                else:
-                    print(
-                        f"{C.RED}Incorrect password.{Style.RESET_ALL} Try again ({C.YELLOW}{tries}/3 tries{Style.RESET_ALL})")
+        if password != 0:
+            if utils.check_if_user_data_present(
+                    username):  # Check to make sure a user with this name does not already exist
+                tries: int = 0
+                login_successful: bool = False
+                while not login_successful:
+                    tries += 1  # Because you start on the first try
+                    # Max no. of tries is 3
+                    if tries > 3:
+                        print(f"{C.RED}Max tries reached, exiting...")
+                        exit()
+    
+                    password = getpass()
+                    if Player.checkPassword(username, password):
+                        print(f"{C.GREEN}Correct password.{Style.RESET_ALL} Welcome back, {C.MAGENTA}{username}")
+                        login_successful = True
+                    else:
+                        print(
+                            f"{C.RED}Incorrect password.{Style.RESET_ALL} Try again ({C.YELLOW}{tries}/3 tries{Style.RESET_ALL})")
+            else:
+                password = getpass("Enter new password for this account: ")
+                new_account = True
         else:
-            password = getpass("Enter new password for this account: ")
-            new_account = True
+            password = ""
         # --------------------------------------------------------------------------------------------------------
         self.score: int = 0
         self.num_correct: int = 0
