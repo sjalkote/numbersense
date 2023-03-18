@@ -8,53 +8,43 @@ import unicodedata
 from colorama import init as colorama_init, Fore as C, Style
 from tabulate import tabulate
 from getpass import getpass
+from Enums import QuizType
 
 import utils
 
 colorama_init(True)
 
 
-@unique  # Prevents overlap (Cannot be both EASY and HARD simultaneously)
-class QuizType(Enum):
-    def __str__(self):
-        return str(self.value)
-
-    EASY = "Easy"
-    NORMAL = "Normal"
-    HARD = "Hard"
-    TWO_PLAYER_VS = "Two Player (v.s.)"
-    QUICK = "Quick"
-
-
-@unique  # Prevents overlap (Cannot be both EASY and HARD simultaneously)
-class LeaderboardType(Enum):
-    def __str__(self):
-        match self.value:
-            case 20:
-                return "Twenty Question"
-            case 10:
-                return "Ten Question"
-            case 3:
-                return "Three Question"
-
-    TWENTY_Q = 20
-    TEN_Q = 10
-    THREE_Q = 3
-
-
-# SCORE CLASS –------------------------
-class Score:
-    def __init__(self, value: int, mode: QuizType, isHighScore: bool):
-        self.value = value
-        self.mode = mode
-        self.isHighScore = isHighScore
-
-    # def returnScoreInformation():
-    #     return {}
-
-
 # PLAYER CLASS –------------------------
 class Player:
+    @staticmethod
+    def fix_username(username: str) -> str:
+        corrected_username: str = ''
+        # Guest Username ------
+        if username.isspace() or username == '':
+            now = datetime.now()
+            # guest_username: str = now.strftime("guest_%Y-%m-%d")
+            guest_username: str = now.strftime("guest%s")
+            print(f"{C.YELLOW}Empty username, setting to: {C.CYAN}{guest_username}")
+            corrected_username: str = guest_username
+        # Bad characters ------
+        else:
+            # Modified from https://github.com/django/django/blob/master/django/utils/text.py
+            value = (
+                unicodedata.normalize("NFKD", username)
+                .encode("ascii", "ignore")
+                .decode("ascii")
+            )
+            # Commented this line to allow upper and lower case
+            value = re.sub(r"[^\w\s-]", "", value)
+            value = re.sub(r"[-\s]+", "-", value).strip("-_")
+            if username != value:
+                # print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")
+                corrected_username = value
+            else:
+                corrected_username = username
+        return corrected_username
+
     @staticmethod
     def checkPassword(username: str, provided_password: str) -> bool:
         try:
@@ -69,65 +59,41 @@ class Player:
         """If the name is empty or whitespace, it will generate a guest username"""
         # USERNAME HANDLING ----------------------------------------------------
         new_account = False
-        # Guest Username ------
-        if username.isspace() or username == '':
-            now = datetime.now()
-            # guest_username: str = now.strftime("guest_%Y-%m-%d")
-            guest_username: str = now.strftime("guest%s")
-            print(f"{C.YELLOW}Empty username, setting to: {C.CYAN}{guest_username}")
-            self.name: str = guest_username
-        # Bad characters ------
-        else:
-            # Modified from https://github.com/django/django/blob/master/django/utils/text.py
-            value = (
-                unicodedata.normalize("NFKD", username)
-                .encode("ascii", "ignore")
-                .decode("ascii")
-            )
-            # Commented this line to allow upper and lower case
-            value = re.sub(r"[^\w\s-]", "", value)
-            value = re.sub(r"[-\s]+", "-", value).strip("-_")
-            if username != value:
-                print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")
-                self.name = value
-            else:
-                self.name = username
+        self.name = self.fix_username(username)
+        if self.name != username:
+            print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{self.name}")
 
         # ACCOUNT LOGIN / CREATION ----------------------------------------------------
-        
+
         # Entering Password ---------------
-        if password != 0:
-            if utils.check_if_user_data_present(
-                    username):  # Check to make sure a user with this name does not already exist
-                tries: int = 0
-                login_successful: bool = False
-                while not login_successful:
-                    tries += 1  # Because you start on the first try
-                    # Max no. of tries is 3
-                    if tries > 3:
-                        print(f"{C.RED}Max tries reached, exiting...")
-                        exit()
-    
-                    password = getpass()
-                    if Player.checkPassword(username, password):
-                        print(f"{C.GREEN}Correct password.{Style.RESET_ALL} Welcome back, {C.MAGENTA}{username}")
-                        login_successful = True
-                    else:
-                        print(
-                            f"{C.RED}Incorrect password.{Style.RESET_ALL} Try again ({C.YELLOW}{tries}/3 tries{Style.RESET_ALL})")
-            else:
-                password = getpass("Enter new password for this account: ")
-                new_account = True
+        if utils.check_if_user_data_present(
+                username):  # Check to make sure a user with this name does not already exist
+            tries: int = 0
+            login_successful: bool = False
+            while not login_successful:
+                tries += 1  # Because you start on the first try
+                # Max no. of tries is 3
+                if tries > 3:
+                    print(f"{C.RED}Max tries reached, exiting...")
+                    exit()
+
+                password = getpass()
+                if Player.checkPassword(username, password):
+                    print(f"{C.GREEN}Correct password.{Style.RESET_ALL} Welcome back, {C.MAGENTA}{username}")
+                    login_successful = True
+                else:
+                    print(
+                        f"{C.RED}Incorrect password.{Style.RESET_ALL} Try again ({C.YELLOW}{tries}/3 tries{Style.RESET_ALL})")
         else:
-            password = ""
+            password = getpass("Enter new password for this account: ")
+            new_account = True
         # --------------------------------------------------------------------------------------------------------
         self.score: int = 0
         self.num_correct: int = 0
         self.highscore: dict = {
             QuizType.EASY.value: 0,
             QuizType.NORMAL.value: 0,
-            QuizType.HARD.value: 0,
-            QuizType.QUICK.value: 0
+            QuizType.HARD.value: 0
         }
         self.current_mode: QuizType = mode
         self._USER_DATA_FILE = f"users/{self.name}.json"
