@@ -93,7 +93,8 @@ class Player:
         self.highscore: dict = {
             QuizType.EASY.value: 0,
             QuizType.NORMAL.value: 0,
-            QuizType.HARD.value: 0
+            QuizType.HARD.value: 0,
+            QuizType.QUICK.value: 0
         }
         self.current_mode: QuizType = mode
         self._USER_DATA_FILE = f"users/{self.name}.json"

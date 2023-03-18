@@ -5,7 +5,8 @@ import getpass
 import random
 import Player
 import bcrypt
-
+import re
+import unicodedata
 from pick import pick
 from colorama import init as colorama_init, Fore as C, Style
 from tabulate import tabulate
@@ -51,8 +52,8 @@ def get_user_save_data_path(username: str) -> str:
 
 def check_if_user_data_present(user_name: str) -> bool:
     """
-     Checks whether a user's save data file exists and is not empty.
-      :param: user_name The user's name to look for
+    Checks whether a user's save data file exists and is not empty.
+    :param: user_name The user's name to look for
     :return: Whether the save data file was present in the `users/` directory.
      """
     # If the file exists
@@ -72,57 +73,79 @@ def changePassword(player: Player, new_password: str):
 
 # --------------------------------
 def doThing(player: Player):
+    
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
-    options = [purge_all_users.__name__, check_if_user_data_present.__name__, changePassword.__name__,
+    options = [purge_all_users.__name__, check_if_user_data_present.__name__, 
                whitelist_user.__name__, backup_leaderboard.__name__, resetLeaderboard.__name__,
-               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__]
-
-    option, index = pick(options, title, indicator='👉', default_index=1)
-
-    match options[index]:
-        case purge_all_users.__name__:
-            purge_all_users()
-        case check_if_user_data_present.__name__:
-            username = input("Please enter the user's name to check for >> ")
-            if check_if_user_data_present(username):
-                print(f"{C.GREEN}User data file {C.BLUE}{get_user_save_data_path(username)}{C.GREEN} exists!")
-            else:
-                print(
-                    f"{C.RED}User data file {C.BLUE}{get_user_save_data_path(username)}{C.RED} does {C.MAGENTA}NOT{C.RED} exist.")
-        case whitelist_user.__name__:
-            username = input("User to whitelist: ")
-            whitelist_user(username)
-        case changePassword.__name__:
-            new_password = getpass.getpass("Enter your new password: ")
-            changePassword(player, new_password)
-            print(f"{C.BLUE}Password changed, logging out...")
-            exit(0)
-        case resetLeaderboard.__name__:
-            print("Reset leaderboard.")
-            resetLeaderboard()
-        case backup_leaderboard.__name__:
-            print("Leaderboard backed up.")
-            backup_leaderboard()
-        case un_whitelist_user.__name__:
-            un_whitelist_user(input("User to unwhitelist: "))
-        case delete_account.__name__:
-            delete_account(input("Account to delete: "))
-        case change_admin_password.__name__:
-            change_admin_password(input("New password: "))
-        case _:
-            print(f"No command was executed, {C.RED}something may be wrong with the menu code.{Style.RESET_ALL}")
-            exit(1)
-
+               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__, createDefault.__name__, "feedback", "exit"]
+    fb_options = [view_feedback.__name__, clear_feedback.__name__, "go back"]
+    while True:
+        option, index = pick(options, title, indicator='👉', default_index=1)
+    
+        match options[index]:
+            case purge_all_users.__name__:
+                purge_all_users()
+            case check_if_user_data_present.__name__:
+                username = input("Please enter the user's name to check for >> ")
+                if check_if_user_data_present(username):
+                    print(f"{C.GREEN}User data file {C.BLUE}{get_user_save_data_path(username)}{C.GREEN} exists!")
+                else:
+                    print(
+                        f"{C.RED}User data file {C.BLUE}{get_user_save_data_path(username)}{C.RED} does {C.MAGENTA}NOT{C.RED} exist.")
+            case whitelist_user.__name__:
+                username = input("User to whitelist: ")
+                whitelist_user(username)
+            
+            case resetLeaderboard.__name__:
+                print("Reset leaderboard.")
+                resetLeaderboard()
+            case backup_leaderboard.__name__:
+                print("Leaderboard backed up.")
+                backup_leaderboard()
+            case un_whitelist_user.__name__:
+                un_whitelist_user(input("User to unwhitelist: "))
+            case delete_account.__name__:
+                delete_account(input("Account to delete: "))
+                print("Account deleted.")
+            case change_admin_password.__name__:
+                change_admin_password(input("New password: "))
+            case "feedback":
+                fb, fb_index = pick(fb_options, "Feedback", indicator="👉")
+                match fb:
+                    case view_feedback.__name__:
+                        view_feedback()
+                    case clear_feedback.__name__:
+                        clear_feedback()
+                        print("Feedback cleared.")
+                    case "go back":
+                        continue
+            case createDefault.__name__:
+                createDefault(str(input("Username: ")))
+            case "exit":
+                exit()
+            case _:
+                print(f"No command was executed, {C.RED}something may be wrong with the menu code.{Style.RESET_ALL}")
+                exit(1)
+        input("Press enter to return to the administrative menu. ")
+    
 
 def whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
         data = json.load(w)
     w.close()
-    data.append(new_user)
-    with open("whitelist.json", "w") as w:
-        json.dump(data, w)
-    print("Whitelisted " + new_user)
-
+    num_users_not_same = 0
+    num_users = 0
+    for user in data:
+        if new_user != user:
+            num_users_not_same += 1
+        num_users += 1
+    if num_users_not_same == num_users:
+        data.append(new_user)
+        with open("whitelist.json", "w") as w:
+            json.dump(data, w)
+        print("Whitelisted " + new_user)
+    else:
+        print("User is already whitelisted.")
 
 def un_whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
@@ -182,12 +205,44 @@ def read_leaderboard(quiz_mode=None, alternate_question_type=None, num_questions
             quiz_mode = "Normal Mode"
         if quiz_mode == Player.QuizType.HARD:
             quiz_mode = "Hard Mode"
+        if quiz_mode == Player.QuizType.QUICK:
+            quiz_mode = "Quick Mode"
         if quiz_mode == None:
             quiz_mode = alternate_question_type
-
+        times_in_min = []
+        times_in_ms = []
+        times_in_s = []
+        names = []
+        for mode in range(len(lb_data[f"{quiz_mode}, {num_questions}"].values())):
+            mode = list(lb_data[f"{quiz_mode}, {num_questions}"].values())[mode][0]
+            times_in_ms.append(int(mode % 1 * 100))
+            times_in_s.append(int(mode // 1) % 60)
+            times_in_min.append(int(mode // 60))
+        for ms_ind in range(len(times_in_ms)):
+            if len(str(times_in_ms[ms_ind])) == 1:
+                times_in_ms[ms_ind] = f"0{times_in_ms[ms_ind]}"
+            times_in_ms[ms_ind] = str(times_in_ms[ms_ind])
+        for s_ind in range(len(times_in_s)):
+            if len(str(times_in_s[s_ind])) == 1:
+                times_in_s[s_ind] = f"0{times_in_s[s_ind]}"
+            times_in_s[s_ind] = str(times_in_s[s_ind])
+        for min_ind in range(len(times_in_min)):
+            if len(str(times_in_min[min_ind])) == 1:
+                times_in_min[min_ind] = f"0{times_in_min[min_ind]}"
+            times_in_min[min_ind] = str(times_in_min[min_ind])
+        for mode in range(len(lb_data[f"{quiz_mode}, {num_questions}"].values())):
+            mode = list(lb_data[f"{quiz_mode}, {num_questions}"].values())[mode][1]
+            names.append(mode)
+        combined_times = []
+        for i in range(3):
+            combined_times.append(f"{times_in_min[i]}:{times_in_s[i]}:{times_in_ms[i]}")
+        print_times = []
+        combined = []
+        for i in range(3):
+            combined.append([combined_times[i],names[i]])
         print(tabulate(
-            ([mode for mode in lb_data[f"{quiz_mode}, {num_questions}"].values()]),
-            headers=["Time", "Username"],
+            [time for time in combined],
+            headers=["Time (min)", "Username"],
             tablefmt='orgtbl'
         ))
     lb_file.close()
@@ -202,13 +257,13 @@ def delete_account(username):
 def give_info():
     options1 = ["Leaderboard", "Programmers", "Updates"]
     options11 = ["3 Questions", "10 Questions", "20 Questions"]
-    options12 = ["Easy Mode", "Normal Mode"]
+    options12 = ["Easy Mode", "Normal Mode", "Hard Mode", "Quick Mode"]
     options13 = ["Recent Updates", "Future Plans"]
     mmm, index1 = pick(options1, "What would you like info on?", indicator='👉', default_index=0)
     if index1 == 0:
         print("  					Info about leaderboard.", end="")
         print("""
-        The leaderboard keeps track of the top three fastest times for getting every question correct. To qualify, you must not answer any questions wrong, and do so as quickly as possible. The categories are 3, 10 and 20 questions easy or hard.
+        The leaderboard keeps track of the top three fastest times for getting every question correct. To qualify, you must not answer any questions wrong, and do so as quickly as possible. The categories are 3, 10 and 20 questions quick, easy, normal, or hard.
         """)
 
         view_leaderboard_choice: str = input("View leaderboard? (Y/n) >> ").lower()
@@ -298,6 +353,7 @@ def better_frac_input(question_reprint, decimal=False):
     num_slash = 0
     num_dash = 0
     empty_list = []
+    skip_to_while_loop = False
     if thing == "":
         exit_choice = input("Exit program? Y/n ")
         if exit_choice == "y" or exit_choice == "":
@@ -305,30 +361,37 @@ def better_frac_input(question_reprint, decimal=False):
             exit()
         else:
             print("Exit cancelled.")
-            thing = input(question_reprint + "\n👉")
-    for i in thing:
-        if first and i == "/":
+            skip_to_while_loop = True
             state = False
-
-        if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
+    if not skip_to_while_loop:
+        for i in thing:
+            if first and i == "/":
+                state = False
+    
+            if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
+                state = False
+            if i == ".":
+                num_dot += 1
+            if i == "/":
+                num_slash += 1
+            if i == "-":
+                num_dash += 1
+            first = False
+            empty_list.append(i)
+            num_dig += 1
+        if (empty_list[0] == "." or empty_list[0] == "/" or empty_list[0] == "-") and num_dig == 1:
             state = False
-        if i == ".":
-            num_dot += 1
-        if i == "/":
-            num_slash += 1
-        if i == "-":
-            num_dash += 1
-        first = False
-        empty_list.append(i)
-        num_dig += 1
-    if (empty_list[0] == "." or empty_list[0] == "/" or empty_list[0] == "-") and num_dig == 1:
-        state = False
-    if num_dot > 1 or num_slash > 1 or num_dash > 1:
-        state = False
+        if num_dot > 1 or num_slash > 1 or num_dash > 1:
+            state = False
+        if num_dig == 2 and num_slash == 1:
+            state = False
     while not state:
-
+        dot_char = None
         first = True
-        thing = input("Invalid input. " + question_reprint + "\n👉 ")
+        if not skip_to_while_loop:
+            print("Invalid input. ", end="")
+        thing = input(question_reprint + "\n👉 ")
+        skip_to_while_loop = False
         if thing == "":
             exit_choice = input("Exit program? Y/n ")
             if exit_choice == "y" or exit_choice == "":
@@ -336,6 +399,7 @@ def better_frac_input(question_reprint, decimal=False):
                 exit()
             else:
                 print("Exit cancelled.")
+                skip_to_while_loop = True
                 continue
         state = True
         num_dig = 0
@@ -346,7 +410,6 @@ def better_frac_input(question_reprint, decimal=False):
         for i in thing:
             if first and (i == "/"):
                 state = False
-                print(1)
             if (not (i.isnumeric())) and (i != "/" or decimal) and i != ".":
                 state = False
             if i == ".":
@@ -360,11 +423,13 @@ def better_frac_input(question_reprint, decimal=False):
             empty_list.append(i)
         if (empty_list[0] == "." or empty_list[0] == "/" or empty_list[0] == "-") and num_dig == 1:
             state = False
-            print(2)
 
         if num_dot > 1 or num_slash > 1 or num_dash > 1:
             state = False
-            print(3)
+        if num_dig == 2 and num_slash == 1:
+            state = False
+        
+        
     return thing
 
 
@@ -394,6 +459,63 @@ def change_admin_password(new_pwd):
 
 
 def gen_random_mode():
-    modes = [QuizType.EASY, QuizType.NORMAL, QuizType.HARD]
+    modes = [QuizType.EASY, QuizType.NORMAL, QuizType.HARD, QuizType.QUICK]
     num_questions = [3, 10, 20]
     return random.choice(modes), random.choice(num_questions)
+
+def log_feedback(username, feedback):
+    with open("feedback.json","r") as a_file:
+        fb_data = json.load(a_file)
+    a_file.close()
+    state = False
+    for thing in fb_data.keys():
+        if username == thing:
+            state = True
+    if not state:
+        fb_data[username] = []
+    fb_data[username].append(feedback)
+    with open("feedback.json","w+") as a_file:
+        json.dump(fb_data,a_file)
+
+def clear_feedback():
+    with open("feedback.json", "w") as a_file:
+        json.dump({}, a_file)
+    a_file.close()
+
+def view_feedback():
+    try:
+        with open("feedback.json", "r") as a_file:
+            fb_data = json.load(a_file)
+    
+        users = []
+        for user in fb_data.keys():
+            users.append(user)
+        user_to_get_feedback, index = pick(users, "Feedback from which user?",indicator="👉")
+        num_list = []
+        for i in range(1,len(fb_data[user_to_get_feedback])+ 1):
+           num_list.append(i)
+        feedback_num, feedback_index = pick(num_list, "Which entry?", indicator="👉")
+        print(fb_data[user_to_get_feedback][feedback_index])
+    except ValueError:
+        print("No feedback to be displayed at this moment.")
+
+def createDefault(username):
+    value = (
+                unicodedata.normalize("NFKD", username)
+                .encode("ascii", "ignore")
+                .decode("ascii")
+            )
+            # Commented this line to allow upper and lower case
+    value = re.sub(r"[^\w\s-]", "", value)
+    value = re.sub(r"[-\s]+", "-", value).strip("-_")
+    if username != value:
+        print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")
+        username = value
+    else:
+        username = username
+    if not check_if_user_data_present(username):
+        Player.Player(username, Player.QuizType.EASY, password=0)
+        return True
+    else:
+        print("User already exists.")
+        return False
