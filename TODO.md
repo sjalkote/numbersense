@@ -11,7 +11,7 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 ## 0.0.2: The Everything Update
 
-- [ ] Add CI/CD deployments for code quality & error checking. @TechnoShip123
+- [x] Add CI/CD deployments for code quality & error checking. @TechnoShip123
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
 Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Create testing suite
