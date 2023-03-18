@@ -10,4 +10,5 @@ class QuizType(Enum):
     EASY = "Easy"
     NORMAL = "Normal"
     HARD = "Hard"
+    QUICK = "Quick"
     TWO_PLAYER_VS = "Two Player (v.s.)"

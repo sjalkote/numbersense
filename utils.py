@@ -1,19 +1,15 @@
 import os
 import glob
 import json
-import getpass
 import random
-import Player
+from Player import Player
 import bcrypt
-import re
-import unicodedata
 from pick import pick
 from colorama import init as colorama_init, Fore as C, Style
 from tabulate import tabulate
 from rich.console import Console
 from rich.markdown import Markdown
-from Player import QuizType
-
+from Enums import QuizType
 
 colorama_init(True)
 
@@ -73,15 +69,15 @@ def changePassword(player: Player, new_password: str):
 
 # --------------------------------
 def doThing(player: Player):
-    
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
-    options = [purge_all_users.__name__, check_if_user_data_present.__name__, 
+    options = [purge_all_users.__name__, check_if_user_data_present.__name__,
                whitelist_user.__name__, backup_leaderboard.__name__, resetLeaderboard.__name__,
-               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__, createDefault.__name__, "feedback", "exit"]
+               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__,
+               create_default.__name__, "feedback", "exit"]
     fb_options = [view_feedback.__name__, clear_feedback.__name__, "go back"]
     while True:
         option, index = pick(options, title, indicator='👉', default_index=1)
-    
+
         match options[index]:
             case purge_all_users.__name__:
                 purge_all_users()
@@ -95,7 +91,7 @@ def doThing(player: Player):
             case whitelist_user.__name__:
                 username = input("User to whitelist: ")
                 whitelist_user(username)
-            
+
             case resetLeaderboard.__name__:
                 print("Reset leaderboard.")
                 resetLeaderboard()
@@ -119,15 +115,15 @@ def doThing(player: Player):
                         print("Feedback cleared.")
                     case "go back":
                         continue
-            case createDefault.__name__:
-                createDefault(str(input("Username: ")))
+            case create_default.__name__:
+                create_default(str(input("Username: ")))
             case "exit":
                 exit()
             case _:
                 print(f"No command was executed, {C.RED}something may be wrong with the menu code.{Style.RESET_ALL}")
                 exit(1)
         input("Press enter to return to the administrative menu. ")
-    
+
 
 def whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
@@ -146,6 +142,7 @@ def whitelist_user(new_user):
         print("Whitelisted " + new_user)
     else:
         print("User is already whitelisted.")
+
 
 def un_whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
@@ -199,15 +196,15 @@ def read_leaderboard(quiz_mode=None, alternate_question_type=None, num_questions
 
     with open("myfile.json", "r+") as lb_file:
         lb_data = json.load(lb_file)
-        if quiz_mode == Player.QuizType.EASY:
+        if quiz_mode == QuizType.EASY:
             quiz_mode = "Easy Mode"
-        if quiz_mode == Player.QuizType.NORMAL:
+        if quiz_mode == QuizType.NORMAL:
             quiz_mode = "Normal Mode"
-        if quiz_mode == Player.QuizType.HARD:
+        if quiz_mode == QuizType.HARD:
             quiz_mode = "Hard Mode"
-        if quiz_mode == Player.QuizType.QUICK:
+        if quiz_mode == QuizType.QUICK:
             quiz_mode = "Quick Mode"
-        if quiz_mode == None:
+        if quiz_mode is None:
             quiz_mode = alternate_question_type
         times_in_min = []
         times_in_ms = []
@@ -239,7 +236,7 @@ def read_leaderboard(quiz_mode=None, alternate_question_type=None, num_questions
         print_times = []
         combined = []
         for i in range(3):
-            combined.append([combined_times[i],names[i]])
+            combined.append([combined_times[i], names[i]])
         print(tabulate(
             [time for time in combined],
             headers=["Time (min)", "Username"],
@@ -367,7 +364,7 @@ def better_frac_input(question_reprint, decimal=False):
         for i in thing:
             if first and i == "/":
                 state = False
-    
+
             if (not (i.isnumeric())) and (i != "/" or decimal) and i != "." and i != "-":
                 state = False
             if i == ".":
@@ -428,8 +425,7 @@ def better_frac_input(question_reprint, decimal=False):
             state = False
         if num_dig == 2 and num_slash == 1:
             state = False
-        
-        
+
     return thing
 
 
@@ -463,8 +459,9 @@ def gen_random_mode():
     num_questions = [3, 10, 20]
     return random.choice(modes), random.choice(num_questions)
 
+
 def log_feedback(username, feedback):
-    with open("feedback.json","r") as a_file:
+    with open("feedback.json", "r") as a_file:
         fb_data = json.load(a_file)
     a_file.close()
     state = False
@@ -474,47 +471,44 @@ def log_feedback(username, feedback):
     if not state:
         fb_data[username] = []
     fb_data[username].append(feedback)
-    with open("feedback.json","w+") as a_file:
-        json.dump(fb_data,a_file)
+    with open("feedback.json", "w+") as a_file:
+        json.dump(fb_data, a_file)
+
 
 def clear_feedback():
     with open("feedback.json", "w") as a_file:
         json.dump({}, a_file)
     a_file.close()
 
+
 def view_feedback():
     try:
         with open("feedback.json", "r") as a_file:
             fb_data = json.load(a_file)
-    
+
         users = []
         for user in fb_data.keys():
             users.append(user)
-        user_to_get_feedback, index = pick(users, "Feedback from which user?",indicator="👉")
+        user_to_get_feedback, index = pick(users, "Feedback from which user?", indicator="👉")
         num_list = []
-        for i in range(1,len(fb_data[user_to_get_feedback])+ 1):
-           num_list.append(i)
+        for i in range(1, len(fb_data[user_to_get_feedback]) + 1):
+            num_list.append(i)
         feedback_num, feedback_index = pick(num_list, "Which entry?", indicator="👉")
         print(fb_data[user_to_get_feedback][feedback_index])
     except ValueError:
         print("No feedback to be displayed at this moment.")
 
-def createDefault(username):
-    value = (
-                unicodedata.normalize("NFKD", username)
-                .encode("ascii", "ignore")
-                .decode("ascii")
-            )
-            # Commented this line to allow upper and lower case
-    value = re.sub(r"[^\w\s-]", "", value)
-    value = re.sub(r"[-\s]+", "-", value).strip("-_")
-    if username != value:
-        print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")
-        username = value
-    else:
-        username = username
+
+def create_default(username) -> bool:
+    """
+    Creates a default player save file.
+
+    :param username: The username for the new player
+    :return: Whether a new file was created successfully
+    """
+    username = Player.fix_username(username)
     if not check_if_user_data_present(username):
-        Player.Player(username, Player.QuizType.EASY, password=0)
+        Player(username, QuizType.EASY, password="password")
         return True
     else:
         print("User already exists.")
