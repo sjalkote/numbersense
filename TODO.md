@@ -27,8 +27,8 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Play Again Option @TechnoShip123
 - [x] Reformat milliseconds in leaderboard
 - [x] Encrypt change password
-- [ ] Fix createDefault
-- [ ] No duplicates in whitelist.json
+- [x] Fix createDefault
+- [x] No duplicates in whitelist.json
 
 # Public Release: 0.0.2
 

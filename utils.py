@@ -133,11 +133,19 @@ def whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
         data = json.load(w)
     w.close()
-    data.append(new_user)
-    with open("whitelist.json", "w") as w:
-        json.dump(data, w)
-    print("Whitelisted " + new_user)
-
+    num_users_not_same = 0
+    num_users = 0
+    for user in data:
+        if new_user != user:
+            num_users_not_same += 1
+        num_users += 1
+    if num_users_not_same == num_users:
+        data.append(new_user)
+        with open("whitelist.json", "w") as w:
+            json.dump(data, w)
+        print("Whitelisted " + new_user)
+    else:
+        print("User is already whitelisted.")
 
 def un_whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
