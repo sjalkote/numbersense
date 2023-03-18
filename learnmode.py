@@ -20,8 +20,8 @@ Multiplying by 25 is quite simple. To multiply a number by 25, you can simply di
     36 * 25 = 900
     Let's try 28 * 25.
 """)
-    questions.printAnswerValidation(utils.better_num_input("What is 28 divided by 4? "), "7", "7")
-    questions.printAnswerValidation(utils.better_num_input("What is 7 times 100? "), "700", "700")
+    questions.print_answer_validation(utils.better_num_input("What is 28 divided by 4? "), "7", "7")
+    questions.print_answer_validation(utils.better_num_input("What is 7 times 100? "), "700", "700")
     print("There. 28 * 25 = 700.")
     print("""For dividing numbers that aren't divisible by four,
 the trick still applies. When there is a remainder of 1, add a 25, when there is a remainder of 2, add a 50, 3 a 75.
@@ -34,9 +34,9 @@ the trick still applies. When there is a remainder of 1, add a 25, when there is
     19 * 25 = 475
     Here are some practice problems:
  """)
-    questions.multiplyBy(randFactor=25)
-    questions.multiplyBy(randFactor=25, diffTypes=True)
-    questions.multiplyBy(randFactor=25, diffTypes=True)
+    questions.multiply_by(rand_factor=25)
+    questions.multiply_by(rand_factor=25, diff_types=True)
+    questions.multiply_by(rand_factor=25, diff_types=True)
 
 
 def learn_multiplyBy75():
@@ -50,9 +50,9 @@ Multiplying by 75 is quite simple. To multiply a number by 75, you can simply di
       36 * 25 = 2700
     Let's try 28 * 75.
 """)
-    questions.printAnswerValidation(utils.better_num_input("What is 28 divided by 4? "), "7", "7")
-    questions.printAnswerValidation(utils.better_num_input("What is 7 times 3? "), "21", "21")
-    questions.printAnswerValidation(utils.better_num_input("What is 21 times 100? "), "2100", "2100")
+    questions.print_answer_validation(utils.better_num_input("What is 28 divided by 4? "), "7", "7")
+    questions.print_answer_validation(utils.better_num_input("What is 7 times 3? "), "21", "21")
+    questions.print_answer_validation(utils.better_num_input("What is 21 times 100? "), "2100", "2100")
     print("There. 28 * 75 = 2100.")
     print("""
 For dividing numbers that aren't divisible by four,
@@ -67,9 +67,9 @@ the trick still applies. When there is a remainder of 1, add a 75, when there is
     19 * 75 = 1425
     Here are some practice problems:
  """)
-    questions.multiplyBy(randFactor=75)
-    questions.multiplyBy(randFactor=75, diffTypes=True)
-    questions.multiplyBy(randFactor=75, diffTypes=True)
+    questions.multiply_by(rand_factor=75)
+    questions.multiply_by(rand_factor=75, diff_types=True)
+    questions.multiply_by(rand_factor=75, diff_types=True)
 
 
 def learn_multiplyBy101():
@@ -79,9 +79,9 @@ Multiplying by 101 with two digit numbers is very simple. You simply repeat the 
     21 * 101 = 2121
 Here are some practice problems:
     """)
-    questions.multiplyBy(randFactor=101)
-    questions.multiplyBy(randFactor=101)
-    questions.multiplyBy(randFactor=101)
+    questions.multiply_by(rand_factor=101)
+    questions.multiply_by(rand_factor=101)
+    questions.multiply_by(rand_factor=101)
 
 
 def learn_multiplyBy11():
@@ -95,9 +95,9 @@ def learn_multiplyBy11():
     Third digit: 8
     18 * 11 = 198
     Let's try an example: 43 * 11""")
-    questions.printAnswerValidation(utils.better_num_input("What is the first digit? "), "4", "4")
-    questions.printAnswerValidation(utils.better_num_input("What is the second digit? "), "7", "7")
-    questions.printAnswerValidation(utils.better_num_input("What is the third digit? "), "3", "3")
+    questions.print_answer_validation(utils.better_num_input("What is the first digit? "), "4", "4")
+    questions.print_answer_validation(utils.better_num_input("What is the second digit? "), "7", "7")
+    questions.print_answer_validation(utils.better_num_input("What is the third digit? "), "3", "3")
 
     print("""Correct, 43 * 11 = 473
     Occasionally, the sum of the two digits will be more than 10. In that case, we carry the first digit of the sum to the first digit of the answer. For example,
@@ -110,9 +110,9 @@ def learn_multiplyBy11():
     (98 * 11 = 1078)
     Here are some example problems:
     """)
-    questions.printAnswerValidation(utils.better_num_input("15 * 11 = "), "165", "165")
-    questions.printAnswerValidation(utils.better_num_input("66 * 11 = "), "726", "726")
-    questions.printAnswerValidation(utils.better_num_input("94 * 11 = "), "1034", "1034")
+    questions.print_answer_validation(utils.better_num_input("15 * 11 = "), "165", "165")
+    questions.print_answer_validation(utils.better_num_input("66 * 11 = "), "726", "726")
+    questions.print_answer_validation(utils.better_num_input("94 * 11 = "), "1034", "1034")
 
 
 def learn_multiplyFractions():
@@ -126,17 +126,17 @@ For example,
     3/4 * 2/5 = 3/10
 Here's a simple example: 
     2/1 * 4/3 = """)
-    questions.printAnswerValidation(utils.better_frac_input("What is the numerator?"), "8", "8")
-    questions.printAnswerValidation(utils.better_frac_input("What is the denominator?"), "3", "3")
+    questions.print_answer_validation(utils.better_frac_input("What is the numerator?"), "8", "8")
+    questions.print_answer_validation(utils.better_frac_input("What is the denominator?"), "3", "3")
 
     print("""If the opposing numerator and denominators are equal, the answer is the other numerator over the other denominator. For example,
     4/5 * 5/7
     We can cancel out the fives, meaning that the answer is 4/7.
 Here are some practice problems:
     """)
-    questions.multiplyFractions()
-    questions.multiplyFractions()
-    questions.printAnswerValidation(utils.better_frac_input("7/5 * 5/6 = "), "7/6", "7/6")
+    questions.multiply_fractions()
+    questions.multiply_fractions()
+    questions.print_answer_validation(utils.better_frac_input("7/5 * 5/6 = "), "7/6", "7/6")
 
 
 def learn_centeredAroundThird():
@@ -151,13 +151,13 @@ Distance to that number: 2
 13 * 17 = 221
 Let's try an example: 24 * 26
  """)
-    questions.printAnswerValidation(utils.better_num_input("What is the center number? "), "25", "25")
-    questions.printAnswerValidation(utils.better_num_input("What is the distance to that number?"), "1", "1")
-    questions.printAnswerValidation(utils.better_num_input("What is the difference of 25^2 and 1^2? "), "624", "624")
+    questions.print_answer_validation(utils.better_num_input("What is the center number? "), "25", "25")
+    questions.print_answer_validation(utils.better_num_input("What is the distance to that number?"), "1", "1")
+    questions.print_answer_validation(utils.better_num_input("What is the difference of 25^2 and 1^2? "), "624", "624")
     print("Here are some example problems.")
-    questions.centeredAroundThird()
-    questions.centeredAroundThird()
-    questions.printAnswerValidation(utils.better_num_input("24 * 28 = "), "672", "672")
+    questions.centered_around_third()
+    questions.centered_around_third()
+    questions.print_answer_validation(utils.better_num_input("24 * 28 = "), "672", "672")
 
 
 def learn_remainder():
@@ -174,9 +174,9 @@ Example #2:
     The remainder of 78 / 9 is 6.
     Here are some practice problems:
     """)
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 132 / 3? "), "0", "0")
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 132 / 9? "), "6", "6")
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 1532 / 9? "), "2", "2")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 132 / 3? "), "0", "0")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 132 / 9? "), "6", "6")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 1532 / 9? "), "2", "2")
     elif index == 1:
         print("""
     To divide by 4 or 8, we simply look at the last digits, and if they are divisible by 4 or 8, their remainder is the remainder for the whole number. For dividing by 4, we look at the last two digits, for dividing by 8, the last three.
@@ -190,9 +190,9 @@ Example #2:
     Because 300 / 8 has a remainder of 4, the remainder of 39300/ 8 is 4.
     Here are some practice problems:
   """)
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 3804 / 4? "), "0", "0")
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 91199222 / 4? "), "2", "2")
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 123123 / 8? "), "3", "3")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 3804 / 4? "), "0", "0")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 91199222 / 4? "), "2", "2")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 123123 / 8? "), "3", "3")
     elif index == 2:
         print("""
 To check divisibility by 11, we add and subtract alternate digits.
@@ -204,18 +204,18 @@ Example:
     The remainder of 435 / 11 is 6.
     Let's try one together: 157
     """)
-        questions.printAnswerValidation(utils.better_num_input("After adding the first digit, what do we have? "), "1",
+        questions.print_answer_validation(utils.better_num_input("After adding the first digit, what do we have? "), "1",
                                         "1")
-        questions.printAnswerValidation(utils.better_num_input("After subtracting the second digit, what do we have? "),
+        questions.print_answer_validation(utils.better_num_input("After subtracting the second digit, what do we have? "),
                                         "-4", "-4")
-        questions.printAnswerValidation(utils.better_num_input("After adding the third digit, what do we have? "), "3",
+        questions.print_answer_validation(utils.better_num_input("After adding the third digit, what do we have? "), "3",
                                         "3")
         print(
             "The remainder of 157 / 11 is 2. \nRemember, the answer is always the absolute value of the number we end up with. "
             "\nHere are some practice problems:")
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 5143 / 11? "), "5", "5")
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 1345 / 11? "), "3", "3")
-        questions.printAnswerValidation(utils.better_num_input("What is the remainder of 57543 / 11? "), "2", "2")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 5143 / 11? "), "5", "5")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 1345 / 11? "), "3", "3")
+        questions.print_answer_validation(utils.better_num_input("What is the remainder of 57543 / 11? "), "2", "2")
 
 
 def learn_compareFractions():
@@ -227,14 +227,14 @@ For example: 2/3 vs 4/5
     Because 12 is bigger than 10, 4/5 (Which corresponds with 12) is bigger than 2/3 (Which 	corresponds with 10)
 Let's try an example: 3/4 vs 5/6
  """)
-    questions.printAnswerValidation(utils.better_num_input("What product corresponds with 3/4? "), "18", "18")
-    questions.printAnswerValidation(utils.better_num_input("What product corresponds with 5/6? "), "20", "20")
-    questions.printAnswerValidation(utils.better_frac_input("20 is greater than 18. So which fraction is bigger? "),
+    questions.print_answer_validation(utils.better_num_input("What product corresponds with 3/4? "), "18", "18")
+    questions.print_answer_validation(utils.better_num_input("What product corresponds with 5/6? "), "20", "20")
+    questions.print_answer_validation(utils.better_frac_input("20 is greater than 18. So which fraction is bigger? "),
                                     "5/6", "5/6")
     print("5/6 is greater. \nHere are some practice problems.")
-    questions.compareFractions()
-    questions.compareFractions()
-    questions.compareFractions()
+    questions.compare_fractions()
+    questions.compare_fractions()
+    questions.compare_fractions()
 
 
 def learn_closeToHundred():
@@ -247,9 +247,9 @@ def learn_closeToHundred():
     102 * 103 = 10506
     Let's try an example together: 105 * 104
     """)
-    questions.printAnswerValidation(questions.better_num_input("What are the first three digits? (Sum + 100) "), "109",
+    questions.print_answer_validation(questions.better_num_input("What are the first three digits? (Sum + 100) "), "109",
                                     "109")
-    questions.printAnswerValidation(questions.better_num_input("What are the last two digits? (Product) "), "20", "20")
+    questions.print_answer_validation(questions.better_num_input("What are the last two digits? (Product) "), "20", "20")
     print("Yes. 104 * 105 is 10920")
     print("""Multiplying two numbers below one hundred is more or less similar. You add up the distances from 100 and subtract that from 100 for the first two digits, and multiply the distances from 100 for the last two digits. For example:
     98 * 96
@@ -259,16 +259,16 @@ def learn_closeToHundred():
     98 * 96 = 9408
     Let's try one together: 97 * 95
     """)
-    questions.printAnswerValidation(questions.better_num_input("What is the sum of the distances from 100? "), "8", "8")
-    questions.printAnswerValidation(questions.better_num_input("What is 100 - 8? "), "92", "92")
-    questions.printAnswerValidation(questions.better_num_input("What is the product of the distances from 100? "), "15",
+    questions.print_answer_validation(questions.better_num_input("What is the sum of the distances from 100? "), "8", "8")
+    questions.print_answer_validation(questions.better_num_input("What is 100 - 8? "), "92", "92")
+    questions.print_answer_validation(questions.better_num_input("What is the product of the distances from 100? "), "15",
                                     "15")
-    questions.printAnswerValidation(questions.better_num_input("What is the answer? "), "9215", "9215")
+    questions.print_answer_validation(questions.better_num_input("What is the answer? "), "9215", "9215")
     print(
         "\nSometimes, the product will be three digits. In this case, we carry over the first digit into the 100's place and combine it with the last number of the sum.\nLet's try some practice problems.")
-    questions.closeToHundred()
-    questions.closeToHundred()
-    questions.closeToHundred()
+    questions.close_to_hundred()
+    questions.close_to_hundred()
+    questions.close_to_hundred()
 
 
 def learn_divideFractions():
@@ -281,8 +281,8 @@ def learn_divideFractions():
     15/8
     Here's a simple example: 
     2/3 ➗ 3/4 = """)
-    questions.printAnswerValidation(utils.better_frac_input("What is the numerator? "), "8", "8")
-    questions.printAnswerValidation(utils.better_frac_input("What is the denominator? "), "9", "9")
+    questions.print_answer_validation(utils.better_frac_input("What is the numerator? "), "8", "8")
+    questions.print_answer_validation(utils.better_frac_input("What is the denominator? "), "9", "9")
     print("Yes. The answer would be 8/9")
     print("""If both the numerators are equal, the answer is the second denominator over the first denominator. If the denominators are equal, the answer is the first numerator over the second.
     Example #1: 
@@ -290,9 +290,9 @@ def learn_divideFractions():
     Example #2:
     2/3 ➗ 4/3 = 2/4 = 1/2   
     """)
-    questions.divideFractions()
-    questions.printAnswerValidation(utils.better_frac_input("5/7 ➗ 5/6 = "), "6/7", "6/7")
-    questions.printAnswerValidation(utils.better_frac_input("3/4 ➗ 5/4 = "), "3/5", "3/5")
+    questions.divide_fractions()
+    questions.print_answer_validation(utils.better_frac_input("5/7 ➗ 5/6 = "), "6/7", "6/7")
+    questions.print_answer_validation(utils.better_frac_input("3/4 ➗ 5/4 = "), "3/5", "3/5")
 
 
 def learn_multiplyOver37():
@@ -309,9 +309,9 @@ Example #2:
 
 Let's try some practice problems.
  """)
-    questions.multiplyOver37()
-    questions.multiplyOver37()
-    questions.multiplyOver37()
+    questions.multiply_over_37()
+    questions.multiply_over_37()
+    questions.multiply_over_37()
 
 
 def learn_squareNumbers():
@@ -326,10 +326,10 @@ def learn_squareNumbers():
     48 ^2 = 2304
     Let's try one together: 53^2
     """)
-    questions.printAnswerValidation(utils.better_num_input("What is the difference? "), "3", "3")
-    questions.printAnswerValidation(utils.better_num_input("What are the first two digits? (25 + that number) "), "28",
+    questions.print_answer_validation(utils.better_num_input("What is the difference? "), "3", "3")
+    questions.print_answer_validation(utils.better_num_input("What are the first two digits? (25 + that number) "), "28",
                                     "28")
-    questions.printAnswerValidation(utils.better_num_input("What is the last digit? (Difference squared)? "), "9", "9")
+    questions.print_answer_validation(utils.better_num_input("What is the last digit? (Difference squared)? "), "9", "9")
     print("Yes. The answer is 2809")
     print("Squaring numbers ending in 5.")
     print("""
@@ -352,18 +352,18 @@ To square a number, you add the ones digit, then multiply by the tens digit, the
     Remember to carry over if the ones digit squared is more than one digit.
     Let's try one together: 24 ^ 2
     """)
-    questions.printAnswerValidation(utils.better_num_input("After adding the ones digit, what do we have? "), "28",
+    questions.print_answer_validation(utils.better_num_input("After adding the ones digit, what do we have? "), "28",
                                     "28")
-    questions.printAnswerValidation(utils.better_num_input("After multiplying by the tens digit, what do we have? "),
+    questions.print_answer_validation(utils.better_num_input("After multiplying by the tens digit, what do we have? "),
                                     "56", "56")
-    questions.printAnswerValidation(utils.better_num_input("After appending the ones digit squared, what do we have? "),
+    questions.print_answer_validation(utils.better_num_input("After appending the ones digit squared, what do we have? "),
                                     "576", "576")
     print("Yes. Now, let's try some practice problems over these tricks.")
-    questions.printAnswerValidation(utils.better_num_input("What is 43 ^ 2? "), "1849", "1849")
-    questions.printAnswerValidation(utils.better_num_input("What is 56 ^ 2? "), "3136", "3136")
-    questions.printAnswerValidation(utils.better_num_input("What is 65 ^ 2? "), "4225", "4225")
-    questions.printAnswerValidation(utils.better_num_input("What is 27 ^ 2? "), "729", "729")
-    questions.printAnswerValidation(utils.better_num_input("What is 31 ^ 2? "), "961", "961")
+    questions.print_answer_validation(utils.better_num_input("What is 43 ^ 2? "), "1849", "1849")
+    questions.print_answer_validation(utils.better_num_input("What is 56 ^ 2? "), "3136", "3136")
+    questions.print_answer_validation(utils.better_num_input("What is 65 ^ 2? "), "4225", "4225")
+    questions.print_answer_validation(utils.better_num_input("What is 27 ^ 2? "), "729", "729")
+    questions.print_answer_validation(utils.better_num_input("What is 31 ^ 2? "), "961", "961")
 
 
 def learn_cubeNumbers():
@@ -389,9 +389,9 @@ def learn_cubeNumbers():
 
     Here are a few practice problems:
  """)
-    questions.cubeNumber()
-    questions.cubeNumber()
-    questions.cubeNumber()
+    questions.cube_number()
+    questions.cube_number()
+    questions.cube_number()
 
 
 def learn_squareRootNumber():
@@ -412,14 +412,14 @@ def learn_squareRootNumber():
     Let's try one together: Square root of 1681
     1 corresponds with 1 or 9 according to the table.
     """)
-    questions.printAnswerValidation(
+    questions.print_answer_validation(
         utils.better_num_input("What is the tens digit? (Find what multiple-of-ten squares it is between) "), "4", "4")
-    questions.printAnswerValidation(
+    questions.print_answer_validation(
         utils.better_num_input("What is the ones digit? (1 or 9, is it closer to 40^2 or 50^2?) "), "1", "1")
     print("Yes. The answer is 41 \nHere are some practice problems.")
-    questions.squareRootNumber()
-    questions.squareRootNumber()
-    questions.squareRootNumber()
+    questions.square_root_number()
+    questions.square_root_number()
+    questions.square_root_number()
 
 
 def learn_cubeRootNumber():
@@ -437,15 +437,15 @@ def learn_cubeRootNumber():
     This means the first digit is 5 and the last digit is 3, to get a cube root of 53.
     Let's try one together: the cube root of 74,088
     """)
-    questions.printAnswerValidation(
+    questions.print_answer_validation(
         utils.better_num_input("According to the table, what would the cube root end with? "),
         "2", "2")
-    questions.printAnswerValidation(
+    questions.print_answer_validation(
         utils.better_num_input("Based on what cubes it is between, what is the first digit? "), "4", "4")
     print("Yes. The answer is 42. \nLet's try some practice problems.")
-    questions.cubeRootNumber()
-    questions.cubeRootNumber()
-    questions.cubeRootNumber()
+    questions.cube_root_number()
+    questions.cube_root_number()
+    questions.cube_root_number()
 
 
 def learn_addSquares3x():
@@ -457,9 +457,9 @@ def learn_addSquares3x():
     20^2 is 400, times 10 is 4000, which is our answer.
     Let's try some practice problems:
     """)
-    questions.addSquares(1)
-    questions.addSquares(1)
-    questions.addSquares(1)
+    questions.add_squares(1)
+    questions.add_squares(1)
+    questions.add_squares(1)
 
 
 def learn_addSquaresSpec():
@@ -478,9 +478,9 @@ def learn_addSquaresSpec():
     Remember to arrange the numbers so that they are in the correct order.
     Here are some practice problems:
  """)
-    questions.addSquares(2)
-    questions.addSquares(2)
-    questions.addSquares(2)
+    questions.add_squares(2)
+    questions.add_squares(2)
+    questions.add_squares(2)
 
 
 def learn_differenceOfSquares():
@@ -494,9 +494,9 @@ def learn_differenceOfSquares():
     10^2 - 8^2 = 36
     Here are some practice problems:
  """)
-    questions.differenceOfSquares()
-    questions.differenceOfSquares()
-    questions.differenceOfSquares()
+    questions.difference_of_squares()
+    questions.difference_of_squares()
+    questions.difference_of_squares()
 
 
 def learn_logarithms():
@@ -508,9 +508,9 @@ def learn_logarithms():
     Because 3^4 is 81, the answer is 4.
     Here are some practice problems:
  """)
-    questions.logarithmQuestion()
-    questions.logarithmQuestion()
-    questions.logarithmQuestion()
+    questions.logarithm_question()
+    questions.logarithm_question()
+    questions.logarithm_question()
 
 
 def learn_diffOfReverses():
@@ -528,9 +528,9 @@ def learn_diffOfReverses():
     2004 - 4002 = -1998
     Let's try some practice problems.
     """)
-    questions.differenceOfReverses(random.randint(3, 4))
-    questions.differenceOfReverses(random.randint(3, 4))
-    questions.differenceOfReverses(random.randint(3, 4))
+    questions.difference_of_reverses(random.randint(3, 4))
+    questions.difference_of_reverses(random.randint(3, 4))
+    questions.difference_of_reverses(random.randint(3, 4))
 
 
 def learn_addCommon():
@@ -541,9 +541,9 @@ def learn_addCommon():
     This is the same as (17 + 13) * 10, or 30 * 10 = 300.
     Here are some practice problems:
     """)
-    questions.addCommonProducts()
-    questions.addCommonProducts()
-    questions.addCommonProducts()
+    questions.add_common_products()
+    questions.add_common_products()
+    questions.add_common_products()
 
 
 def learn_sepDigits():
@@ -559,9 +559,9 @@ def learn_sepDigits():
     The answer is 123.45
     Here are some practice problems:
  """)
-    questions.sepDigits()
-    questions.sepDigits()
-    questions.sepDigits()
+    questions.sep_digits()
+    questions.sep_digits()
+    questions.sep_digits()
 
 
 # Data & Algebra
@@ -587,9 +587,9 @@ def learn_gcflcm():
     14 * 18 = 252
     Here are some practice problems:
     """)
-    questions.gcflcmQuestion()
-    questions.gcflcmQuestion()
-    questions.gcflcmQuestion()
+    questions.gcf_lcm_question()
+    questions.gcf_lcm_question()
+    questions.gcf_lcm_question()
 
 
 def learn_stats():
@@ -615,9 +615,9 @@ Example #2:
 Mean: 18 
     Let's try out the set: 23,18,10,9,16
 """)
-    questions.printAnswerValidation(utils.better_num_input("What is the range? "), "14", "14")
-    questions.printAnswerValidation(utils.better_num_input("What is the median? "), "16", "16")
-    questions.printAnswerValidation(utils.better_frac_input("What is the mean? "), "15.2", "15.2")
+    questions.print_answer_validation(utils.better_num_input("What is the range? "), "14", "14")
+    questions.print_answer_validation(utils.better_num_input("What is the median? "), "16", "16")
+    questions.print_answer_validation(utils.better_frac_input("What is the mean? "), "15.2", "15.2")
 
 
 def learn_integralDivisors():
@@ -632,9 +632,9 @@ def learn_integralDivisors():
     In order to apply this trick efficiently, practice is key.
    Here are some practice problems:
  """)
-    questions.integralDivisorsQuestion()
-    questions.integralDivisorsQuestion()
-    questions.integralDivisorsQuestion()
+    questions.integral_divisors_question()
+    questions.integral_divisors_question()
+    questions.integral_divisors_question()
 
 
 def learn_subsets():
@@ -652,9 +652,9 @@ def learn_subsets():
 
     Here are some practice problems
  """)
-    questions.subsetsQuestion()
-    questions.subsetsQuestion()
-    questions.subsetsQuestion()
+    questions.subsets_question()
+    questions.subsets_question()
+    questions.subsets_question()
 
 
 def learn_OrderofOperations():
@@ -670,9 +670,9 @@ def learn_OrderofOperations():
 
     Evaluate in this order, and you will be able to do the questions fine.
     """)
-    questions.orderOfOperationsQuestion()
-    questions.orderOfOperationsQuestion()
-    questions.orderOfOperationsQuestion()
+    questions.order_of_operations_question()
+    questions.order_of_operations_question()
+    questions.order_of_operations_question()
 
 
 def learn_xtoy1():
@@ -705,6 +705,6 @@ def learn_xAndYCubed():
     This trick requires a lot of practice to perfect. 
     Here are some practice problems:
     """)
-    questions.xAndyCubed()
-    questions.xAndyCubed()
-    questions.xAndyCubed()
+    questions.x_and_y_cubed()
+    questions.x_and_y_cubed()
+    questions.x_and_y_cubed()

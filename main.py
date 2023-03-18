@@ -19,8 +19,8 @@ colorama_init(True)
 
 
 def write_leaderboard(quiz_type: QuizType, player1: Player, total, time_lapsed):
-    numC = float(player1.get_nem_stuff())
-    if numC / float(total) == 1.0:
+    num_c = float(player1.get_nem_stuff())
+    if num_c / float(total) == 1.0:
         datae = displayLeaderboard(quiz_type, time=time_lapsed, numQuestions=total, player=player1)
     else:
         datae = displayLeaderboard(quiz_type)
@@ -56,91 +56,91 @@ def main(totalQuestions: int, player1: Player):
             # Print the question number
             match questionType:
                 case 1:
-                    if questions.divideBy(random.randint(1, 25)):
+                    if questions.divide_by(random.randint(1, 25)):
                         player1.num_correct += 1
                 case 2:
-                    if questions.multiplyBy():
+                    if questions.multiply_by():
                         player1.num_correct += 1
                 case 3:
-                    if questions.multiplyFractions():
+                    if questions.multiply_fractions():
                         player1.num_correct += 1
                 case 4:
-                    if questions.centeredAroundThird():
+                    if questions.centered_around_third():
                         player1.num_correct += 1
                 case 5:
-                    if questions.squareNumber():
+                    if questions.square_number():
                         player1.num_correct += 1
                 case 6:
-                    if questions.cubeNumber():
+                    if questions.cube_number():
                         player1.num_correct += 1
                 case 7:
-                    if questions.squareRootNumber():
+                    if questions.square_root_number():
                         player1.num_correct += 1
                 case 8:
-                    if questions.cubeRootNumber():
+                    if questions.cube_root_number():
                         player1.num_correct += 1
                 case 9:
-                    if questions.differenceOfReverses(random.randint(3, 4)):
+                    if questions.difference_of_reverses(random.randint(3, 4)):
                         player1.num_correct += 1
                 case 10:
-                    if questions.gcflcmQuestion():
+                    if questions.gcf_lcm_question():
                         player1.num_correct += 1
                 case 11:
-                    if questions.addSquares(random.randint(1, 2)):
+                    if questions.add_squares(random.randint(1, 2)):
                         player1.num_correct += 1
                 case 12:
                     if questions.remainder():
                         player1.num_correct += 1
                 case 13:
-                    if questions.compareFractions():
+                    if questions.compare_fractions():
                         player1.num_correct += 1
                 case 14:
-                    if questions.differenceOfSquares():
+                    if questions.difference_of_squares():
                         player1.num_correct += 1
                 case 15:
-                    if questions.closeToHundred():
+                    if questions.close_to_hundred():
                         player1.num_correct += 1
                 case 16:
-                    if questions.xAndyCubed():
+                    if questions.x_and_y_cubed():
                         player1.num_correct += 1
                 case 17:
-                    if questions.divideFractions():
+                    if questions.divide_fractions():
                         player1.num_correct += 1
                 case 18:
                     if questions.stats():
                         player1.num_correct += 1
                 case 19:
-                    if questions.integralDivisorsQuestion():
+                    if questions.integral_divisors_question():
                         player1.num_correct += 1
                 case 20:
-                    if questions.logarithmQuestion():
+                    if questions.logarithm_question():
                         player1.num_correct += 1
                 case 21:
-                    if questions.sepDigits():
+                    if questions.sep_digits():
                         player1.num_correct += 1
                 case 22:
                     if questions.xtoy1():
                         player1.num_correct += 1
                 case 23:
-                    if questions.addCommonProducts():
+                    if questions.add_common_products():
                         player1.num_correct += 1
                 case 24:
-                    if questions.subsetsQuestion():
+                    if questions.subsets_question():
                         player1.num_correct += 1
                 case 25:
-                    if questions.multiplyOver37():
+                    if questions.multiply_over_37():
                         player1.num_correct += 1
                 case 26:
-                    if questions.orderOfOperationsQuestion():
+                    if questions.order_of_operations_question():
                         player1.num_correct += 1
                 case 27:
-                    if questions.decimalToFractions():
+                    if questions.decimal_to_fractions():
                         player1.num_correct += 1
                 case 28:
-                    if questions.fracToDec():
+                    if questions.frac_to_dec():
                         player1.num_correct += 1
                 case 29:
-                    if questions.addOppositeFractions():
+                    if questions.add_opposite_fractions():
                         player1.num_correct += 1
 
             counter += 1
@@ -150,25 +150,25 @@ def main(totalQuestions: int, player1: Player):
             print(f"{counter}) ", end="")
             match QuestionType:
                 case 1:
-                    if questions.divideBy(random.randint(1, 10)):
+                    if questions.divide_by(random.randint(1, 10)):
                         player1.num_correct += 1
                 case 2:
-                    if questions.multiplyBy():
+                    if questions.multiply_by():
                         player1.num_correct += 1
                 case 3:
-                    if questions.multiplyFractions():
+                    if questions.multiply_fractions():
                         player1.num_correct += 1
                 case 4:
-                    if questions.squareNumber(easy=True):
+                    if questions.square_number(easy=True):
                         player1.num_correct += 1
                 case 5:
-                    if questions.addSquares(1):
+                    if questions.add_squares(1):
                         player1.num_correct += 1
                 case 6:
-                    if questions.gcflcmQuestion():
+                    if questions.gcf_lcm_question():
                         player1.num_correct += 1
                 case 7:
-                    if questions.fracToDec():
+                    if questions.frac_to_dec():
                         player1.num_correct += 1
             counter += 1
         elif player1.current_mode == quizMode.HARD:
@@ -176,34 +176,34 @@ def main(totalQuestions: int, player1: Player):
             print(f"{counter}) ", end="")
             match QuestionType:
                 case 1:
-                    if questions.cubeNumber():
+                    if questions.cube_number():
                         player1.num_correct += 1
                 case 2:
-                    if questions.cubeRootNumber():
+                    if questions.cube_root_number():
                         player1.num_correct += 1
                 case 3:
-                    if questions.addSquares(2):
+                    if questions.add_squares(2):
                         player1.num_correct += 1
                 case 4:
-                    if questions.differenceOfSquares():
+                    if questions.difference_of_squares():
                         player1.num_correct += 1
                 case 5:
-                    if questions.closeToHundred():
+                    if questions.close_to_hundred():
                         player1.num_correct += 1
                 case 6:
-                    if questions.xAndyCubed():
+                    if questions.x_and_y_cubed():
                         player1.num_correct += 1
                 case 7:
-                    if questions.logarithmQuestion():
+                    if questions.logarithm_question():
                         player1.num_correct += 1
                 case 8:
                     if questions.xtoy1():
                         player1.num_correct += 1
                 case 9:
-                    if questions.addCommonProducts():
+                    if questions.add_common_products():
                         player1.num_correct += 1
                 case 10:
-                    if questions.decimalToFractions():
+                    if questions.decimal_to_fractions():
                         player1.num_correct += 1
             counter += 1
         elif player1.current_mode == quizMode.QUICK:
@@ -211,22 +211,22 @@ def main(totalQuestions: int, player1: Player):
             print(f"{counter}) ", end="")
             match QuestionType:
                 case 1:
-                    if questions.divideBy(random.randint(1, 10)):
+                    if questions.divide_by(random.randint(1, 10)):
                         player1.num_correct += 1
                 case 2:
-                    if questions.multiplyBy():
+                    if questions.multiply_by():
                         player1.num_correct += 1
                 case 3:
-                    if questions.squareNumber(easy=True):
+                    if questions.square_number(easy=True):
                         player1.num_correct += 1
                 case 4:
-                    if questions.addSquares(1):
+                    if questions.add_squares(1):
                         player1.num_correct += 1
                 case 5:
-                    if questions.fracToDec():
+                    if questions.frac_to_dec():
                         player1.num_correct += 1
                 case 6:
-                    if questions.cubeNumber():
+                    if questions.cube_number():
                         player1.num_correct += 1
             counter += 1
         else:
