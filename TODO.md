@@ -6,28 +6,29 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 - Create users file if it does not exist
 
+## Bugs
+- [x] Choosing not to exit program on first attempt 
 
 ## 0.0.2: The Everything Update
 
-- [ ] Add CI/CD deployments for code quality & error checking. @TechnoShip123
+- [x] Add CI/CD deployments for code quality & error checking. @TechnoShip123
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
-Add [badges for build status](https://shields.io/category/build) when done.
-- [ ] ~Do not commit `blacklist/whitelist.json` but autogenerate if not exists otherwise an error occurs.~ @TechnoShip123
-	- This should not be needed because we will plan to migrate to database anyway.
-- [ ] Add more categories to the leaderboard @Pikamaster23
-- [ ] Feedback @TechnoShip123
-- [ ] Quick Mode @Pikamaster23
+- [x] Add [badges for build status](https://shields.io/category/build) when done.
+- [ ] Create testing suite
+- [x] Feedback @Pikamaster23
+- [x] Quick Mode @Pikamaster23
 - [ ] Censoring @TechnoShip123
 - [ ] Learn mode: Parts of the Whole Group @Pikamaster23
-- [ ] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
-- [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
+    - [ ] Restructure
+    - [ ] Add three new lessons  
+- [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
 - [x] Leaderboard in ms @Pikamaster23
 - [x] View high scores options on main menu
-- [ ] Answers should be simplified to be counted correct
 - [ ] Play Again Option @TechnoShip123
-- [ ] Reformat milliseconds in leaderboard
+- [x] Reformat milliseconds in leaderboard
 - [x] Encrypt change password
-- [ ] Fix choosing not to exit program on first attempt
+- [x] Fix createDefault
+- [x] No duplicates in whitelist.json
 
 # Public Release: 0.0.2
 
@@ -38,15 +39,20 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Percentages!
 - [ ] Options menu
 	- [ ] Option to turn off changing answers
-- [ ] Fix createDefault 
+- [ ] Add more categories to the leaderboard @Pikamaster23
+- [ ] Start tracking analytics/statistics
+    - [ ] ex.: Most/Least played modes 
+
 
 
 ### 0.0.3b: Inbox
 - [ ] Inbox with notifications (ex.: failed login attempts)
 - [ ] Mixed numbers
+- [ ] Guest information should not be saved
 
 ## 0.0.3: Timed Mode
 - [ ] Timed Mode
+- [ ] Answers should be simplified to be counted correct
 
 ## 0.0.4: Questions!
 - [ ] Introduce loads of new questions
@@ -56,6 +62,7 @@ Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Subscripts
 - [ ] Estimation Questions
 - [ ] Reset leaderboard 
+- [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
 
 ## 0.0.5: Tests
 - [ ] Full length practice tests
@@ -63,11 +70,17 @@ Add [badges for build status](https://shields.io/category/build) when done.
 # 0.1
 - [ ] 2 Player Mode
 - [ ] Decrease Lag
-- [ ] Multiple Instances
 - [ ] Improved Interface
 - [ ] Learning Plans
 	- [ ] Keep track of what needs improvement for each person.
-- [ ] Migration: Everything goes into a DB 
+- [ ] Migration: Everything goes into a DB
+- [ ] Discord bot
+
+# 0.2
+- [ ] Create website?
+- [ ] Mobile mode???
+
+
 
 # Completed
 
