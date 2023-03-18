@@ -17,6 +17,33 @@ colorama_init(True)
 
 # PLAYER CLASS –------------------------
 class Player:
+    @staticmethod
+    def fix_username(username: str) -> str:
+        corrected_username: str = ''
+        # Guest Username ------
+        if username.isspace() or username == '':
+            now = datetime.now()
+            # guest_username: str = now.strftime("guest_%Y-%m-%d")
+            guest_username: str = now.strftime("guest%s")
+            print(f"{C.YELLOW}Empty username, setting to: {C.CYAN}{guest_username}")
+            corrected_username: str = guest_username
+        # Bad characters ------
+        else:
+            # Modified from https://github.com/django/django/blob/master/django/utils/text.py
+            value = (
+                unicodedata.normalize("NFKD", username)
+                .encode("ascii", "ignore")
+                .decode("ascii")
+            )
+            # Commented this line to allow upper and lower case
+            value = re.sub(r"[^\w\s-]", "", value)
+            value = re.sub(r"[-\s]+", "-", value).strip("-_")
+            if username != value:
+                # print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")
+                corrected_username = value
+            else:
+                corrected_username = username
+        return corrected_username
 
     @staticmethod
     def checkPassword(username: str, provided_password: str) -> bool:
@@ -32,29 +59,9 @@ class Player:
         """If the name is empty or whitespace, it will generate a guest username"""
         # USERNAME HANDLING ----------------------------------------------------
         new_account = False
-        # Guest Username ------
-        if username.isspace() or username == '':
-            now = datetime.now()
-            # guest_username: str = now.strftime("guest_%Y-%m-%d")
-            guest_username: str = now.strftime("guest%s")
-            print(f"{C.YELLOW}Empty username, setting to: {C.CYAN}{guest_username}")
-            self.name: str = guest_username
-        # Bad characters ------
-        else:
-            # Modified from https://github.com/django/django/blob/master/django/utils/text.py
-            value = (
-                unicodedata.normalize("NFKD", username)
-                .encode("ascii", "ignore")
-                .decode("ascii")
-            )
-            # Commented this line to allow upper and lower case
-            value = re.sub(r"[^\w\s-]", "", value)
-            value = re.sub(r"[-\s]+", "-", value).strip("-_")
-            if username != value:
-                print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{value}")
-                self.name = value
-            else:
-                self.name = username
+        self.name = self.fix_username(username)
+        if self.name != username:
+            print(f"{C.YELLOW}Bad characters removed, username is now {C.CYAN}{self.name}")
 
         # ACCOUNT LOGIN / CREATION ----------------------------------------------------
 
