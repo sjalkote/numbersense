@@ -13,7 +13,7 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 - [x] Add CI/CD deployments for code quality & error checking. @TechnoShip123
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
-Add [badges for build status](https://shields.io/category/build) when done.
+- [x] Add [badges for build status](https://shields.io/category/build) when done.
 - [ ] Create testing suite
 - [x] Feedback @Pikamaster23
 - [x] Quick Mode @Pikamaster23
