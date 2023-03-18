@@ -8,48 +8,11 @@ import unicodedata
 from colorama import init as colorama_init, Fore as C, Style
 from tabulate import tabulate
 from getpass import getpass
+from Enums import QuizType
 
 import utils
 
 colorama_init(True)
-
-
-@unique  # Prevents overlap (Cannot be both EASY and HARD simultaneously)
-class QuizType(Enum):
-    def __str__(self):
-        return str(self.value)
-
-    EASY = "Easy"
-    NORMAL = "Normal"
-    HARD = "Hard"
-    TWO_PLAYER_VS = "Two Player (v.s.)"
-
-
-@unique  # Prevents overlap (Cannot be both EASY and HARD simultaneously)
-class LeaderboardType(Enum):
-    def __str__(self):
-        match self.value:
-            case 20:
-                return "Twenty Question"
-            case 10:
-                return "Ten Question"
-            case 3:
-                return "Three Question"
-
-    TWENTY_Q = 20
-    TEN_Q = 10
-    THREE_Q = 3
-
-
-# SCORE CLASS –------------------------
-class Score:
-    def __init__(self, value: int, mode: QuizType, isHighScore: bool):
-        self.value = value
-        self.mode = mode
-        self.isHighScore = isHighScore
-
-    # def returnScoreInformation():
-    #     return {}
 
 
 # PLAYER CLASS –------------------------
