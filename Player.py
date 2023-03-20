@@ -18,7 +18,7 @@ colorama_init(True)
 class Player:
 
     @staticmethod
-    def fix_username(username: str) -> str:
+    def fix_username(username: str) -> (str, bool):
         # Bad characters ------
         is_guest = False
         if not username.isspace() and username != '':
