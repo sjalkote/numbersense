@@ -5,8 +5,6 @@ from tabulate import tabulate
 import random
 
 
-# epic progress on learn mode :D
-
 # Multiplication, Division, and Fractions
 
 # Multiplication
@@ -708,3 +706,17 @@ def learn_xAndYCubed():
     questions.x_and_y_cubed()
     questions.x_and_y_cubed()
     questions.x_and_y_cubed()
+
+def learn_add_opposite_fractions():
+    print("Adding opposite fractions")
+    print("""
+    To add two fractions in the form a/b + b/a, the answer is 2 + (a-b)^2/ab. For example:
+    2/3 + 3/2   
+    3-2 = 1, 1^2 = 1   
+    2 * 3 = 6
+    The answer is 2 + 1/6, or 2 and 1/6.
+    Here are some practice problems:
+    """)
+    questions.add_opposite_fractions()
+    questions.add_opposite_fractions()
+    questions.add_opposite_fractions()

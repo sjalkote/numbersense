@@ -3,12 +3,14 @@ import random
 import questions
 import time
 import json
+from pathlib import Path
 from Player import Player, QuizType
 from colorama import init as colorama_init, Fore as C, ansi
 from pick import pick
 import utils
 import learnmode as lm
 from getpass import getpass
+import os
 
 # utils.changeAdminPassword("Admin")
 from rich.console import Console
@@ -42,6 +44,10 @@ def time_convert(sec):
 
 
 global player1
+
+
+# Create necessary directories
+Path("users/").mkdir(parents=True, exist_ok=True)
 
 
 def main(totalQuestions: int, player1: Player):
@@ -238,7 +244,6 @@ def main(totalQuestions: int, player1: Player):
 
 def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None):
     # start of where error could occur
-
     if time is not None:
         time = time
     if numQuestions is not None:
@@ -305,6 +310,7 @@ def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None
 
 
 # Make sure this is the main file ------------------------------
+
 if __name__ == "__main__":
     # Get the quiz mode
 
@@ -319,18 +325,14 @@ if __name__ == "__main__":
 
     while True:
         title = 'Choose a quiz mode: '
-        options = ["😀 Easy", "😐 Normal", "👺 Hard", "⏰ Quick", "🤝 2 Player (v.s.)", "🎲 Random", "⚙️ Settings", "📄 Give Feedback",
+        options = ["😀 Easy", "😐 Normal", "👺 Hard", "⏰ Quick", "🤝 2 Player (v.s.)", "🎲 Random", "⚙️ Settings", "📝 Give Feedback",
                    "🔒 Administrative Menu",
                    "📙 Learn Mode", "🥇 Display High Scores", "🚪🏃 Exit"]
-        settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📄 Get additional Info", "⬅ Go Back"]
-        lmGroups = ["Multiplying, Dividing, and Fractions", "Powers", "Addition and Subtraction", "Data and Algebra"]
-        lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11",
-                       "Multiplying Fractions", "Multiplying Two Numbers Centered Around a Third", "Remainders",
-                       "Compare Fractions", "Multiplying Numbers Close to 100", "Dividing Fractions",
-                       "Multiplying over 37"]
-        lmGroupsTwo = ["Squaring Numbers", "Cubing Numbers", "Square Rooting Numbers", "Cube Rooting Numbers",
-                       "Adding Square Type One", "Adding Square Type Two", "Difference of squares", "Logarithms"]
-        lmGroupsThree = ["Difference of Reverses", "Adding with Common Products", "Adding with Digits and 0's"]
+        settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📝 Get additional Info", "⬅ Go Back"]
+        lmGroups = ["Basic Operations", "Powers", "Addition and Subtraction", "Data and Algebra"]
+        lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11", "Difference of Reverses",  "Multiplying Two Numbers Centered Around a Third", "Remainders","Adding with Common Products",  "Multiplying Numbers Close to 100", "Adding with digits and 0's", "Multiplying over 37"]
+        lmGroupsTwo = ["Squaring Numbers", "Cubing Numbers", "Square Rooting Numbers", "Cube Rooting Numbers", "Adding Square Type One", "Adding Squares Type Two", "Difference of squares", "Logarithms"]
+        lmGroupsThree = ["Multiplying Fractions", "Compare Fractions", "Dividing Fractions", "Adding Opposite Fractions"]
         lmGroupsFour = ["GCF and LCM", "Mean, Median, and Range", "Integral Divisors", "Subsets", "Order of Operations",
                         "x to y +/- 1", "x and y cubed Algebra"]
         mode, index = pick(options, title, indicator='👉', default_index=1)
@@ -376,7 +378,7 @@ if __name__ == "__main__":
                 continue
             if index2 == 3:
                 continue
-        # 📄 Give Feedback
+        # 📝 Give Feedback
         elif index == 7:
             utils.log_feedback(player1.name, input("What feedback would you like to provide?: "))
             input("Thank you for your feedback. \nPress enter to return to the main menu. ")
@@ -415,17 +417,17 @@ if __name__ == "__main__":
                     case 3:
                         lm.learn_multiplyBy11()
                     case 4:
-                        lm.learn_multiplyFractions()
+                        lm.learn_diffOfReverses()
                     case 5:
                         lm.learn_centeredAroundThird()
                     case 6:
                         lm.learn_remainder()
                     case 7:
-                        lm.learn_compareFractions()
+                        lm.learn_addCommon()
                     case 8:
                         lm.learn_closeToHundred()
                     case 9:
-                        lm.learn_divideFractions()
+                        lm.learn_sepDigits()
                     case 10:
                         lm.learn_multiplyOver37()
             elif lmgindex == 1:
@@ -449,11 +451,13 @@ if __name__ == "__main__":
             elif lmgindex == 2:
                 lmg3mode, lmg3index = pick(lmGroupsThree, "What lesson? ", indicator='👉', default_index=0)
                 if lmg3index == 0:
-                    lm.learn_diffOfReverses()
+                    lm.learn_multiplyFractions()
                 if lmg3index == 1:
-                    lm.learn_addCommon()
+                    lm.learn_compareFractions()
                 if lmg3index == 2:
-                    lm.learn_sepDigits()
+                    lm.learn_divideFractions()
+                if lmg3index == 3:
+                    lm.learn_add_opposite_fractions()
             elif lmgindex == 3:
                 lmg4mode, lmg4index = pick(lmGroupsFour, "What lesson? ", indicator='👉', default_index=0)
                 if lmg4index == 0:
@@ -481,6 +485,9 @@ if __name__ == "__main__":
             input("Press enter to go back. ")
             continue
         elif index == 11:
+            print("Thank you for playing.")
+            if player1.is_guest:
+                os.remove(f"./users/{player1}.json")
             break
 
         else:
@@ -528,7 +535,31 @@ if __name__ == "__main__":
         if total > 0:
             write_leaderboard(quizMode, player1, total, time_lapsed)
 
+        
+        choice = input("Play again uwu? (Y/n)")
+        choice_sentinel = choice.strip().lower() in ("", "y", "ye", "yes")
+        while choice_sentinel:
+            # player1.current_mode = QuizType.EASY
+            print("Remember, leave your answer blank to exit.")
+            input("Press Enter to start\n--------------------")
+            start_time = time.time()
+            if index == 5:
+                quizMode, numQuestions = utils.gen_random_mode()
+                print(quizMode, numQuestions)
+            total = main(int(numQuestions), player1)
+            end_time = time.time()
+            time_lapsed = end_time - start_time
+            if total > 0:
+                time_lapsed = time_convert(time_lapsed)
+                print(f"Score: {player1.calculate_score(total)}")
+            player1.save_to_scoreboard(quizMode)
+            if total > 0:
+                write_leaderboard(quizMode, player1, total, time_lapsed)
+            choice = input("Play again uwu? (Y/n)")
+            choice_sentinel = choice.strip().lower() in ("", "y", "ye", "yes")
         userLeaderboardResponse = input("Display leaderboard? [Y/n] >> ").strip().lower()
         if userLeaderboardResponse == "y" or userLeaderboardResponse == "":
             utils.read_leaderboard(quiz_mode=quizMode, num_questions=int(numQuestions))
         input("\nPress enter to go back to the main menu\n")
+
+    

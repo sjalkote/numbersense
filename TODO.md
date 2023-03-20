@@ -18,9 +18,9 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [x] Feedback @Pikamaster23
 - [x] Quick Mode @Pikamaster23
 - [ ] Censoring @TechnoShip123
-- [ ] Learn mode: Parts of the Whole Group @Pikamaster23
-    - [ ] Restructure
-    - [ ] Add three new lessons  
+- [x] Learn mode: Parts of the Whole Group @Pikamaster23
+    - [x] Restructure
+    - [x] Add new lesson 
 - [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
 - [x] Leaderboard in ms @Pikamaster23
 - [x] View high scores options on main menu
