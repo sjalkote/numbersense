@@ -2,7 +2,6 @@ import os
 import glob
 import json
 import random
-from Player import Player
 import bcrypt
 from pick import pick
 from colorama import init as colorama_init, Fore as C, Style
@@ -62,18 +61,13 @@ def check_if_user_data_present(user_name: str) -> bool:
             f.close()
     return False
 
-
-def changePassword(player: Player, new_password: str):
-    player.changePassword(new_password)
-
-
 # --------------------------------
-def doThing(player: Player):
+def doThing():
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
     options = [purge_all_users.__name__, check_if_user_data_present.__name__,
                whitelist_user.__name__, backup_leaderboard.__name__, resetLeaderboard.__name__,
                un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__,
-               create_default.__name__, "feedback", "exit"]
+               "feedback", "exit"]
     fb_options = [view_feedback.__name__, clear_feedback.__name__, "go back"]
     while True:
         option, index = pick(options, title, indicator='👉', default_index=1)
@@ -115,8 +109,6 @@ def doThing(player: Player):
                         print("Feedback cleared.")
                     case "go back":
                         continue
-            case create_default.__name__:
-                create_default(str(input("Username: ")))
             case "exit":
                 exit()
             case _:
@@ -125,43 +117,45 @@ def doThing(player: Player):
         input("Press enter to return to the administrative menu. ")
 
 
-def whitelist_user(new_user):
+def whitelist_user(new_user) -> bool:
+    """
+    Whitelisted the user.
+    :param: new_user The username to whitelist
+    :return: Whether the user was whitelisted or not
+    """
     with open("whitelist.json", "r") as w:
-        data = json.load(w)
+        whitelist = json.load(w)
     w.close()
-    num_users_not_same = 0
-    num_users = 0
-    for user in data:
-        if new_user != user:
-            num_users_not_same += 1
-        num_users += 1
-    if num_users_not_same == num_users:
-        data.append(new_user)
-        with open("whitelist.json", "w") as w:
-            json.dump(data, w)
-        print("Whitelisted " + new_user)
-    else:
+    if not check_if_user_data_present(new_user):
+        print("User does not exist.")
+        return False
+    elif new_user in whitelist:
         print("User is already whitelisted.")
+        return False
+    else:
+        whitelist.append(new_user)
+        with open("whitelist.json", "w") as w:
+            json.dump(whitelist, w)
+        print("Whitelisted " + new_user)
+        return True
 
 
 def un_whitelist_user(new_user):
     with open("whitelist.json", "r") as w:
-        data = json.load(w)
+        whitelist = json.load(w)
     w.close()
-    t = 0
-    c = 0
-    for i in data:
-        if new_user == i:
-            data.remove(new_user)
-        else:
-            c += 1
-        t += 1
-    if t == c:
+    if not check_if_user_data_present(new_user):
+        print("User does not exist.")
+        return False
+    # if user is not in whitelist
+    elif not new_user in whitelist:
         print("User is not whitelisted.")
-        exit()
-    with open("whitelist.json", "w") as w:
-        json.dump(data, w)
-    print("Un-whitelisted " + new_user)
+        return False
+    else:
+        whitelist.remove(new_user)
+        with open("whitelist.json", "w") as w:
+            json.dump(whitelist, w)
+        print("Un-whitelisted " + new_user)
 
 
 def backup_leaderboard():
@@ -248,8 +242,8 @@ def read_leaderboard(quiz_mode=None, alternate_question_type=None, num_questions
 def delete_account(username):
     username = str(username)
     if check_if_user_data_present(username):
+        un_whitelist_user(username)
         os.remove(f"./users/{username}.json")
-
 
 def give_info():
     options1 = ["Leaderboard", "Programmers", "Updates"]
@@ -399,10 +393,7 @@ def better_frac_input(question_reprint, decimal=False):
                 skip_to_while_loop = True
                 continue
         state = True
-        num_dig = 0
-        num_dot = 0
-        num_dash = 0
-        num_slash = 0
+        num_dig, num_dot, num_dash, num_slash = 0, 0, 0, 0
         empty_list = []
         for i in thing:
             if first and (i == "/"):
@@ -497,19 +488,3 @@ def view_feedback():
         print(fb_data[user_to_get_feedback][feedback_index])
     except ValueError:
         print("No feedback to be displayed at this moment.")
-
-
-def create_default(username) -> bool:
-    """
-    Creates a default player save file.
-
-    :param username: The username for the new player
-    :return: Whether a new file was created successfully
-    """
-    username = Player.fix_username(username)
-    if not check_if_user_data_present(username):
-        Player(username, QuizType.EASY, password="password")
-        return True
-    else:
-        print("User already exists.")
-        return False
