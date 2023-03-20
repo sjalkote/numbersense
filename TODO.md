@@ -14,17 +14,16 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [x] Add CI/CD deployments for code quality & error checking. @TechnoShip123
 - [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
 - [x] Add [badges for build status](https://shields.io/category/build) when done.
-- [ ] Create testing suite
+- [x] Testing
 - [x] Feedback @Pikamaster23
 - [x] Quick Mode @Pikamaster23
-- [ ] Censoring @TechnoShip123
 - [x] Learn mode: Parts of the Whole Group @Pikamaster23
     - [x] Restructure
     - [x] Add new lesson 
 - [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
 - [x] Leaderboard in ms @Pikamaster23
 - [x] View high scores options on main menu
-- [ ] Play Again Option @TechnoShip123
+- [x] Play Again Option @TechnoShip123
 - [x] Reformat milliseconds in leaderboard
 - [x] Encrypt change password
 - [x] Fix createDefault
@@ -40,7 +39,7 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Options menu
 	- [ ] Option to turn off changing answers
 - [ ] Add more categories to the leaderboard @Pikamaster23
-- [ ] Start tracking analytics/statistics
+- [x] Start tracking analytics/statistics
     - [ ] ex.: Most/Least played modes 
 
 

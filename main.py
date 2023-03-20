@@ -12,6 +12,7 @@ import learnmode as lm
 from getpass import getpass
 import os
 
+
 # utils.changeAdminPassword("Admin")
 from rich.console import Console
 from rich.markdown import Markdown
@@ -340,16 +341,20 @@ if __name__ == "__main__":
         # 😀 Easy
         if index == 0:
             quizMode = QuizType.EASY
+            utils.log_stats(QuizType.EASY)
 
         # 😐 Normal
         elif index == 1:
             quizMode = QuizType.NORMAL
+            utils.log_stats(QuizType.NORMAL)
 
         # 👺 Hard
         elif index == 2:
             quizMode = QuizType.HARD
+            utils.log_stats(QuizType.HARD)
         elif index == 3:
             quizMode = QuizType.QUICK
+            utils.log_stats(QuizType.QUICK)
         elif index == 4:
             quizMode = QuizType.TWO_PLAYER_VS
 
@@ -395,7 +400,7 @@ if __name__ == "__main__":
                 if username == element:
                     password = getpass()
                     if utils.check_password(password, password1):
-                        utils.doThing(player1)
+                        utils.doThing()
                     else:
                         print(f"{C.RED}Incorrect password. Aborting...")
                     exit()
@@ -536,7 +541,7 @@ if __name__ == "__main__":
             write_leaderboard(quizMode, player1, total, time_lapsed)
 
         
-        choice = input("Play again uwu? (Y/n)")
+        choice = input("Play again? (Y/n)")
         choice_sentinel = choice.strip().lower() in ("", "y", "ye", "yes")
         while choice_sentinel:
             # player1.current_mode = QuizType.EASY
@@ -555,7 +560,7 @@ if __name__ == "__main__":
             player1.save_to_scoreboard(quizMode)
             if total > 0:
                 write_leaderboard(quizMode, player1, total, time_lapsed)
-            choice = input("Play again uwu? (Y/n)")
+            choice = input("Play again? (Y/n)")
             choice_sentinel = choice.strip().lower() in ("", "y", "ye", "yes")
         userLeaderboardResponse = input("Display leaderboard? [Y/n] >> ").strip().lower()
         if userLeaderboardResponse == "y" or userLeaderboardResponse == "":

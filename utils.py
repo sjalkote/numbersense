@@ -66,7 +66,7 @@ def doThing():
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
     options = [purge_all_users.__name__, check_if_user_data_present.__name__,
                whitelist_user.__name__, backup_leaderboard.__name__, resetLeaderboard.__name__,
-               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__,
+               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__, view_stats.__name__,
                "feedback", "exit"]
     fb_options = [view_feedback.__name__, clear_feedback.__name__, "go back"]
     while True:
@@ -99,6 +99,8 @@ def doThing():
                 print("Account deleted.")
             case change_admin_password.__name__:
                 change_admin_password(input("New password: "))
+            case view_stats.__name__:
+                view_stats()
             case "feedback":
                 fb, fb_index = pick(fb_options, "Feedback", indicator="👉")
                 match fb:
@@ -488,3 +490,28 @@ def view_feedback():
         print(fb_data[user_to_get_feedback][feedback_index])
     except ValueError:
         print("No feedback to be displayed at this moment.")
+
+def delete_all_guests():
+    files = glob.glob('./users/*')
+    for file in files:
+        if file.startswith("guest"):
+            os.remove(file)
+
+def log_stats(mode : QuizType):
+    with open("statistics.json", "r+") as stats_file:
+        statistics = json.load(stats_file)
+    stats_file.close()
+    statistics[f"{mode} Mode"] += 1
+    with open("statistics.json", "w+") as stats_file:
+        statistics = json.dump(statistics, stats_file)
+    stats_file.close()
+
+def view_stats():
+    with open("statistics.json", "r+") as stats_file:
+        statistics = json.load(stats_file)
+    most_played_value = max(statistics.values())
+    least_played_value = min(statistics.values())
+    most_played_key = list(statistics.keys())[list(statistics.values()).index(most_played_value)]
+    least_played_key = list(statistics.keys())[list(statistics.values()).index(least_played_value)]
+    print(f"{most_played_key} is the most played mode with {most_played_value} plays.")
+    print(f"{least_played_key} is the least played mode with {least_played_value} plays.")
