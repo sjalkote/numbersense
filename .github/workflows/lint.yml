@@ -16,17 +16,16 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-        cache: "pip"  # NEW caches pip dependencies!
+        cache: "pip"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
-      # Plugins: pep8-naming, flake8-pytest, flake8-simplify
+        : # Plugins: pep8-naming, flake8-pytest, flake8-simplify
         pip install flake8 pep8-naming flake8-pytest flake8-simplify
     - name: "Lint — flake8"
-      # Run all tests (in 'tests/*' folder)
       run: |
-      # stop the build if there are Python syntax errors or undefined names
+        : # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-      # exit-zero treats all errors as warnings. Our project currently prefers 120 as max
+        : # exit-zero treats all errors as warnings. Our project currently prefers 120 as max
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
