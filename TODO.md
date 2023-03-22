@@ -19,7 +19,6 @@ You can find completed versions at [the bottom of the list](#Completed).
 
 
 ### 0.0.3b: Inbox
-- [ ] Calculus
 - [ ] DB!!!!
 
 ## 0.0.3: Timed Mode
@@ -36,6 +35,7 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [ ] Subscripts
 - [ ] Estimation Questions
 - [ ] Reset leaderboard 
+- [ ] Calculus
 - [ ] Add more categories to the leaderboard  
 
 ## 0.0.5: Tests

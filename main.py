@@ -13,7 +13,6 @@ from getpass import getpass
 import os
 from practicemode import practiceMode, choose_type
 
-
 # utils.changeAdminPassword("Admin")
 from rich.console import Console
 from rich.markdown import Markdown
@@ -60,7 +59,7 @@ def main(totalQuestions: int, player1: Player):
     while counter <= totalQuestions:
         if player1.current_mode == QuizType.NORMAL:
             print(f"{counter}) ", end="")
-            questionType = random.randint(1, 29)
+            questionType = random.randint(1, 31)
             # Print the question number
             match questionType:
                 case 1:
@@ -150,8 +149,14 @@ def main(totalQuestions: int, player1: Player):
                 case 29:
                     if questions.add_opposite_fractions():
                         player1.num_correct += 1
-
+                case 30:
+                    if questions.convert_to_base_10_question():
+                        player1.num_correct += 1
+                case 31:
+                    if questions.convert_from_base_10_question():
+                        player1.num_correct += 1
             counter += 1
+                    
 
         elif player1.current_mode == quizMode.EASY:
             QuestionType = random.randint(1, 7)
@@ -180,7 +185,7 @@ def main(totalQuestions: int, player1: Player):
                         player1.num_correct += 1
             counter += 1
         elif player1.current_mode == quizMode.HARD:
-            QuestionType = random.randint(1, 10)
+            QuestionType = random.randint(1, 11)
             print(f"{counter}) ", end="")
             match QuestionType:
                 case 1:
@@ -212,6 +217,9 @@ def main(totalQuestions: int, player1: Player):
                         player1.num_correct += 1
                 case 10:
                     if questions.decimal_to_fractions():
+                        player1.num_correct += 1
+                case 11:
+                    if questions.convert_to_base_10_question():
                         player1.num_correct += 1
             counter += 1
         elif player1.current_mode == quizMode.QUICK:

@@ -9,7 +9,7 @@ GroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Mu
 GroupsTwo = ["Squaring Numbers", "Cubing Numbers", "Square Rooting Numbers", "Cube Rooting Numbers", "Adding Squares Type One", "Adding Squares Type Two", "Difference of squares", "Logarithms"]
 GroupsThree = ["Multiplying Fractions", "Compare Fractions", "Dividing Fractions", "Adding Opposite Fractions", "Decimal to Fractions", "Fractions to Decimals"]
 GroupsFour = ["GCF and LCM", "Mean, Median, and Range", "Integral Divisors", "Subsets", "Order of Operations",
-                "x to y +/- 1", "x and y cubed Algebra"]
+                "x to y +/- 1", "x and y cubed Algebra", "Converting to base 10", "Converting from base 10"]
 
 def choose_type():
     category, category_index = pick(Groups, "What topic?", indicator='👉', default_index=0)
@@ -88,6 +88,10 @@ def choose_type():
                     return questions.xtoy1, None
                 case 6:
                     return questions.x_and_y_cubed, None
+                case 7:
+                    return questions.convert_to_base_10_question, None
+                case 8:
+                    return questions.convert_from_base_10_question, None
 def practiceMode(list):
     question_func = list[0]
     type = list[1]

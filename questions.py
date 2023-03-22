@@ -402,7 +402,7 @@ def xtoy1():
         case 1:
             operation = "(y + 1)"
             z = random.randint(1, int(100 / x)) * x
-            answer = z / x
+            answer = int(z / x)
         case 2:
             operation = "(y - 1)"
             answer = z * x
@@ -410,7 +410,7 @@ def xtoy1():
             operation = "(.5y)"
             answer = z * z
     uinput = better_num_input(f"If {x}^{operation} = {z}, what is {x}^y?: ")
-    return print_answer_validation(round(eval(uinput), 2), answer, answer)
+    return print_answer_validation(uinput, answer, answer)
 
 
 def add_common_products():
@@ -541,3 +541,42 @@ def add_opposite_fractions():
     p_answer = f"{int(ans_num)}/{int(ans_dem)}"
     answer = p_answer
     return print_answer_validation(uinput, answer, p_answer)
+
+    
+# Takes a number from any base and converts it to base ten.
+def convert_to_base_10(num, base):
+    num = [*str(num)]
+    answer = 0
+    for i in range(-1, -1 * len(num)-1, -1):
+        answer += int(num[i]) * (base ** (i * -1 - 1))
+    return answer
+
+
+def convert_from_base_10(num, base): # 15, 7 
+    answer = ""
+    while num > 0:
+        i = 0
+        while num >= base ** i:
+            i += 1
+        i -= 1 # 1 | 0
+        digit = 0
+        while num >= base ** i:
+            num = num - (base ** i)
+            digit += 1
+        answer += str(digit)
+    return int(answer)
+
+    
+def convert_to_base_10_question():
+    number = random.randint(11,99)
+    base = random.randint(2,9)
+    answer = convert_to_base_10(number,base)
+    uinput = better_num_input(f"What is {number} base {base} in base 10? ")
+    print_answer_validation(answer,uinput,answer)
+
+def convert_from_base_10_question():
+    number = random.randint(11,300)
+    base = random.randint(2,9)
+    answer = convert_from_base_10(number,base)
+    uinput = better_num_input(f"What is {number} base 10 in base {base}? ")
+    print_answer_validation(answer,uinput,answer)
