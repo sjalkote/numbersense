@@ -1,5 +1,8 @@
 ## CUSTOM
 users/
+# currently planning on keeping database instance-specific,
+# since we have a method that knows to create if it doesn't already exist
+data.db
 
 ## TEMPORARY
 .github/*

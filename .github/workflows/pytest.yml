@@ -26,3 +26,5 @@ jobs:
       run: pytest tests/test_player.py
     - name: "Test — Enums.py"
       run: pytest tests/test_enums.py
+    - name: "Test — sqlite3 database"
+      run: pytest tests/test_database.py

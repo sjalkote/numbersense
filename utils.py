@@ -1,8 +1,12 @@
+import datetime
 import os
 import glob
 import json
 import random
+import time
+
 import bcrypt
+import sqlite3
 from pick import pick
 from colorama import init as colorama_init, Fore as C, Style
 from tabulate import tabulate
@@ -11,6 +15,8 @@ from rich.markdown import Markdown
 from Enums import QuizType
 
 colorama_init(True)
+DB_FILENAME: str = "data.db"
+DB_DATE_FORMAT: str = "%Y-%m-%d %H:%M:%S"
 
 
 def purge_all_users() -> bool:
@@ -61,13 +67,17 @@ def check_if_user_data_present(user_name: str) -> bool:
             f.close()
     return False
 
+
 # --------------------------------
 def doThing():
     title = 'Please choose an option from the menu (use arrow keys to navigate): '
     options = [purge_all_users.__name__, check_if_user_data_present.__name__,
-               whitelist_user.__name__, backup_leaderboard.__name__, resetLeaderboard.__name__,
-               un_whitelist_user.__name__, delete_account.__name__, change_admin_password.__name__, view_stats.__name__,
-               "feedback", "exit"]
+               whitelist_user.__name__, backup_leaderboard.__name__,
+               resetLeaderboard.__name__, un_whitelist_user.__name__,
+               delete_account.__name__, change_admin_password.__name__,
+               view_stats.__name__, create_default_db.__name__,
+               "feedback", "exit",
+               ]
     fb_options = [view_feedback.__name__, clear_feedback.__name__, "go back"]
     while True:
         option, index = pick(options, title, indicator='👉', default_index=1)
@@ -246,6 +256,7 @@ def delete_account(username):
     if check_if_user_data_present(username):
         un_whitelist_user(username)
         os.remove(f"./users/{username}.json")
+
 
 def give_info():
     options1 = ["Leaderboard", "Programmers", "Updates"]
@@ -491,13 +502,15 @@ def view_feedback():
     except ValueError:
         print("No feedback to be displayed at this moment.")
 
+
 def delete_all_guests():
     files = glob.glob('./users/*')
     for file in files:
         if file.startswith("guest"):
             os.remove(file)
 
-def log_stats(mode : QuizType):
+
+def log_stats(mode: QuizType):
     with open("statistics.json", "r+") as stats_file:
         statistics = json.load(stats_file)
     stats_file.close()
@@ -505,6 +518,7 @@ def log_stats(mode : QuizType):
     with open("statistics.json", "w+") as stats_file:
         statistics = json.dump(statistics, stats_file)
     stats_file.close()
+
 
 def view_stats():
     with open("statistics.json", "r+") as stats_file:
@@ -515,3 +529,69 @@ def view_stats():
     least_played_key = list(statistics.keys())[list(statistics.values()).index(least_played_value)]
     print(f"{most_played_key} is the most played mode with {most_played_value} plays.")
     print(f"{least_played_key} is the least played mode with {least_played_value} plays.")
+
+
+# DATABASE STUFF —————————————————————————————————————————
+def create_default_db():
+    # Check if database file already exists
+    if os.path.isfile(DB_FILENAME):
+        print(f"{C.RED}Database file {C.CYAN}{DB_FILENAME}{C.RED} already exists.")
+        return
+
+    # Create & connect to the new database file
+    conn = sqlite3.connect(DB_FILENAME)
+    c = conn.cursor()
+
+    # Create Users table
+    c.execute('''CREATE TABLE Users
+                 (username TEXT, password TEXT, account_creation_date TEXT)''')
+
+    # Commit changes and close connection
+    conn.commit()
+    conn.close()
+
+    print(f"{C.GREEN}Database file {C.CYAN}{DB_FILENAME}{C.GREEN} created successfully.")
+
+
+# TODO: Use class to define data structure for the table!!! **Extremely important!**
+def add_user_to_db(username: str, password: str, account_creation_date: datetime.date):
+    # Connection to database
+    conn = sqlite3.connect(DB_FILENAME)
+    c = conn.cursor()
+
+    # Convert date to format that sqlite likes
+    account_creation_str: str = account_creation_date.strftime(DB_DATE_FORMAT)
+
+    # Add row with user information
+    c.execute("INSERT INTO Users VALUES (?, ?, ?)",
+              (username, password, account_creation_str))
+
+    # Commit changes
+    conn.commit()
+
+    # Get the ID of the last inserted row
+    row_id = c.lastrowid
+
+    # Fetch the corresponding row from the database
+    c.execute("SELECT * FROM Users WHERE rowid = ?", (row_id,))
+    row = c.fetchone()
+
+    # Close the database connection
+    conn.close()
+
+    return row
+
+
+def get_users_table_from_db():
+    conn = sqlite3.connect(DB_FILENAME)
+    c = conn.cursor()
+
+    # Select all rows from Users table
+    c.execute("SELECT * FROM Users")
+    rows = c.fetchall()
+
+    # Close connection
+    conn.close()
+
+    # Return the rows
+    return rows
