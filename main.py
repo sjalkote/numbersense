@@ -11,6 +11,7 @@ import utils
 import learnmode as lm
 from getpass import getpass
 import os
+from practicemode import practiceMode, choose_type
 
 
 # utils.changeAdminPassword("Admin")
@@ -311,7 +312,6 @@ def displayLeaderboard(mode: QuizType, time=None, numQuestions=None, player=None
 
 
 # Make sure this is the main file ------------------------------
-
 if __name__ == "__main__":
     # Get the quiz mode
 
@@ -328,7 +328,7 @@ if __name__ == "__main__":
         title = 'Choose a quiz mode: '
         options = ["😀 Easy", "😐 Normal", "👺 Hard", "⏰ Quick", "🤝 2 Player (v.s.)", "🎲 Random", "⚙️ Settings", "📝 Give Feedback",
                    "🔒 Administrative Menu",
-                   "📙 Learn Mode", "🥇 Display High Scores", "🚪🏃 Exit"]
+                   "📙 Learn Mode", "🏋️ Practice mode", "🥇 Display High Scores", "🚪🏃 Exit"]
         settingsOptions = ["🔑 Change Password", "❌ Delete Account", "📝 Get additional Info", "⬅ Go Back"]
         lmGroups = ["Basic Operations", "Powers", "Addition and Subtraction", "Data and Algebra"]
         lmGroupsOne = ["Multiplying by 25", "Multiplying by 75", "Multiplying by 101", "Multiplying by 11", "Difference of Reverses",  "Multiplying Two Numbers Centered Around a Third", "Remainders","Adding with Common Products",  "Multiplying Numbers Close to 100", "Adding with digits and 0's", "Multiplying over 37"]
@@ -336,7 +336,7 @@ if __name__ == "__main__":
         lmGroupsThree = ["Multiplying Fractions", "Compare Fractions", "Dividing Fractions", "Adding Opposite Fractions"]
         lmGroupsFour = ["GCF and LCM", "Mean, Median, and Range", "Integral Divisors", "Subsets", "Order of Operations",
                         "x to y +/- 1", "x and y cubed Algebra"]
-        mode, index = pick(options, title, indicator='👉', default_index=1)
+        mode, index = pick(options, title, indicator='👉', default_index=5)
 
         # 😀 Easy
         if index == 0:
@@ -486,10 +486,14 @@ if __name__ == "__main__":
             input("\nPress enter to return to the main menu\n")
             continue
         elif index == 10:
+            practiceMode(choose_type())
+            input("\nPress enter to return to the main menu.")
+            continue
+        elif index == 11:
             player1.get_high_scores()
             input("Press enter to go back. ")
             continue
-        elif index == 11:
+        elif index == 12:
             print("Thank you for playing.")
             if player1.is_guest:
                 os.remove(f"./users/{player1}.json")
@@ -549,8 +553,8 @@ if __name__ == "__main__":
             input("Press Enter to start\n--------------------")
             start_time = time.time()
             if index == 5:
-                quizMode, numQuestions = utils.gen_random_mode()
-                print(quizMode, numQuestions)
+                player1.current_mode, numQuestions = utils.gen_random_mode()
+                print(player1.current_mode, numQuestions)
             total = main(int(numQuestions), player1)
             end_time = time.time()
             time_lapsed = end_time - start_time
@@ -559,12 +563,16 @@ if __name__ == "__main__":
                 print(f"Score: {player1.calculate_score(total)}")
             player1.save_to_scoreboard(quizMode)
             if total > 0:
-                write_leaderboard(quizMode, player1, total, time_lapsed)
+                write_leaderboard(player1.current_mode, player1, total, time_lapsed)
             choice = input("Play again? (Y/n)")
             choice_sentinel = choice.strip().lower() in ("", "y", "ye", "yes")
         userLeaderboardResponse = input("Display leaderboard? [Y/n] >> ").strip().lower()
         if userLeaderboardResponse == "y" or userLeaderboardResponse == "":
             utils.read_leaderboard(quiz_mode=quizMode, num_questions=int(numQuestions))
         input("\nPress enter to go back to the main menu\n")
-
+"""except:
+    give_feedback = input("It seems that the program has crashed. Would you like to provide feedback? (Y/n)")
+    if give_feedback.lower().strip() == "y" or give_feedback == "":
+        utils.log_feedback("Error", input("Feedback: ") + "(Error:)")"""
+    
     

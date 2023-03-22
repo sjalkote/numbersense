@@ -7,64 +7,41 @@ You can find completed versions at [the bottom of the list](#Completed).
 - Create users file if it does not exist
 
 ## Bugs
-- [x] Choosing not to exit program on first attempt 
-
-## 0.0.2: The Everything Update
-
-- [x] Add CI/CD deployments for code quality & error checking. @TechnoShip123
-- [ ] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
-- [x] Add [badges for build status](https://shields.io/category/build) when done.
-- [x] Testing
-- [x] Feedback @Pikamaster23
-- [x] Quick Mode @Pikamaster23
-- [x] Learn mode: Parts of the Whole Group @Pikamaster23
-    - [x] Restructure
-    - [x] Add new lesson 
-- [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
-- [x] Leaderboard in ms @Pikamaster23
-- [x] View high scores options on main menu
-- [x] Play Again Option @TechnoShip123
-- [x] Reformat milliseconds in leaderboard
-- [x] Encrypt change password
-- [x] Fix createDefault
-- [x] No duplicates in whitelist.json
-
-# Public Release: 0.0.2
+- [x] Choosing not to exit program on first attempt
 
 ## 0.0.3: Practice mode and notifications
 
 ### 0.0.3a: Practice Mode and Percentages
-- [ ] Practice mode: Practice specific concepts & problems
-- [ ] Percentages!
-- [ ] Options menu
-	- [ ] Option to turn off changing answers
-- [ ] Add more categories to the leaderboard @Pikamaster23
-- [x] Start tracking analytics/statistics
-    - [ ] ex.: Most/Least played modes 
+- [x] Practice mode: Practice specific concepts & problems
+- [x] Answers should only be counted correct without the leading zero.
+- [x] Answers should be simplified to be counted correct
 
 
 
 ### 0.0.3b: Inbox
-- [ ] Inbox with notifications (ex.: failed login attempts)
-- [ ] Mixed numbers
-- [ ] Guest information should not be saved
+- [ ] Calculus
+- [ ] DB!!!!
 
 ## 0.0.3: Timed Mode
 - [ ] Timed Mode
-- [ ] Answers should be simplified to be counted correct
+- [ ] Percentages!
+- [ ] Mixed numbers
+- [ ] Inbox with notifications (ex.: failed login attempts)
+- [ ] Guest information should not be saved
 
 ## 0.0.4: Questions!
 - [ ] Introduce loads of new questions
 - [ ] Word Problems
 - [ ] Geometry
-- [ ] Calculus
 - [ ] Subscripts
 - [ ] Estimation Questions
 - [ ] Reset leaderboard 
-- [ ] Answers should only be counted correct without the leading zero. @Pikamaster23
+- [ ] Add more categories to the leaderboard  
 
 ## 0.0.5: Tests
 - [ ] Full length practice tests
+- [ ] Options menu
+	- [ ] Option to turn off changing answers
 
 # 0.1
 - [ ] 2 Player Mode
@@ -126,3 +103,27 @@ You can find completed versions at [the bottom of the list](#Completed).
 - [x] Adding and subtracting reverse fractions @Pikamaster23
 - [x] Fix getting 0 as a number of questions @Pikamaster23
 - [x] Random Mode @Pikamaster23
+
+## 0.0.2: The Everything Update
+
+- [x] Add CI/CD deployments for code quality & error checking. @TechnoShip123
+- [x] Proper `master/` and `feature/xyz` branch structuring (`dev/` likely unnecessary, maybe if the project gains more traction). @TechnoShip123
+- [x] Add [badges for build status](https://shields.io/category/build) when done.
+- [x] Testing
+- [x] Feedback @Pikamaster23
+- [x] Quick Mode @Pikamaster23
+- [x] Learn mode: Parts of the Whole Group @Pikamaster23
+    - [x] Restructure
+    - [x] Add new lesson 
+- [x] Fix betterFracInput so that inputs like "2/" or "/4" don't cause an error. @Pikamaster23
+- [x] Leaderboard in ms @Pikamaster23
+- [x] View high scores options on main menu
+- [x] Play Again Option @TechnoShip123
+- [x] Reformat milliseconds in leaderboard
+- [x] Encrypt change password
+- [x] Fix createDefault
+- [x] No duplicates in whitelist.json
+- [x] Start tracking analytics/statistics
+    - [x] ex.: Most/Least played modes 
+
+# Public Release: 0.0.2

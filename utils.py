@@ -350,10 +350,10 @@ def better_frac_input(question_reprint, decimal=False):
     if thing == "":
         exit_choice = input("Exit program? Y/n ")
         if exit_choice == "y" or exit_choice == "":
-            print("Exited program")
+            print(f"{C.YELLOW}Exited program")
             exit()
         else:
-            print("Exit cancelled.")
+            print(f"{C.CYAN}Exit cancelled.")
             skip_to_while_loop = True
             state = False
     if not skip_to_while_loop:

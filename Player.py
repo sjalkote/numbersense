@@ -91,6 +91,7 @@ class Player:
             new_account = True
         # --------------------------------------------------------------------------------------------------------
         self.score: int = 0
+        self.num_answered: int = 0
         self.num_correct: int = 0
         self.highscore: dict = {
             QuizType.EASY.value: 0,
@@ -102,6 +103,12 @@ class Player:
         self._USER_DATA_FILE = f"users/{self.name}.json"
         self.password: str = utils.encrypt_password(
             password, True)  # Hashed password as str
+        self.stats: dict = {
+            QuizType.EASY.value: {"correctlyAnswered": 0, "totalAnswered": 0},
+            QuizType.NORMAL.value: {"correctlyAnswered": 0, "totalAnswered": 0},
+            QuizType.HARD.value: {"correctlyAnswered": 0, "totalAnswered": 0},
+            QuizType.QUICK.value: {"correctlyAnswered": 0, "totalAnswered": 0}
+        }
 
         if new_account:
             self.generate_empty_data_file()
@@ -158,15 +165,17 @@ class Player:
                 {
                     "name": self.name,
                     "highscore": self.highscore,
-                    "password": self.password
+                    "password": self.password,
+                    "stats": self.stats,
                 }, data_file)
         data_file.close()
         return self._USER_DATA_FILE
 
     def __str__(self):
         return str(self.name)
-
+    
     def calculate_score(self, total_questions: int) -> int:
+        self.num_answered = total_questions
         num_wrong = total_questions - self.num_correct
         self.score = round(self.num_correct * 5 - num_wrong * 4)
         return self.score
@@ -174,6 +183,16 @@ class Player:
     def get_nem_stuff(self):
         return int(self.num_correct)
 
+    def update_stats(self, total_answered: int):
+        with open(self._USER_DATA_FILE, 'w+') as data_file:
+            data = json.load()
+            self.stats[self.current_mode] = {
+                "correctlyAnswered": self.num_correct + self.stats[self.current_mode]["correctlyAnswered"],
+                "totalAnswered": self.num_answered + self.stats[self.current_mode]["totalAnswered"]
+            }
+            data["stats"] = self.stats
+        data_file.close()
+    
     def save_to_scoreboard(self, quiz_mode):
         # Save the scoreboard to the user's file
         with open(self._USER_DATA_FILE, 'w+') as score_file:
@@ -185,7 +204,8 @@ class Player:
                 {
                     "name": self.name,
                     "highscore": self.highscore,
-                    "password": self.password
+                    "password": self.password,
+                    "stats": self.stats,
                 }, score_file)
         score_file.close()
 
@@ -198,6 +218,7 @@ class Player:
         data_file.close()
         with open(self._USER_DATA_FILE, 'w') as data_file:
             json.dump(user_data, data_file)
+    
 
 
 # LEADERBOARD CLASS –------------------------

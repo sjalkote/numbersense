@@ -15,11 +15,25 @@ operations = ["*", "+", "-"]
 normBaseFractions = [2, 4, 5, 8, 10, 20, 25, 40]
 
 
-def print_answer_validation(uinput, ans, return_ans):
+def print_answer_validation(uinput, ans, return_ans, decimal=False):
     """Returns whether the question was answered correctly"""
     # TODO: Have an option for multiple attempts, skips the question if pressing enter with empty answer
-
-    if uinput == ans:
+    decimal_correct = True
+    if decimal and type(ans) == float :
+        dec_ans = [*str(uinput)]
+        if dec_ans[0] == "0":
+            decimal_correct = False
+        dec_ans = [*str(ans)]
+        length = len(dec_ans)
+        return_ans = ""
+        if dec_ans[0] == "0":
+            for i in range(1,length):
+                return_ans += dec_ans[i]
+        else:
+            for i in range(0,length):
+                return_ans += dec_ans[i]
+        ans = return_ans
+    if str(uinput) == str(ans) and decimal_correct:
         print(f"{C.GREEN}✅ Correct")
         return True
     else:
@@ -69,11 +83,10 @@ def multiply_fractions():
     gcf_final = get_gcf(num_final, den_final)
     num_final /= gcf_final
     den_final /= gcf_final
-    product = num_final / den_final
     uinput = better_frac_input(f"{int(num1)}/{int(den1)} x {int(num2)}/{int(den2)} = ")
     if den_final == 1:
-        return print_answer_validation(eval(uinput), product, int(num_final))
-    return print_answer_validation(eval(uinput), product, f"{int(num_final)}/{int(den_final)}")
+        return print_answer_validation(uinput, int(num_final), int(num_final))
+    return print_answer_validation(uinput,f"{int(num_final)}/{int(den_final)}", f"{int(num_final)}/{int(den_final)}")
 
 
 def get_gcf(a, b):
@@ -161,7 +174,7 @@ def difference_of_reverses(digits):
 def lcm_question():
     num1 = random.randint(1, 20)
     num2 = random.randint(1, 20)
-    answer = get_lcm(num1, num2)
+    answer = int(get_lcm(num1, num2))
     uinput = better_num_input(f"lcm({num1},{num2}) = ")
 
     return uinput, answer
@@ -316,13 +329,12 @@ def divide_fractions():
     gcf_final = get_gcf(num_final, den_final)
     num_final /= gcf_final
     den_final /= gcf_final
-    product = num_final / den_final
     uinput = better_frac_input(f"{int(num1)}/{int(den1)} ➗ {int(num2)}/{int(den2)} = ")
 
     if den_final == 1:
-        return print_answer_validation(eval(uinput), product, int(num_final))
+        return print_answer_validation(uinput, int(num_final), int(num_final))
 
-    return print_answer_validation(eval(uinput), product, f"{int(num_final)}/{int(den_final)}")
+    return print_answer_validation(uinput, f"{int(num_final)}/{int(den_final)}", f"{int(num_final)}/{int(den_final)}")
 
 
 def stats():
@@ -348,7 +360,7 @@ def stats():
             answer = (num1 + num2 + num3 + num4 + num5) / 5
     uinput = better_frac_input(f"What is the {term} of {num1}, {num2}, {num3}, {num4}, and {num5}? ")
 
-    return print_answer_validation(eval(uinput), answer, answer)
+    return print_answer_validation(eval(uinput), answer, answer,decimal=True)
 
 
 def integral_divisors_question():
@@ -497,7 +509,7 @@ def decimal_to_fractions():
             numerator, denominator = simplify(int(f"{a}{b}{c}"), 999)
     uinput = better_frac_input(f"What is {printt} as a fraction? ")
     p_answer = f"{int(numerator)}/{int(denominator)}"
-    return print_answer_validation(eval(uinput), numerator / denominator, p_answer)
+    return print_answer_validation(uinput, f"{int(numerator)}/{int(denominator)}", p_answer)
 
 
 def simplify(numerator, denominator):
@@ -516,7 +528,7 @@ def frac_to_dec():
     uinput = better_frac_input(f"What is {p_answer} as a decimal? ")
     answer = numerator / denominator
     p_answer = round(numerator / denominator, 3)
-    return print_answer_validation(eval(uinput), answer, p_answer)
+    return print_answer_validation(uinput, answer, p_answer, decimal=True)
 
 
 def add_opposite_fractions():
@@ -524,8 +536,8 @@ def add_opposite_fractions():
     denominator1 = 1
     while numerator1 == 1 or denominator1 == 1:
         numerator1, denominator1 = simplify(random.randint(2, 9), random.randint(2, 9))
-    uinput = better_frac_input(f"{int(numerator1)}/{int(denominator1)} + {int(denominator1)}/{int(numerator1)} = 2 + ")
+    uinput = better_frac_input(f"(Proper/Improper Fraction) {int(numerator1)}/{int(denominator1)} + {int(denominator1)}/{int(numerator1)} = 2 + ")
     ans_num, ans_dem = simplify((numerator1 - denominator1) ** 2, (numerator1 * denominator1))
-    p_answer = f"{ans_num}/{ans_dem}"
-    answer = ans_num / ans_dem
-    return print_answer_validation(eval(uinput), answer, p_answer)
+    p_answer = f"{int(ans_num)}/{int(ans_dem)}"
+    answer = p_answer
+    return print_answer_validation(uinput, answer, p_answer)
